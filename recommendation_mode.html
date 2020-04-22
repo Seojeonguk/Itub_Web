@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> I-Tub </title>
+        <style>
+          #jb-container {
+            width: 940px;
+            margin: 10px auto;
+            padding: 20px;
+            border: 1px solid #bcbcbc;
+          }
+          #jb-header {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #bcbcbc;
+          }
+            
+          @media ( max-width: 480px ) {
+            #jb-container {
+              width: auto;
+            }
+            #jb-content {
+              float: none;
+              width: auto;
+            }
+          }
+        </style>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080">        
+        <h1>사용자 설정</h1>
+        
+        <div id="jb-header">
+            <h1>반응형 웹 예제</h1>
+        </div>
+        
+        <form action="/my-handling-form-page" method="post">
+            <h4>입욕제</h4>
+            <select name="bathing">
+              <option value="없음" selected="selected">없음</option>  
+              <option value="장미향">장미향</option>
+              <option value="복숭아향">복숭아향</option>
+              <option value="바다향">바다향</option>
+            </select>
+            <p></p>
+            
+            
+            
+            <input type="button" value="설정" onclick='alert("구현중")'/>
+        </form>
+    </body>
+</html>
