@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>I-Tub</title>
+		<style type ="text/css">
+            #side_left{
+                width:auto;
+                height: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #000000;
+            }
+            #left_menu{
+                width:50%; 
+                float:left;
+                background-color:#2980b9;
+                text-align: center;
+                vertical-align: middle;
+                display: table;
+            }
+            #right_menu{
+                width:50%; float:right;
+                background-color:#16a085;
+                align-content: center;
+                background-position: center;
+                display: table;
+            }
+            #left_menu_write{
+                width:100%; 
+                height:1020px;
+                text-align: center;
+                margin-right:auto; 
+                margin-left:auto;
+                vertical-align: middle;
+                display: table-cell;
+                background-color: #2980b9;
+                border:0;
+                font-size: 3em;
+                color:aliceblue
+            }
+            #right_menu_write{
+                width:100%; 
+                height:1020px;
+                text-align: center;
+                margin-right:auto; 
+                margin-left:auto;
+                vertical-align: middle;
+                display: table-cell;
+                background-color: #16a085;
+                border:0;
+                font-size: 3em;
+                color: aliceblue
+            }
+        </style>
+	</head>
+    
+	<body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080">
+        <div id="side_left">
+			<div id = "left_menu">
+                <button onclick="location.href='./recommendation_mode.html'" id="left_menu_write">추천 모드</button>
+			</div>
+			<div id = "right_menu">
+                <button onclick="location.href='./own_settings.html'" id="right_menu_write">나만의 설정</button>
+			</div>
+        </div>
+	</body>
+</html>
