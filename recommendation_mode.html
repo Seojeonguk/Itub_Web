@@ -1,246 +1,28 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title> I-Tub </title>
+
+    <link rel="stylesheet" href="swiper.min.css">
+    
     <style>
-        /*
-* core styles
-*/
-        .sm-link {
-            --uismLinkDisplay: var(--smLinkDisplay, inline-flex);
-            --uismLinkTextColor: var(--smLinkTextColor);
-            --uismLinkTextColorHover: var(--smLinkTextColorHover);
-
-            display: var(--uismLinkDisplay);
-            color: var(--uismLinkTextColor);
-            position: relative;
-            overflow: hidden;
+        #jb-container {
+            width: 940px;
+            margin: 10px auto;
+            padding: 20px;
+            border: 1px solid #bcbcbc;
         }
 
-        a.sm-link {
-            text-decoration: none;
+        #jb-header {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #bcbcbc;
         }
 
-        .sm-link__label {
-            display: block;
-        }
-
-        /* sm-link_padding-all */
-
-        .sm-link_padding-all {
-            --uismLinkLineWeight: var(--smLinkLineWeight, 2px);
-            --uismLinkLineColor: var(--smLinkLineColor, #000);
-            --uismLinkPadding: var(--smLinkPadding, 5px);
-
-            padding: var(--uismLinkPadding);
-        }
-
-        .sm-link_padding-all::before,
-        .sm-link_padding-all::after {
-            width: 100%;
-            height: var(--uismLinkLineWeight);
-            left: 0;
-        }
-
-        .sm-link_padding-all::before {
-            top: 0;
-        }
-
-        .sm-link_padding-all::after {
-            bottom: 0;
-        }
-
-        .sm-link_padding-all .sm-link__label::before,
-        .sm-link_padding-all .sm-link__label::after {
-            width: var(--uismLinkLineWeight);
-            height: 100%;
-            top: 0;
-        }
-
-        .sm-link_padding-all .sm-link__label::before {
-            left: 0;
-        }
-
-        .sm-link_padding-all .sm-link__label::after {
-            right: 0;
-        }
-
-        .sm-link_padding-all::before,
-        .sm-link_padding-all::after,
-        .sm-link_padding-all .sm-link__label::before,
-        .sm-link_padding-all .sm-link__label::after {
-            content: "";
-            background-color: var(--uismLinkLineColor);
-            position: absolute;
-            opacity: 0;
-
-            will-change: transform, opacity;
-            transition-property: transform, opacity;
-        }
-
-        .sm-link_padding-all:hover::before,
-        .sm-link_padding-all:hover::after,
-        .sm-link_padding-all:hover .sm-link__label::before,
-        .sm-link_padding-all:hover .sm-link__label::after {
-            opacity: 1;
-        }
-
-        /* sm-link_padding-bottom */
-
-        .sm-link_padding-bottom {
-            --uismLinkLineWeight: var(--smLinkLineWeight, 2px);
-            --uismLinkLineColor: var(--smLinkLineColor, #000);
-
-            padding-bottom: var(--uismLinkLineWeight);
-            position: relative;
-        }
-
-        .sm-link_padding-bottom::after {
-            content: "";
-            width: 100%;
-            height: var(--uismLinkLineWeight);
-            background-color: var(--uismLinkLineColor);
-
-            position: absolute;
-            left: 0;
-            bottom: 0;
-        }
-
-        /* sm-link_bg */
-
-        .sm-link_bg {
-            --uismLinkLineColor: var(--smLinkLineColor, #000);
-            --uismLinkTextColorHover: var(--smLinkTextColorHover, #fff);
-            --uismLinkPadding: var(--smLinkPadding, 5px);
-
-            padding: var(--uismLinkPadding);
-            transition: color .3s ease-out;
-        }
-
-        .sm-link_bg::before,
-        .sm-link_bg::after {
-            content: "";
-            background-color: var(--uismLinkLineColor);
-            opacity: 0;
-            position: absolute;
-
-            transition: transform .2s ease-out, opacity .2s ease-out .03s;
-        }
-
-        .sm-link_bg .sm-link__label {
-            position: relative;
-            z-index: 2;
-        }
-
-        .sm-link_bg:hover::before,
-        .sm-link_bg:hover::after {
-            opacity: 1;
-            transition-duration: .35s, .35s;
-            transition-delay: 0s, 0s;
-        }
-
-        .sm-link_bg:hover {
-            color: var(--uismLinkTextColorHover);
-        }
-
-        /* sm-link_text */
-
-        .sm-link_text::before {
-            content: attr(data-sm-link-text);
-            color: var(--uismLinkTextColorHover);
-            position: absolute;
-        }
-
-        .sm-link_text::before,
-        .sm-link_text .sm-link__label {
-            transition-property: transform;
-            transition-timing-function: cubic-bezier(.86, .6, .08, 1.01);
-            transition-duration: .3s;
-        }
-
-        .sm-link_text:hover::before,
-        .sm-link_text:hover .sm-link__label {
-            transition-duration: .4s;
-        }
-
-        /* effect 10 */
-
-        .sm-link10::before,
-        .sm-link10::after {
-            width: 100%;
-            height: 50%;
-            left: 0;
-        }
-
-        .sm-link10::before {
-            top: 0;
-            transform: translate3d(0, -50%, 0);
-        }
-
-        .sm-link10::after {
-            bottom: 0;
-            transform: translate3d(0, 50%, 0);
-        }
-
-        .sm-link10:hover::before,
-        .sm-link10:hover::after {
-            transform: translate3d(0, 0, 0);
-        }
-
-        
-        /*
-SETTINGS
-*/
-
-        .sm-link {
-            --smLinkPadding: 10px 15px;
-            --smLinkLineWeight: 5px;
-            --smLinkLineColor: #243aab;
-            --smLinkTextColor: #243aab;
-            --smLinkTextColorHover: #1b255a;
-        }
-
-        .sm-link_bg {
-            --smLinkTextColorHover: #fff;
-        }
-
-        /*
-=====
-DEMO
-=====
-*/
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Open Sans", "Helvetica Neue", "Segoe UI", "Arial", sans-serif;
-            margin: 0;
-        }
-
-        
-        .section {
-            display: flex;
-            min-height: 300px;
-            text-align: center;
-
-            font-size: 17px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .section:nth-child(2n+2) {
-            background-color: #f1f4fa;
-        }
-
-        .section__item {
-            margin: auto;
-        }
-
-        
-        <!-- 데스크톱 우선으로 하기위한 코드 -->
-        @media (max-width: 1080px) {
+        @media (max-width: 480px) {
             #jb-container {
                 width: auto;
             }
@@ -251,26 +33,75 @@ DEMO
             }
         }
 
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
     </style>
-    <link rel="stylesheet" href="main.css">
 </head>
 
-
 <body>
-    <!-- bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080" -->
     <h1>사용자 설정</h1>
-
     <div id="jb-header">
         <h1>반응형 웹 예제</h1>
     </div>
 
-    <div class="section">
-        <div class="section__item">
-            <a href="#10" class="sm-link sm-link_padding-all sm-link1">
-                <span class="sm-link__label">Hover effect #10</span>
-            </a>
+    <p></p>
+    <p></p>
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="4.jpg">Slide 1</div>
+            <div class="swiper-slide"><img src="3.jpg">Slide 2</div>
+            <div class="swiper-slide"><img src="4.jpg">Slide 3</div>
+            <div class="swiper-slide"><img src="4.jpg">Slide 4</div>
+            <div class="swiper-slide"><img src="1.jpg">Slide 5</div>
+            <div class="swiper-slide"><img src="4.jpg">Slide 6</div>
+            <div class="swiper-slide"><img src="4.jpg">Slide 7</div>
+            <div class="swiper-slide"><img src="3.jpg">Slide 8</div>
+            <div class="swiper-slide"><img src="4.jpg">Slide 9</div>
+            <div class="swiper-slide"><img src="4.jpg">Slide 10</div>
         </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
     </div>
+
+    <p></p>
+    <p></p>
 
     <form action="/my-handling-form-page" method="post">
         <h4>입욕제</h4>
@@ -282,10 +113,20 @@ DEMO
         </select>
         <p></p>
 
-
-
         <input type="button" value="설정" onclick='alert("구현중")' />
     </form>
-</body>
 
+    <script src = "./swiper.min.js"></script>
+
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+</body>
 </html>
