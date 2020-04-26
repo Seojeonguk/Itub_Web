@@ -57,8 +57,11 @@ a {
 
 .shop_wrap {
     overflow: hidden;
-    width: 350px;
-    height: 1128px;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     letter-spacing: -.25px
@@ -66,7 +69,7 @@ a {
 
 
 .shop_wrap .group_goods .list_goods_wrap {
-    padding: 9px 0 20px
+    padding: 20px 0 20px
 }
 
 .shop_wrap .group_goods .list_goods_wrap .list_goods {
@@ -74,7 +77,8 @@ a {
 }
 
 .shop_wrap .group_goods .list_goods_wrap .goods_item {
-    margin-top: 16px
+    margin-top: 16px;
+    width: 40%;
 }
 
 .shop_wrap .group_goods .list_goods_wrap .title_box {
@@ -83,8 +87,8 @@ a {
 
 .shop_wrap .list_goods_wrap .goods_item {
     float: left;
-    width: 107px;
-    margin-right: 14px
+    width: 187px;
+    margin-right: 14px;
 }
 
 .shop_wrap .list_goods_wrap .goods_area {
