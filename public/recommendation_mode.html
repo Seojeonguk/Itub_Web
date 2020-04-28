@@ -75,33 +75,6 @@
 </head>
 
 <body>
-    <h1>사용자 설정</h1>
-    <div id="jb-header">
-        <h1>반응형 웹 예제</h1>
-    </div>
-
-    <p></p>
-    <p></p>
-
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="4.jpg">Slide 1</div>
-            <div class="swiper-slide"><img src="3.jpg">Slide 2</div>
-            <div class="swiper-slide"><img src="4.jpg">Slide 3</div>
-            <div class="swiper-slide"><img src="4.jpg">Slide 4</div>
-            <div class="swiper-slide"><img src="1.jpg">Slide 5</div>
-            <div class="swiper-slide"><img src="4.jpg">Slide 6</div>
-            <div class="swiper-slide"><img src="4.jpg">Slide 7</div>
-            <div class="swiper-slide"><img src="3.jpg">Slide 8</div>
-            <div class="swiper-slide"><img src="4.jpg">Slide 9</div>
-            <div class="swiper-slide"><img src="4.jpg">Slide 10</div>
-        </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-    </div>
-
-    <p></p>
-    <p></p>
 
     <form action="/my-handling-form-page" method="post">
         <h4>입욕제</h4>
@@ -115,18 +88,5 @@
 
         <input type="button" value="설정" onclick='alert("구현중")' />
     </form>
-
-    <script src = "./swiper.min.js"></script>
-
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 3,
-            spaceBetween: 30,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
-    </script>
 </body>
 </html>
