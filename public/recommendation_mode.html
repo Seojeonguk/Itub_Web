@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title> I-Tub </title>
+
+    <link rel="stylesheet" href="swiper.min.css">
+    
+    <style>
+        #jb-container {
+            width: 940px;
+            margin: 10px auto;
+            padding: 20px;
+            border: 1px solid #bcbcbc;
+        }
+
+        #jb-header {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #bcbcbc;
+        }
+
+        @media (max-width: 480px) {
+            #jb-container {
+                width: auto;
+            }
+
+            #jb-content {
+                float: none;
+                width: auto;
+            }
+        }
+
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>사용자 설정</h1>
+    <div id="jb-header">
+        <h1>반응형 웹 예제</h1>
+    </div>
+
+    <p></p>
+    <p></p>
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="4.jpg">Slide 1</div>
+            <div class="swiper-slide"><img src="3.jpg">Slide 2</div>
+            <div class="swiper-slide"><img src="4.jpg">Slide 3</div>
+            <div class="swiper-slide"><img src="4.jpg">Slide 4</div>
+            <div class="swiper-slide"><img src="1.jpg">Slide 5</div>
+            <div class="swiper-slide"><img src="4.jpg">Slide 6</div>
+            <div class="swiper-slide"><img src="4.jpg">Slide 7</div>
+            <div class="swiper-slide"><img src="3.jpg">Slide 8</div>
+            <div class="swiper-slide"><img src="4.jpg">Slide 9</div>
+            <div class="swiper-slide"><img src="4.jpg">Slide 10</div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <p></p>
+    <p></p>
+
+    <form action="/my-handling-form-page" method="post">
+        <h4>입욕제</h4>
+        <select name="bathing">
+            <option value="없음" selected="selected">없음</option>
+            <option value="장미향">장미향</option>
+            <option value="복숭아향">복숭아향</option>
+            <option value="바다향">바다향</option>
+        </select>
+        <p></p>
+
+        <input type="button" value="설정" onclick='alert("구현중")' />
+    </form>
+
+    <script src = "./swiper.min.js"></script>
+
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+</body>
+</html>
