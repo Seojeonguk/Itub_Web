@@ -5,10 +5,12 @@ var path = require('path') // 상대경로 사용하는 모듈
 var main = require('./main/main')
 var email = require('./email/email')
 
+var port = process.env.port||7777;
+
 // url routing
 router.get('/', function(req, res){
 	console.log('indexjs / path loaded')
-	res.sendFile(path.join(__dirname + "../public/main.html")) // html 파일을 보내는 것
+	res.sendFile(path.join(__dirname + "/../public/form.html")) // html 파일을 보내는 것
 });
 
 router.use('/main', main)
