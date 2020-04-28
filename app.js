@@ -6,7 +6,7 @@ var router = require('./router/index')
 port = process.env.PORT || 7777;
 
 app.listen(port, function() {
-	console.log("start!! express server on port 3000");
+	console.log("Open I-Tub server!! congratulation");
 });
 
 // 이부분을 middleware 라고 한다.
