@@ -5,15 +5,15 @@ var mysql = require('mysql')
 var path = require('path') // 상대경로 사용하는 모듈
 
 //mysql 접속 정보
-var connection = mysql.createConnection({
-	host: 'localhost',
-	port: 3306,
-	user: 'root',
-	password: 'root',
-	database: 'dae'
-});
+// var connection = mysql.createConnection({
+// 	host: 'localhost',
+// 	port: 3306,
+// 	user: 'root',
+// 	password: 'root',
+// 	database: 'dae'
+// });
 
-connection.connect(); // mysql 접속 명령어
+// connection.connect(); // mysql 접속 명령어
 
 router.post('/form', function(req,res){
 	// getEx : req.param('email') 과 같이 사용
