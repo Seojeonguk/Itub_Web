@@ -3,7 +3,9 @@ var app = express()
 var bodyParser = require('body-parser')
 var router = require('./router/index')
 
-app.listen(3000, function() {
+port = process.env.PORT || 7777;
+
+app.listen(port, function() {
 	console.log("start!! express server on port 3000");
 });
 
