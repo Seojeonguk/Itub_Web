@@ -32,7 +32,7 @@ router.post('/ajax', function(req,res){
 		if(rows[0]){
 			//console.log(rows[0].name);
 			responseDate.result = 'ok';
-			responseDate.name = '조휘훈';
+			responseDate.name = rows[0].name;
 		} else{
 			responseDate.result = 'none';
 			responseDate.name = "";
