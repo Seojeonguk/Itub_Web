@@ -28,7 +28,7 @@ router.post('/ajax', function(req,res){
 	var email = req.body.email;
 	var responseDate = {};
 
-	var query = connection.query('select name from u_id where email="' + email + '"', function(err,rows){
+	var query = connection.query('select u_name from u_id where u_name="' + email + '"', function(err,rows){
 		if(err) throw err;
 		if(rows[0]){
 			//console.log(rows[0].name);
@@ -39,6 +39,8 @@ router.post('/ajax', function(req,res){
 			responseDate.name = "";
 			//console.log('none : ' + rows[0]);
 		}
+
+		console.log(responseDate.result + ' ' + responseDate.name)
 
 		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
 	})
