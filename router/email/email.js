@@ -27,7 +27,7 @@ router.post('/ajax', function(req,res){
 	console.log('잘되는중 ㅎㅎ')
 	var email = req.body.email;
 	var responseDate = {};
-
+	console.log(email)
 	var query = connection.query('select u_name from u_id where u_name="' + email + '"', function(err,rows){
 		if(err) throw err;
 		if(rows[0]){
