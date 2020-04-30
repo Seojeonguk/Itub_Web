@@ -1,0 +1,71 @@
+body{
+    position: relative;
+    width: auto;
+    height: auto;
+}
+
+.form{
+    margin: 5px;
+}
+
+.form .form_wrap{
+    position: relative;
+    flex-direction: row;
+    display: table;
+    text-align: center;
+    width: 100%;
+}
+
+.form .form_wrap .setting {
+    position: relative;
+    margin: 5px;
+    text-align: inherit;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.form .form_wrap .setting .bathing_wrap{
+    width: 100%;
+}
+
+.form .form_wrap .setting .bathing_wrap .bathing_text {
+    
+}
+
+.form .form_wrap .setting .bathing_wrap .bathing{
+    width: 70%;
+    height: 30px;
+}
+
+.form .form_wrap .setting .temper_wrap .temper_text{
+    text-align: center;
+}
+
+.form .form_wrap .setting .temper_wrap .tempertature{
+    width: 70%; 
+    height: 30px;
+}
+
+.form .form_wrap .pic{
+    margin: 10px;
+}
+
+.form .submit{
+    text-align: center;
+}
+
+.form .submit .submit_style{
+    width: 100px;
+    height: 40px;
+}
+
+.home_button {
+    float: right;
+    text-align: right;
+    flex-direction: row;
+    display: flex;
+}
+
+.home_button .button_margin {
+    margin: 5px;
+}
