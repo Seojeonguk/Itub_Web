@@ -27,20 +27,21 @@ router.post('/ajax', function(req,res){
 	var email = req.body.email;
 	var responseDate = {};
 	console.log(email)
-	
-	var query = connection.query('select u_name from u_id where u_name="' + email + '"', function(err,rows){
+
+	var query = connection.query('select u_name from u_id where u_name=?', [email], function(err,rows){
 		if(err) {
 			console.log('error : ' + err)
+			connection.release();
 			throw err;
 		}
 		if(rows[0]){
-			//console.log(rows[0].name);
 			responseDate.result = 'ok';
 			responseDate.name = rows[0].name;
+			console.log(rows[0].name);
 		} else{
 			responseDate.result = 'none';
 			responseDate.name = "";
-			//console.log('none : ' + rows[0]);
+			console.log('none : ' + rows[0]);
 		}
 
 		console.log(responseDate.result + ' ' + responseDate.name)
