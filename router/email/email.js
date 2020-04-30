@@ -5,15 +5,15 @@ var mysql = require('mysql')
 var path = require('path') // 상대경로 사용하는 모듈
 
 //mysql 접속 정보
-// var connection = mysql.createConnection({
-// 	host: 'localhost',
-// 	port: 3306,
-// 	user: 'root',
-// 	password: 'root',
-// 	database: 'dae'
-// });
+var connection = mysql.createConnection({
+	host: 'us-cdbr-iron-east-01.cleardb.net',
+	port: 3306,
+	user: 'bf1138ba34c820',
+	password: 'f361b9af',
+	database: 'heroku_6295f565c172990'
+});
 
-// connection.connect(); // mysql 접속 명령어
+connection.connect(); // mysql 접속 명령어
 
 router.post('/form', function(req,res){
 	// getEx : req.param('email') 과 같이 사용
@@ -25,23 +25,23 @@ router.post('/form', function(req,res){
 
 router.post('/ajax', function(req,res){
 	console.log('잘되는중 ㅎㅎ')
-	// var email = req.body.email;
-	// var responseDate = {};
+	var email = req.body.email;
+	var responseDate = {};
 
-	// var query = connection.query('select name from user where email="' + email + '"', function(err,rows){
-	// 	if(err) throw err;
-	// 	if(rows[0]){
-	// 		//console.log(rows[0].name);
-	// 		responseDate.result = 'ok';
-	// 		responseDate.name = rows[0].name;
-	// 	} else{
-	// 		responseDate.result = 'none';
-	// 		responseDate.name = "";
-	// 		//console.log('none : ' + rows[0]);
-	// 	}
+	var query = connection.query('select name from u_id where email="' + email + '"', function(err,rows){
+		if(err) throw err;
+		if(rows[0]){
+			//console.log(rows[0].name);
+			responseDate.result = 'ok';
+			responseDate.name = rows[0].name;
+		} else{
+			responseDate.result = 'none';
+			responseDate.name = "";
+			//console.log('none : ' + rows[0]);
+		}
 
-	// 	res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
-	// })
+		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
+	})
 });
 
 module.exports = router;
