@@ -20,7 +20,7 @@
             var inputdata = document.forms[0].elements[0].value 
             // 배열로도 정의 가능
             console.log('조휘훈때문에 안되는 겁니다.')
-            sendAjax('https://i-tub.herokuapp.com/', inputdata)
+            sendAjax('https://i-tub.herokuapp.com/email/ajax', inputdata)
         });
 
         function sendAjax(url, data){
