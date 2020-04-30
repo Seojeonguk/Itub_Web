@@ -30,10 +30,10 @@ router.post('/ajax', function(req,res){
 
 	var query = connection.query('select u_name from u_id where u_name=?', [email], function(err,rows){
 		if(err) {
-			console.log('error : ' + err)
+			console.log("[mysql error]",err);
 			connection.release();
-			throw err;
 		}
+
 		if(rows[0]){
 			responseDate.result = 'ok';
 			responseDate.name = rows[0].name;
