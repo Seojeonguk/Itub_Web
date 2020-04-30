@@ -8,7 +8,7 @@ var path = require('path') // 상대경로 사용하는 모듈
 var connection = mysql.createConnection({
 	host: 'us-cdbr-iron-east-01.cleardb.net',
 	user: 'bf1138ba34c820',
-	password: '22ac05b88712768',
+	password: 'f361b9af',
 	database: 'heroku_6295f565c172990'
 });
 
