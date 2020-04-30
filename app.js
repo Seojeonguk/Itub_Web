@@ -3,7 +3,7 @@ var app = express()
 var bodyParser = require('body-parser')
 var router = require('./router/index')
 
-port = process.env.PORT || 3000;
+port = process.env.PORT || 7987;
 
 app.listen(port, function() {
 	console.log("Open I-Tub server!! congratulation");
