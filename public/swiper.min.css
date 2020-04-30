@@ -616,10 +616,6 @@ button.swiper-pagination-bullet {
     text-align: center;
 }
 
-.plus_minus .plus_minus_wrapper .plus_minus_margin{
-    margin: 10px;
-} 
-
 ol,
 ul {
     list-style: none
@@ -627,4 +623,15 @@ ul {
 
 .plus_minus .plus_minus_wrapper .button_wrapper {
     margin: 20px;
+}
+
+.home_button {
+    float: right;
+    text-align: right;
+    flex-direction: row;
+    display: flex;
+}
+
+.home_button .button_margin {
+    margin: 5px;
 }
