@@ -27,10 +27,10 @@ router.post('/ajax', function(req,res){
 	var email = req.body.email;
 	var responseDate = {};
 	console.log(email)
-	var queryStr = 'select u_name from u_id where u_name="' + email + '"';
+	var sql = 'select u_name from u_id where u_name="' + email + '"';
 	console.log(queryStr)
-	
-	var query = connection.query(queryStr, function(err,rows){
+
+	var query = connection.query(sql, function(err,rows){
 		if(err) {
 			console.log('error : ', err)
 			throw err;
@@ -46,7 +46,7 @@ router.post('/ajax', function(req,res){
 		}
 
 		console.log(responseDate.result + ' ' + responseDate.name)
-
+		connection.release();
 		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
 	})
 });
