@@ -8,7 +8,7 @@ var path = require('path') // 상대경로 사용하는 모듈
 var connection = mysql.createConnection({
 	host: 'us-cdbr-iron-east-01.cleardb.net',
 	user: 'bf1138ba34c820',
-	password: 'f361b9af',
+	password: '22ac05b88712768',
 	database: 'heroku_6295f565c172990'
 });
 
@@ -27,7 +27,7 @@ router.post('/ajax', function(req,res){
 	var email = req.body.email;
 	var responseDate = {};
 	console.log(email)
-	var query = connection.query('select u_name from u_id where u_name="' + email + '";', function(err,rows){
+	var query = connection.query('select u_name from u_id where u_name="' + email + '"', function(err,rows){
 		if(err) throw err;
 		if(rows[0]){
 			//console.log(rows[0].name);
