@@ -47,7 +47,7 @@ router.post('/form', function(req,res){
 router.post('/ajax', function(req,res){
 	console.log('잘되는중 ㅎㅎ')
 	var email = req.body.email;
-	var responseDate = {};
+	var responseDate = {result, name};
 	var sql = 'SELECT u_name FROM u_id WHERE job=?';
 	console.log(email)
 
@@ -62,12 +62,12 @@ router.post('/ajax', function(req,res){
 
 		if(rows[0]){
 			responseDate.result = 'ok';
-			responseDate.name = rows[0];
+			responseDate.name = rows[0].name;
 			console.log(rows[0]);
 		} else{
 			responseDate.result = 'none';
 			responseDate.name = "";
-			console.log('none : ' + rows[0]);
+			console.log('none : ' + rows[0].name);
 		}
 
 		console.log(responseDate.result + ' ' + responseDate.name)
