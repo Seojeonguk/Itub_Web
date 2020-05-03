@@ -52,7 +52,7 @@ router.post('/ajax', function(req,res){
 	console.log(email)
 
 	var query = connection.query(sql, [email], function(err,rows){
-		console.log(rows[0] + ' ' + rows[1]);
+		console.log(rows[0].value + ' ' + rows[1].name);
 
 		if(err) {
 			console.log("[mysql error]",err);
