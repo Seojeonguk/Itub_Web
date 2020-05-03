@@ -52,7 +52,6 @@ router.post('/ajax', function(req,res){
 	console.log(email)
 
 	var query = connection.query(sql, [email], function(err,rows){
-		console.log(rows[0].value + ' ' + rows[1].name);
 
 		if(err) {
 			console.log("[mysql error]",err);
@@ -62,15 +61,15 @@ router.post('/ajax', function(req,res){
 
 		if(rows[0]){
 			responseDate.result = 'ok';
-			responseDate.name = rows[0].name;
+			responseDate.u_name = rows[0].u_name;
 			console.log(rows[0]);
 		} else{
 			responseDate.result = 'none';
-			responseDate.name = "";
-			console.log('none : ' + rows[0].name);
+			responseDate.u_name = "";
+			console.log('none : ' + rows[0].u_name);
 		}
 
-		console.log(responseDate.result + ' ' + responseDate.name)
+		console.log(responseDate.result + ' ' + responseDate.u_name)
 		connection.release();
 		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
 	})
