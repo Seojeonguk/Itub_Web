@@ -3,7 +3,7 @@ var app = express()
 var router = express.Router();
 var mysql = require('mysql')
 var path = require('path') // 상대경로 사용하는 모듈
-var config = require(config)
+var dbconfig = require('../../config.js')
 
 //connection.connect(); // mysql 접속 명령어
 
@@ -16,7 +16,7 @@ router.post('/form', function(req,res){
 });
 
 router.post('/ajax', function(req,res){
-	var connection = mysql.createConnection(config);
+	var connection = mysql.createConnection(dbconfig);
 
 	console.log('db 접속시도');
 	var email = req.body.email;
