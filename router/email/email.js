@@ -74,6 +74,4 @@ router.post('/ajax', function(req,res){
 	})
 });
 
-handleDisconnect();
-
 module.exports = router;
