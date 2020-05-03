@@ -49,10 +49,10 @@ router.post('/ajax', function(req,res){
 	var email = req.body.email;
 	var responseDate = {};
 	var sql = 'SELECT u_name FROM u_id WHERE job=?';
-	console.log(email.result + ' ' + email.name)
+	console.log(email)
 
 	var query = connection.query(sql, ['email'], function(err,rows){
-		console.log(rows);
+		console.log(rows[0] + ' ' + rows[1]);
 
 		if(err) {
 			console.log("[mysql error]",err);
