@@ -51,7 +51,7 @@ router.post('/ajax', function(req,res){
 	var sql = 'SELECT u_name FROM u_id WHERE job=?';
 	console.log(email)
 
-	var query = connection.query(sql, ['email'], function(err,rows){
+	var query = connection.query(sql, [email], function(err,rows){
 		console.log(rows[0] + ' ' + rows[1]);
 
 		if(err) {
