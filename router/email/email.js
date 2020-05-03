@@ -12,6 +12,27 @@ var connection = mysql.createConnection({
 	database: 'heroku_6295f565c172990'
 });
 
+// db 접속 종료시 재연결
+function handleDisconnect(){
+	// 연결 되어있을시
+	connection.connect(function(err){
+		if (err){
+			console.log('db접속 끊겨서 재접속함', err)
+			setTimeout(handleDisconnect, 2000);
+		}
+	})
+
+	// 연결 안되어있을시
+	connection.on('error', function(err){
+		console.log('db 에러', err);
+		if (err.code == 'PROTOCOL_CONNECTION_LOST'){
+			return handleDisconnect();
+		} else{
+			throw err;
+		}
+	})
+}
+
 connection.connect(); // mysql 접속 명령어
 
 router.post('/form', function(req,res){
@@ -28,7 +49,7 @@ router.post('/ajax', function(req,res){
 	var responseDate = {};
 	console.log(email)
 
-	var query = connection.query('select * from u_id', [email], function(err,rows){
+	var query = connection.query('select * from u_id', function(err,rows){
 		if(err) {
 			console.log("[mysql error]",err);
 			connection.release();
@@ -49,5 +70,7 @@ router.post('/ajax', function(req,res){
 		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
 	})
 });
+
+handleDisconnect();
 
 module.exports = router;
