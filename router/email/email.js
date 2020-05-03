@@ -57,7 +57,7 @@ router.post('/ajax', function(req,res){
 
 		if(err) {
 			console.log("[mysql error]",err);
-			connection.end();
+			//connection.end();
 		}
 
 		if(rows[0]){
@@ -72,7 +72,7 @@ router.post('/ajax', function(req,res){
 
 		console.log(responseDate.result + ' ' + responseDate.u_name)
 		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
-		connection.end();
+		//connection.end();
 	})
 });
 
