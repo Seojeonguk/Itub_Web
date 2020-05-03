@@ -62,8 +62,8 @@ router.post('/ajax', function(req,res){
 
 		if(rows[0]){
 			responseDate.result = 'ok';
-			responseDate.name = rows[0].name;
-			console.log(rows[0].name);
+			responseDate.name = rows[0];
+			console.log(rows[0]);
 		} else{
 			responseDate.result = 'none';
 			responseDate.name = "";
