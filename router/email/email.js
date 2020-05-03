@@ -52,6 +52,8 @@ router.post('/ajax', function(req,res){
 	console.log(email)
 
 	var query = connection.query(sql, [String(email)], function(err,rows){
+		console.log(rows);
+
 		if(err) {
 			console.log("[mysql error]",err);
 			connection.release();
