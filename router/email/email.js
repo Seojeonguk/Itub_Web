@@ -3,38 +3,7 @@ var app = express()
 var router = express.Router();
 var mysql = require('mysql')
 var path = require('path') // 상대경로 사용하는 모듈
-
-//mysql 접속 정보
-var connection = mysql.createConnection({
-	host: 'us-cdbr-iron-east-01.cleardb.net',
-	user: 'bf1138ba34c820',
-	password: '22ac05b88712768',
-	database: 'heroku_6295f565c172990',
-	connectTimeout: 3600
-});
-
-
-// // db 접속 종료시 재연결
-// function handleDisconnect(){
-// 	// 연결 되어있을시
-// 	connection.connect(function(err){
-// 		if (err){
-// 			console.log('db접속중', err)
-// 			// 서버 연결시간이 30초라 29초로 설정
-// 			setTimeout(handleDisconnect, 29000);
-// 		}
-// 	})
-
-// 	// 연결 안되어있을시
-// 	connection.on('error', function(err){
-// 		console.log('db 에러', err);
-// 		if (err.code == 'PROTOCOL_CONNECTION_LOST'){
-// 			return handleDisconnect();
-// 		} else{
-// 			throw err;
-// 		}
-// 	})
-// }
+var config = require(config)
 
 //connection.connect(); // mysql 접속 명령어
 
@@ -47,6 +16,8 @@ router.post('/form', function(req,res){
 });
 
 router.post('/ajax', function(req,res){
+	var connection = mysql.createConnection(config);
+
 	console.log('db 접속시도');
 	var email = req.body.email;
 	var responseDate = {};
@@ -57,7 +28,7 @@ router.post('/ajax', function(req,res){
 
 		if(err) {
 			console.log("[mysql error]",err);
-			//connection.end();
+			connection.end();
 		}
 
 		if(rows[0]){
@@ -72,7 +43,7 @@ router.post('/ajax', function(req,res){
 
 		console.log(responseDate.result + ' ' + responseDate.u_name)
 		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
-		//connection.end();
+		connection.end();
 	})
 });
 
