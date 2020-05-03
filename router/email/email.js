@@ -13,6 +13,7 @@ var connection = mysql.createConnection({
 	connectTimeout: 3600
 });
 
+
 // db 접속 종료시 재연결
 function handleDisconnect(){
 	// 연결 되어있을시
@@ -56,7 +57,9 @@ router.post('/ajax', function(req,res){
 
 		if(err) {
 			console.log("[mysql error]",err);
-			connection.release();
+			connection.end(console.log('db 사용 후 반환'), function(err){
+				console.log('db 반환 중 에러');
+			});
 		}
 
 		if(rows[0]){
@@ -71,7 +74,9 @@ router.post('/ajax', function(req,res){
 
 		console.log(responseDate.result + ' ' + responseDate.u_name)
 		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
-		connection.release();
+		connection.end(console.log('db 사용 후 반환'), function(err){
+			console.log('db 반환 중 에러');
+		});
 	})
 });
 
