@@ -1,5 +1,5 @@
 # week_report
 Weekly report storage
 
-2020/04/15 3주차 주간보고서 업로드 및 4주차 주간보거서 작성, 업로드
-2020/04/20 5주차 주간보고서 작성 및 업로드
+-2020/04/28 로컬환경에서의 node.js와 mysql 연동 성공
+-2020/05/03 서버와의 node.js mysql (server : heroku) 연동 및 데이터 읽기 쓰기 성공
