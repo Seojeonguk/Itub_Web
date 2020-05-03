@@ -18,7 +18,8 @@ function handleDisconnect(){
 	connection.connect(function(err){
 		if (err){
 			console.log('db접속 끊겨서 재접속함', err)
-			setTimeout(handleDisconnect, 2000);
+			// 서버 연결시간이 30초라 29초로 설정
+			setTimeout(handleDisconnect, 29000);
 		}
 	})
 
