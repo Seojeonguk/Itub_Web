@@ -9,7 +9,8 @@ var connection = mysql.createConnection({
 	host: 'us-cdbr-iron-east-01.cleardb.net',
 	user: 'bf1138ba34c820',
 	password: '22ac05b88712768',
-	database: 'heroku_6295f565c172990'
+	database: 'heroku_6295f565c172990',
+	connectTimeout: 3600
 });
 
 // db 접속 종료시 재연결
@@ -55,7 +56,7 @@ router.post('/ajax', function(req,res){
 
 		if(err) {
 			console.log("[mysql error]",err);
-			handleDisconnect();
+			connection.release();
 		}
 
 		if(rows[0]){
@@ -70,9 +71,8 @@ router.post('/ajax', function(req,res){
 
 		console.log(responseDate.result + ' ' + responseDate.u_name)
 		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
+		connection.release();
 	})
-
-	handleDisconnect();
 });
 
 module.exports = router;
