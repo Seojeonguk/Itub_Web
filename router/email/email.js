@@ -50,7 +50,7 @@ router.post('/ajax', function(req,res){
 	var responseDate = {};
 	console.log(email)
 
-	var query = connection.query('select uname from u_id where job=?', [email], function(err,rows){
+	var query = connection.query('select u_name from u_id where job=?', [email], function(err,rows){
 		if(err) {
 			console.log("[mysql error]",err);
 			connection.release();
