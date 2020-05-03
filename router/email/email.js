@@ -36,8 +36,6 @@ function handleDisconnect(){
 	})
 }
 
-connection.connect(); // mysql 접속 명령어
-
 router.post('/form', function(req,res){
 	// getEx : req.param('email') 과 같이 사용
 	console.log(req.body.email) // 서버에서 클라이언트로 데이터를 받음
@@ -47,6 +45,8 @@ router.post('/form', function(req,res){
 });
 
 router.post('/ajax', function(req,res){
+	connection.connect(); // mysql 접속 명령어
+
 	console.log('잘되는중 ㅎㅎ')
 	var email = req.body.email;
 	var responseDate = {};
@@ -57,9 +57,7 @@ router.post('/ajax', function(req,res){
 
 		if(err) {
 			console.log("[mysql error]",err);
-			connection.end(console.log('db 사용 후 반환'), function(err){
-				console.log('db 반환 중 에러');
-			});
+			connection.end();
 		}
 
 		if(rows[0]){
@@ -74,9 +72,7 @@ router.post('/ajax', function(req,res){
 
 		console.log(responseDate.result + ' ' + responseDate.u_name)
 		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
-		connection.end(console.log('db 사용 후 반환'), function(err){
-			console.log('db 반환 중 에러');
-		});
+		connection.end();
 	})
 });
 
