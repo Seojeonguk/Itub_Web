@@ -70,8 +70,9 @@ router.post('/ajax', function(req,res){
 
 		console.log(responseDate.result + ' ' + responseDate.u_name)
 		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
-		handleDisconnect();
 	})
+
+	handleDisconnect();
 });
 
 module.exports = router;
