@@ -47,9 +47,9 @@ router.post('/form', function(req,res){
 router.post('/ajax', function(req,res){
 	console.log('잘되는중 ㅎㅎ')
 	var email = req.body.email;
-	var responseDate = {result, name};
+	var responseDate = {};
 	var sql = 'SELECT u_name FROM u_id WHERE job=?';
-	console.log(email)
+	console.log(email.result + ' ' + email.name)
 
 	var query = connection.query(sql, [String(email)], function(err,rows){
 		console.log(rows);
