@@ -17,7 +17,7 @@ function handleDisconnect(){
 	// 연결 되어있을시
 	connection.connect(function(err){
 		if (err){
-			console.log('db접속 끊겨서 재접속함', err)
+			console.log('db접속중', err)
 			// 서버 연결시간이 30초라 29초로 설정
 			setTimeout(handleDisconnect, 29000);
 		}
@@ -50,10 +50,11 @@ router.post('/ajax', function(req,res){
 	var responseDate = {};
 	console.log(email)
 
-	var query = connection.query('select * from u_id', function(err,rows){
+	var query = connection.query('select uname from u_id where job=?', [email], function(err,rows){
 		if(err) {
 			console.log("[mysql error]",err);
 			connection.release();
+			handleDisconnect();
 		}
 
 		if(rows[0]){
