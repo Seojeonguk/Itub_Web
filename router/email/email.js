@@ -65,7 +65,7 @@ router.post('/ajax', function(req,res){
 		} else{
 			responseDate.result = 'none';
 			responseDate.u_name = "";
-			console.log('none : ' + rows[0].u_name);
+			console.log('none : ' + email);
 		}
 
 		console.log(responseDate.result + ' ' + responseDate.u_name)
