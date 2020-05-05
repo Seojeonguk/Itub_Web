@@ -33,11 +33,11 @@ router.post('/reference', function(req,res){
 
 		if(rows[0]){
 			responseDate.result = 'ok';
-			responseDate.u_name = rows[0].u_name;
+			responseDate.data = rows[0].data;
 			console.log(rows[0]);
 		} else{
 			responseDate.result = 'none';
-			responseDate.u_name = "";
+			responseDate.data = "";
 			console.log('none : ' + data);
 		}
 
