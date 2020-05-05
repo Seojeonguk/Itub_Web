@@ -71,7 +71,7 @@
 
             xhr.addEventListener('load', function(){
                 var result = JSON.parse(xhr.responseText);
-                var resultDiv = document.querySelector('.result');
+                var resultDiv = document.querySelector('.find');
 
                 console.log(result.u_name)
                 if(result.result !== 'ok') resultDiv.innerHTML = "not found"
