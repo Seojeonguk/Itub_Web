@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> I-Tub </title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="registration_style.css">
 </head>
 
 <body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080">
@@ -60,14 +60,14 @@
         });
 
         function sendAjax(url, data){
-            var data = {'data': data};
-            data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
-            console.log(data)
+            var data2 = {'data': data};
+            data2 = JSON.stringify(data2); // json을 문자열 형태로 만들어줌
+            console.log(data2)
             var xhr = new XMLHttpRequest();
             xhr.open('POST', url);
             xhr.setRequestHeader('Content-Type', "application/json"); 
             // 서버로 보낼때 json 형태의 데이터를 보내기위해 지정
-            xhr.send(data); // 문자열 형태로 넣어줘야함
+            xhr.send(data2); // 문자열 형태로 넣어줘야함
 
             xhr.addEventListener('load', function(){
                 var result = JSON.parse(xhr.responseText);
