@@ -35,7 +35,7 @@
         </div>
         <div>
             <button class="refer">조회</button>
-            <label for="find">조회테스트 : </label>
+            <div class="find">조회테스트 : </div>
         </div>
         <div>
             <input type="button" class="del" value="삭제"/>
@@ -70,7 +70,7 @@
 
             xhr.addEventListener('load', function(){
                 var result = JSON.parse(xhr.responseText);
-                var resultDiv = document.querySelector('#find');
+                var resultDiv = document.querySelector('.find');
 
                 console.log(result.data)
                 if(result.result !== 'ok') resultDiv.innerHTML = "not found"
