@@ -29,17 +29,22 @@
         <input type="button" value="취소" onclick='alert("구현중")' />
         <input type="button" value="등록" onclick='alert("구현중")' />
 
+        <p>&nbsp</p>
+
         <div>
-            <label class="nickname">별명:</label>
+            <label class="nickname">별명: </label>
             <input type="text" id="nick_input"/>
+            <button type='button' class="refer">조회</button>
+            <div class="find">조회테스트 : </div>
         </div>
+
+        <p>&nbsp</p>
+
         <div>
-            <button class="refer" onclick="func_select">조회</button>
-            <div class="find"></div>
-        </div>
-        <div>
-            <input type="button" class="del" value="삭제"/>
-            <label class="dele">삭제테스트 : </label>
+            <label class="nickname">지울별명: </label>
+            <input type="text" id="nick_input"/>
+            <button type="button" class="del">삭제</button>
+            <div class="dele">삭제테스트 : </div>
         </div>
     </form>
 

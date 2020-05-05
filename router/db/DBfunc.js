@@ -21,7 +21,7 @@ router.post('/reference', function(req,res){
 	console.log('db 접속시도');
 	var data = req.body.data;
 	var responseDate = {};
-	var sql = 'SELECT u_name FROM u_id WHERE job=?';
+	var sql = 'SELECT * FROM u_id WHERE u_name=?';
 	console.log(data)
 
 	var query = connection.query(sql, [data], function(err,rows){
