@@ -49,7 +49,7 @@
             var inputdata = document.getElementById('nick_input');
             console.log(inputdata)
             // 배열로도 정의 가능
-            sendAjax('/db/reference', inputdata)
+            sendAjax('/db/reference', inputdata.value);
         });
 
         document.querySelector('.del').addEventListener('click', function(){
