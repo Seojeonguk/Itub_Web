@@ -12,7 +12,7 @@ router.get('/', function(req, res){
 });
 
 router.use('/main', main)
-router.use('/email', email)
+router.use('/db', db)
 
 module.exports = router;
 
