@@ -15,6 +15,41 @@ router.post('/form', function(req,res){
 	// email.ejs에다가 다음과 같은 형태로 섞어 치환하여 클라이언트에 응답
 });
 
+router.post('/create', function(req,res){
+	var connection = mysql.createConnection(dbconfig);
+
+	console.log('db 접속시도');
+	var data = req.body.data;
+	var responseData = {};
+	var sql = 'INSERT INTO u_id(u_num, u_name, age, gender) VALUES (?, ?, ?, ?)';
+	console.log(data)
+
+	var query = connection.query(sql, [data], function(err,rows){
+
+		if(err) {
+			console.log("[mysql error]",err);
+			connection.end();
+		}
+
+		if(rows[0]){
+			responseData.type = 'reference';
+			responseData.result = 'ok';
+			responseData.u_num = rows[0].u_num;
+			responseData.age = rows[0].age;
+			responseData.gender = rows[0].gender;
+			responseData.job = rows[0].job;
+			console.log(rows[0]);
+		} else{
+			responseData.result = 'none';
+			console.log('none');
+		}
+
+		console.log(responseData)
+		res.json(responseData); // 비동기이기 때문에 괄호안에 적어야함
+		connection.end();
+	})
+});
+
 router.post('/reference', function(req,res){
 	var connection = mysql.createConnection(dbconfig);
 
