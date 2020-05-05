@@ -20,7 +20,7 @@ router.post('/reference', function(req,res){
 
 	console.log('db 접속시도');
 	var data = req.body.data;
-	var responseDate = {};
+	var responseData = {};
 	var sql = 'SELECT * FROM u_id WHERE u_name=?';
 	console.log(data)
 
@@ -32,17 +32,20 @@ router.post('/reference', function(req,res){
 		}
 
 		if(rows[0]){
-			responseDate.result = 'ok';
-			responseDate.data = rows[0].u_name;
+			responseData.result = 'ok';
+			responseData.u_num = rows[0].u_num;
+			responseData.age = rows[0].age;
+			responseData.gender = rows[0].gender;
+			responseData.job = rows[0].job;
 			console.log(rows[0]);
 		} else{
-			responseDate.result = 'none';
-			responseDate.data = "";
+			responseData.result = 'none';
+			responseData.data = "";
 			console.log('none : ' + data);
 		}
 
-		console.log(responseDate.result + ' ' + responseDate.data)
-		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
+		console.log(responseData)
+		res.json(responseData); // 비동기이기 때문에 괄호안에 적어야함
 		connection.end();
 	})
 });
@@ -51,12 +54,12 @@ router.post('/delete', function(req,res){
 	var connection = mysql.createConnection(dbconfig);
 
 	console.log('db 접속시도');
-	var email = req.body.email;
-	var responseDate = {};
-	var sql = 'DELETE FROM u_id WHERE u_name=?';
-	console.log(email)
+	var data = req.body.data;
+	var responseData = {};
+	var sql = 'SELECT * FROM u_id WHERE u_name=?';
+	console.log(data)
 
-	var query = connection.query(sql, [email], function(err,rows){
+	var query = connection.query(sql, [data], function(err,rows){
 
 		if(err) {
 			console.log("[mysql error]",err);
@@ -64,17 +67,20 @@ router.post('/delete', function(req,res){
 		}
 
 		if(rows[0]){
-			responseDate.result = 'ok';
-			responseDate.u_name = rows[0].u_name;
+			responseData.result = 'ok';
+			responseData.u_num = rows[0].u_num;
+			responseData.age = rows[0].age;
+			responseData.gender = rows[0].gender;
+			responseData.job = rows[0].job;
 			console.log(rows[0]);
 		} else{
-			responseDate.result = 'none';
-			responseDate.u_name = "";
-			console.log('none : ' + email);
+			responseData.result = 'none';
+			responseData.data = "";
+			console.log('none : ' + data);
 		}
 
-		console.log(responseDate.result + ' ' + responseDate.u_name)
-		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
+		console.log(responseData)
+		res.json(responseData); // 비동기이기 때문에 괄호안에 적어야함
 		connection.end();
 	})
 });
