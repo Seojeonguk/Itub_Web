@@ -12,7 +12,7 @@ router.get('/', function(req, res){
 });
 
 router.use('/main', main)
-router.use('/db', db)
+router.use('/db', DBfunc)
 
 module.exports = router;
 
