@@ -9,7 +9,7 @@ var dbconfig = require('../../config.js')
 
 router.post('/form', function(req,res){
 	// getEx : req.param('email') 과 같이 사용
-	console.log(req.body.email) // 서버에서 클라이언트로 데이터를 받음
+	console.log(req.body.data) // 서버에서 클라이언트로 데이터를 받음
 	res.send("<h1>Welcome!! " + req.body.email + "</h1>")
 	res.render('email.ejs', {'email': req.body.email}) 
 	// email.ejs에다가 다음과 같은 형태로 섞어 치환하여 클라이언트에 응답
