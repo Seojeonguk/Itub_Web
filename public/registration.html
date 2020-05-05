@@ -31,7 +31,7 @@
 
         <div>
             <label class="nickname">별명:</label>
-            <input type="text" id="nick_input" name='nick_name'/>
+            <input type="text"/>
         </div>
         <div>
             <button class="refer">조회</button>
@@ -72,9 +72,9 @@
                 var result = JSON.parse(xhr.responseText);
                 var resultDiv = document.querySelector('#find');
 
-                console.log(result.u_name)
+                console.log(result.data)
                 if(result.result !== 'ok') resultDiv.innerHTML = "not found"
-                else resultDiv.innerHTML = result.u_name;
+                else resultDiv.innerHTML = result.data;
             });
         }
     </script>

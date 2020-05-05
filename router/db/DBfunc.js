@@ -41,7 +41,7 @@ router.post('/reference', function(req,res){
 			console.log('none : ' + data);
 		}
 
-		console.log(responseDate.result + ' ' + responseDate.u_name)
+		console.log(responseDate.result + ' ' + responseDate.data)
 		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
 		connection.end();
 	})
