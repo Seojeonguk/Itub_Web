@@ -9,7 +9,7 @@
 
 <body>
     <h1>회원가입</h1>
-    <div>
+    <form>
         <div>
             <label id='nickname'>별명:</label>
             <input type="text" id="name" />
@@ -34,17 +34,17 @@
             <input type="text" id="nick_input"/>
         </div>
         <div>
-            <button class="refer">조회</button>
+            <button class="refer" onclick="func_select">조회</button>
             <div class="find"></div>
         </div>
         <div>
             <input type="button" class="del" value="삭제"/>
             <label class="dele">삭제테스트 : </label>
         </div>
-    </div>
+    </form>
 
     <script>
-        document.querySelector('.refer').addEventListener('click', function(){
+        var func_select = document.querySelector('.refer').addEventListener('click', function(){
             var inputdata = document.getElementById('nick_input');
             console.log(inputdata)
             // 배열로도 정의 가능
