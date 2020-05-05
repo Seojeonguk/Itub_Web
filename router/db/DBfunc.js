@@ -15,7 +15,7 @@ router.post('/form', function(req,res){
 	// email.ejs에다가 다음과 같은 형태로 섞어 치환하여 클라이언트에 응답
 });
 
-router.post('/ajax', function(req,res){
+router.post('/reference', function(req,res){
 	var connection = mysql.createConnection(dbconfig);
 
 	console.log('db 접속시도');
@@ -43,6 +43,38 @@ router.post('/ajax', function(req,res){
 
 		console.log(responseDate.result + ' ' + responseDate.u_name)
 		res.json(responseDate); // 비동기이기 때문에 괄호안에 적어야함
+		connection.end();
+	})
+});
+
+router.post('/delete', function(req,res){
+	var connection = mysql.createConnection(dbconfig);
+
+	console.log('db 접속시도');
+	var email = req.body.email;
+	var responseDate = {};
+	var sql = 'DELETE FROM u_id WHERE u_name=?';
+	console.log(email)
+
+	var query = connection.query(sql, [email], function(err,rows){
+
+		if(err) {
+			console.log("[mysql error]",err);
+			connection.end();
+		}
+
+		if(rows[0]){
+			responseDate.result = 'ok';
+			responseDate.u_name = rows[0].u_name;
+			console.log(rows[0]);
+		} else{
+			responseDate.result = 'none';
+			responseDate.u_name = "";
+			console.log('none : ' + email);
+		}
+
+		console.log(responseDate.result + ' ' + responseDate.u_name)
+		res.json({'지웠어':'지웠다니까'}); // 비동기이기 때문에 괄호안에 적어야함
 		connection.end();
 	})
 });

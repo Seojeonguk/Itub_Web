@@ -3,12 +3,12 @@ var app = express()
 var router = express.Router();
 var path = require('path') // 상대경로 사용하는 모듈
 var main = require('./main/main')
-var email = require('./email/email')
+var email = require('./db/DBfunc')
 
 // url routing
 router.get('/', function(req, res){
 	console.log('indexjs / path loaded')
-	res.sendFile(path.join(__dirname + "/../public/form.html")) // html 파일을 보내는 것
+	res.sendFile(path.join(__dirname + "/../public/registration.html")) // html 파일을 보내는 것
 });
 
 router.use('/main', main)
