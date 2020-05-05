@@ -3,7 +3,7 @@ var app = express()
 var router = express.Router();
 var path = require('path') // 상대경로 사용하는 모듈
 var main = require('./main/main')
-var email = require('./db/DBfunc')
+var db = require('./db/DBfunc')
 
 // url routing
 router.get('/', function(req, res){
@@ -12,7 +12,7 @@ router.get('/', function(req, res){
 });
 
 router.use('/main', main)
-router.use('/db', DBfunc)
+router.use('/db', db)
 
 module.exports = router;
 
