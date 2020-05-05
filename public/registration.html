@@ -78,8 +78,10 @@
                 var resultDiv = document.querySelector('.find');
 
                 console.log('데이터 넘겨받음' + result.result + ' ' + result.data)
-                if(result.result !== 'ok') resultDiv.innerHTML = "not found"
-                else resultDiv.innerHTML = result.data;
+                if(result.result == 'ok' && result.type == 'reference') {
+                    resultDiv.innerHTML = result.u_num + ' ' + result.age + ' ' + result.gender + ' ' + result.job;
+                }
+                else resultDiv.innerHTML = 'not found';
             });
         }
     </script>

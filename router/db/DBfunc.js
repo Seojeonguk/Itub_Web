@@ -32,6 +32,7 @@ router.post('/reference', function(req,res){
 		}
 
 		if(rows[0]){
+			responseData.type = 'reference';
 			responseData.result = 'ok';
 			responseData.u_num = rows[0].u_num;
 			responseData.age = rows[0].age;
@@ -40,8 +41,7 @@ router.post('/reference', function(req,res){
 			console.log(rows[0]);
 		} else{
 			responseData.result = 'none';
-			responseData.data = "";
-			console.log('none : ' + data);
+			console.log('none');
 		}
 
 		console.log(responseData)
