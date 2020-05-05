@@ -7,12 +7,12 @@ var db = require('./db/DBfunc')
 
 // url routing
 router.get('/', function(req, res){
-	console.log('indexjs / path loaded')
+	console.log('접속 성공적')
 	res.sendFile(path.join(__dirname + "/../public/registration.html")) // html 파일을 보내는 것
 });
 
-router.use('/main', main)
-router.use('/db', db)
+router.use('main', main)
+router.use('db', db)
 
 module.exports = router;
 
