@@ -19,7 +19,7 @@ router.post('/reference', function(req,res){
 	var connection = mysql.createConnection(dbconfig);
 
 	console.log('db 접속시도');
-	var email = req.body.email;
+	var email = req.body.nick_input;
 	var responseDate = {};
 	var sql = 'SELECT u_name FROM u_id WHERE job=?';
 	console.log(email)
