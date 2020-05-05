@@ -72,7 +72,7 @@
                 var result = JSON.parse(xhr.responseText);
                 var resultDiv = document.querySelector('.find');
 
-                console.log(result.data)
+                console.log('데이터 넘겨받음' + result.result + ' ' + result.data)
                 if(result.result !== 'ok') resultDiv.innerHTML = "not found"
                 else resultDiv.innerHTML = result.data;
             });
