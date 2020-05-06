@@ -91,23 +91,25 @@ router.post('/delete', function(req,res){
 	console.log('db 접속시도');
 	var data = req.body.data;
 	var responseData = {};
-	var sql = 'DELETE FROM u_id WHERE u_name=?';
 	console.log(data)
 
+	var sql = 'SELECT * FROM u_id WHERE u_name=?';
 	var query = connection.query(sql, [data], function(err,rows){
-
-		if(err) {
-			console.log("[mysql error]",err);
-			connection.end();
-		}
-
 		if(rows[0]){
 			responseData.result = 'ok';
 			responseData.type = 'delete'
 		} else{
 			responseData.result = 'none';
-			responseData.data = "";
 			console.log('none : ' + data);
+		}
+	});
+
+	sql = 'DELETE FROM u_id WHERE u_name=?';
+	var query = connection.query(sql, [data], function(err,rows){
+
+		if(err) {
+			console.log("[mysql error]",err);
+			connection.end();
 		}
 
 		console.log(responseData)
