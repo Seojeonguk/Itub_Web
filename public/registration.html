@@ -72,10 +72,18 @@
         });
 
         document.querySelector('.submit').addEventListener('click', function () {
+            alert('등록 완료');
             var inputdata = {};
+            var radio_checked;
             inputdata = {
                 'u_name': document.getElementsByClassName('input_name').value,
-                'u_gender': $('input[id=gender]:checked').val(),
+                'u_gender': function radioVal(){
+                    var radiobalue = document.getElementById('gender');
+                    for (var i = 0; i < 2; i++){
+                        if (radiovalue[i].checked == true)
+                            radio_checked = radiovalue.value;
+                    }
+                },
                 'u_age': document.getElementsByClassName('input_gender').value,
                 'u_age': document.getElementsByClassName('input_age').value,
                 'u_job': document.getElementsByClassName('input_job').value
