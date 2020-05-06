@@ -20,7 +20,7 @@ router.post('/create', function(req,res){
 
 	console.log('db 접속시도');
 	var data = req.body.data;
-	var responseData;
+	var responseData = {};
 	var sql = 'INSERT INTO u_id(u_num, u_name, age, gender, job) VALUES (?, ?, ?, ?, ?)';
 	console.log(data)
 
