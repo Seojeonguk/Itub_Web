@@ -94,14 +94,15 @@
 
         function sendDB(url, data) {
             var data = { 'data': data };
-
+            console.log(data + '데이터형 변경 전');
             data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
-            console.log(data)
+            console.log(data + '데이터형 변경 후')
             var xhr = new XMLHttpRequest();
             xhr.open('POST', url);
             xhr.setRequestHeader('Content-Type', 'application/json');
             // 서버로 보낼때 json 형태의 데이터를 보내기위해 지정
             xhr.send(data); // 문자열 형태로 넣어줘야함
+            console.log(data + 'xhr send')
 
             xhr.addEventListener('load', function () {
                 var result = JSON.parse(xhr.responseText);
