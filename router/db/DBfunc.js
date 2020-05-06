@@ -63,10 +63,7 @@ router.post('/reference', function(req,res){
 			responseData.result = 'ok';
 			responseData.u_num = rows[0].u_num;
 			responseData.age = rows[0].age;
-
-			if(row[0].gender == 0) responseData.gender = '남자';
-			else responseData.gender = '여자';
-			
+			responseData.gender = rows[0].gender;
 			responseData.job = rows[0].job;
 			console.log(rows[0]);
 		} else{
