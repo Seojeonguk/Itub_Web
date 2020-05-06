@@ -24,7 +24,7 @@ router.post('/create', function(req,res){
 	var sql = 'INSERT INTO u_id(u_num, u_name, age, gender, job) VALUES (?, ?, ?, ?, ?)';
 	console.log(data)
 
-	var query = connection.query(sql, [100, data.u_name, data.u_age, data.u_gender, data.u_job], function(err,rows){
+	var query = connection.query(sql, [100, data.u_name, parseInt(data.u_age), parseInt(data.u_gender), data.u_job], function(err,rows){
 
 		if(err) {
 			console.log("[mysql error]",err);
