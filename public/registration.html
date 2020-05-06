@@ -86,7 +86,13 @@
                 } else if(result.result == 'ok' && result.type == 'delete') {
                     resultDiv = document.querySelector('.dele');
                     resultDiv.innerHTML = '삭제테스트 : ' + '\n삭제가 완료되었습니다.'
-                } else if (result.result == 'none') resultDiv.innerHTML = '되겠냐?';
+                } else if (result.result == 'none' && result.type == 'reference') {
+                    resultDiv = document.querySelector('.find');
+                    resultDiv.innerHTML = '되겠냐?';
+                } else if (result.result == 'none' && result.type == 'delete') {
+                    resultDiv = document.querySelector('.find');
+                    resultDiv.innerHTML = '되겠냐?';
+                }
             });
         }
     </script>

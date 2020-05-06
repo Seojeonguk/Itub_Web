@@ -76,6 +76,7 @@ router.post('/reference', function(req,res){
 			console.log(rows[0]);
 		} else{
 			responseData.result = 'none';
+			responseData.type = 'reference';
 			console.log('none');
 		}
 
@@ -100,6 +101,7 @@ router.post('/delete', function(req,res){
 			responseData.type = 'delete'
 		} else{
 			responseData.result = 'none';
+			responseData.type = 'delete'
 			console.log('none : ' + data);
 		}
 	});
