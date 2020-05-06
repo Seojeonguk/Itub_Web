@@ -20,28 +20,20 @@ router.post('/create', function(req,res){
 
 	console.log('db 접속시도');
 	var data = req.body.data;
-	var responseData = {};
-	var sql = 'INSERT INTO u_id(u_num, u_name, age, gender) VALUES (?, ?, ?, ?)';
+	var responseData;
+	var sql = 'INSERT INTO u_id(u_num, u_name, u_gender, u_age, u_job) VALUES (?, ?, ?, ?)';
 	console.log(data)
 
-	var query = connection.query(sql, [data], function(err,rows){
+	var query = connection.query(sql, [100, data.u_name, data.u_gender, data.u_age, data.u_job], function(err,rows){
 
 		if(err) {
 			console.log("[mysql error]",err);
+			responseData.result = 'none'
+			responseData.type = 'create'
 			connection.end();
-		}
-
-		if(rows[0]){
-			responseData.type = 'reference';
-			responseData.result = 'ok';
-			responseData.u_num = rows[0].u_num;
-			responseData.age = rows[0].age;
-			responseData.gender = rows[0].gender;
-			responseData.job = rows[0].job;
-			console.log(rows[0]);
-		} else{
-			responseData.result = 'none';
-			console.log('none');
+		} else {
+			responseData.result = 'ok'
+			responseData.type = 'create'
 		}
 
 		console.log(responseData)
@@ -71,7 +63,10 @@ router.post('/reference', function(req,res){
 			responseData.result = 'ok';
 			responseData.u_num = rows[0].u_num;
 			responseData.age = rows[0].age;
-			responseData.gender = rows[0].gender;
+
+			if(row[0].gender == 0) responseData.gender = '남자';
+			else responseData.gender = '여자';
+			
 			responseData.job = rows[0].job;
 			console.log(rows[0]);
 		} else{
