@@ -94,6 +94,7 @@
 
         function sendDB(url, data) {
             var data = { 'data': data };
+            
             data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
             console.log(data)
             var xhr = new XMLHttpRequest();
