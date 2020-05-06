@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="utf-8">
     <title>I-Tub</title>
@@ -143,35 +142,74 @@
 <body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080">
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="./images/4.jpg"></div>
+            <!-- <div class="swiper-slide"><img src="./images/4.jpg"></div>
             <div class="swiper-slide"><img src="./images/3.jpg"></div>
             <div class="swiper-slide"><img src="./images/4.jpg"></div>
             <div class="swiper-slide"><img src="./images/4.jpg"></div>
             <div class="swiper-slide"><img src="./images/3.jpg"></div>
-            <div class="swiper-slide"><img src="./images/4.jpg"></div>
+            <div class="swiper-slide"><img src="./images/4.jpg"></div> -->
         </div>
 
-        <div class="swiper-pagination">
-        </div>
+        <div class="swiper-pagination"></div>
+
     </div>
 
     <script src="./swiper.min.js"></script>
 
     <script>
+        var div_name = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
+
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 5,
             spaceBetween: 30,
             loop: true,
+
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
             },
+
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
         });
+
+        function add_div() {
+            for (var i = 0; i < div_name.length; i++) {
+                var newDivHtml = div_name[i];
+                var path = './images/test_' + div_name[i] + '.jpg';
+                var htmlCode = '<div class="swiper-slide"><img src=' + path + '></div>';
+                console.log(htmlCode);
+                swiper.appendSlide(htmlCode);
+                swiper.update();
+            }
+        }
+
+        function remove_div() {
+            var id = document.getElementsByClassName('swiper-slide').value;
+            console.log(id);
+            var tmp = document.getElementById(id);
+            return tmp.parentNode.removeChild(tmp);
+        }
+
+        // var swiper = new Swiper('.swiper-container', {
+        //     slidesPerView: 5,
+        //     spaceBetween: 30,
+        //     loop: true,
+
+        //     pagination: {
+        //         el: '.swiper-pagination',
+        //         clickable: true,
+        //     },
+
+        //     navigation: {
+        //         nextEl: '.swiper-button-next',
+        //         prevEl: '.swiper-button-prev',
+        //     },
+        // });
     </script>
+
     <div class="plus_minus">
         <ul class="plus_minus_wrapper">
             <div class="button_wrapper">
@@ -182,16 +220,21 @@
             </div>
         </ul>
     </div>
-    
+
+    <div>
+        <button type="button" onclick="add_div()">추가</button>
+        <button type="button" onclick="remove_div()">삭제</button>
+    </div>
+
     <div class="home_button">
-        <div class="button_margin"> 
+        <div class="button_margin">
             <a href="./Main_page.html">
                 <img src="./images/back.png" style="float: right" width="50px">
             </a>
         </div>
         <div class="button_margin">
             <a href="./Main_page.html">
-            <img src="./images/Home_Button2.png" style="float: left" width="50px">
+                <img src="./images/Home_Button2.png" style="float: left" width="50px">
             </a>
         </div>
     </div>
