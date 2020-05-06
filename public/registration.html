@@ -35,7 +35,7 @@
 
         <div>
             <label class="nickname">별명: </label>
-            <input type="text" id="nick_input"/>
+            <input type="text" id="nick_input_find"/>
             <button type='button' class="refer">조회</button>
             <div class="find">조회테스트 : </div>
         </div>
@@ -44,7 +44,7 @@
 
         <div>
             <label class="nickname">지울별명: </label>
-            <input type="text" id="nick_input"/>
+            <input type="text" id="nick_input_del"/>
             <button type="button" class="del">삭제</button>
             <div class="dele">삭제테스트 : </div>
         </div>
@@ -52,17 +52,17 @@
 
     <script>
         var func_select = document.querySelector('.refer').addEventListener('click', function(){
-            var inputdata = document.getElementById('nick_input');
+            var inputdata = document.getElementById('nick_input_find');
             console.log(inputdata)
             // 배열로도 정의 가능
             sendAjax('/db/reference', inputdata.value);
         });
 
         document.querySelector('.del').addEventListener('click', function(){
-            var inputdata = document.forms[0].elements[0].value 
+            var inputdata = document.getElementById('nick_input_del');
             console.log(inputdata)
             // 배열로도 정의 가능
-            sendAjax('/db/delete', inputdata)
+            sendAjax('/db/delete', inputdata.value)
         });
 
         function sendAjax(url, data){
@@ -77,12 +77,14 @@
 
             xhr.addEventListener('load', function(){
                 var result = JSON.parse(xhr.responseText);
-                var resultDiv = document.querySelector('.find');
+                var resultDiv;
 
                 console.log('데이터 넘겨받음' + result.result + ' ' + result.data)
                 if(result.result == 'ok' && result.type == 'reference') {
+                    resultDiv = document.querySelector('.find');
                     resultDiv.innerHTML = '조회테스트 : ' + '\n고유번호 : ' + result.u_num + ', 나이 : ' + result.age + ', 성별 : ' + result.gender + ', 직업 : ' + result.job;
                 } else if(result.result == 'ok' && result.type == 'delete') {
+                    resultDiv = document.querySelector('.dele');
                     resultDiv.innerHTML = '삭제테스트 : ' + '\n삭제가 완료되었습니다.'
                 }
                 else resultDiv.innerHTML = '되겠냐?';
