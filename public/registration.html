@@ -81,9 +81,11 @@
 
                 console.log('데이터 넘겨받음' + result.result + ' ' + result.data)
                 if(result.result == 'ok' && result.type == 'reference') {
-                    resultDiv.innerHTML = '고유번호 : ' + result.u_num + ', 나이 : ' + result.age + ', 성별 : ' + result.gender + ', 직업 : ' + result.job;
+                    resultDiv.innerHTML = '조회테스트 : ' + '\n고유번호 : ' + result.u_num + ', 나이 : ' + result.age + ', 성별 : ' + result.gender + ', 직업 : ' + result.job;
+                } else if(result.result == 'ok' && result.type == 'delete') {
+                    resultDiv.innerHTML = '삭제테스트 : ' + '\n삭제가 완료되었습니다.'
                 }
-                else resultDiv.innerHTML = 'not found';
+                else resultDiv.innerHTML = '되겠냐?';
             });
         }
     </script>
