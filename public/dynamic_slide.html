@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <title>I-Tub</title>
+    <link rel="stylesheet" href="swiper.min.css">
+
+    <style>
+        #jb-container {
+            width: 940px;
+            margin: 10px auto;
+            padding: 20px;
+            border: 1px solid #bcbcbc;
+        }
+        
+        #jb-header {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #bcbcbc;
+        }
+        
+        @media (max-width: 480px) {
+            #jb-container {
+                width: auto;
+            }
+            #jb-content {
+                float: none;
+                width: auto;
+            }
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+        
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .swiper-container {
+            width: 100%;
+            height: 30%;
+            margin: 10px;
+            margin-bottom: 50px;
+        }
+        
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        
+        #button_login {
+            width: 100px;
+            height: 100px;
+            font-size: 20px;
+        }
+        
+        #button {
+            font-weight: bold;
+            text-decoration: none;
+            font-family: Arial;
+            box-shadow: inset #ffffff 0px 1px 1px -1px, #4895b1 0px 4px 0px;
+            o-box-shadow: inset #ffffff 0px 1px 1px -1px, #4895b1 0px 4px 0px;
+            -moz-box-shadow: inset #ffffff 0px 1px 1px -1px, #4895b1 0px 4px 0px;
+            -webkit-box-shadow: inset #ffffff 0px 1px 1px -1px, #4895b1 0px 4px 0px;
+            background: #77b6d1;
+            background: -o-linear-gradient(90deg, #77b6d1, #7acff4);
+            background: -moz-linear-gradient(center top, #77b6d1 5%, #7acff4 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77b6d1), color-stop(1, #7acff4));
+            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#77b6d1', endColorstr='#7acff4');
+            background: -webkit-linear-gradient(#77b6d1, #7acff4);
+            background: -ms-linear-gradient(#77b6d1, #7acff4);
+            background: linear-gradient(#77b6d1, #7acff4);
+            text-indent: 0px;
+            line-height: 0px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            font-size: 17px;
+            color: #395863;
+            width: 126px;
+            height: 40px;
+            padding: 13px;
+            text-shadow: #ade6ff 0px 1px 0px;
+            border-color: #59a9c6;
+            border-width: 1px;
+            border-style: solid;
+        }
+        
+        #button:active {
+            box-shadow: inset #ffffff 0px 1px 1px -1px, #4895b1 0px 0 0px;
+            o-box-shadow: inset #ffffff 0px 1px 1px -1px, #4895b1 0px 0 0px;
+            -moz-box-shadow: inset #ffffff 0px 1px 1px -1px, #4895b1 0px 0 0px;
+            -webkit-box-shadow: inset #ffffff 0px 1px 1px -1px, #4895b1 0px 0 0px;
+            position: relative;
+            top: 4px
+        }
+        
+        #button:hover {
+            background: #7acff4;
+            background: -o-linear-gradient(90deg, #7acff4, #77b6d1);
+            background: -moz-linear-gradient(center top, #7acff4 5%, #77b6d1 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7acff4), color-stop(1, #77b6d1));
+            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#7acff4', endColorstr='#77b6d1');
+            background: -webkit-linear-gradient(#7acff4, #77b6d1);
+            background: -ms-linear-gradient(#7acff4, #77b6d1);
+            background: linear-gradient(#7acff4, #77b6d1);
+        }
+    </style>
+
+</head>
+
+<body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080">
+
+    <input type="button" value="추가" onclick="add_swiper()"><br />
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="./images/4.jpg"></div>
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    </div>
+    <script src="./swiper.min.js"></script>
+
+    <script type="text/javascript">
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 5,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        function add_swiper() {
+            const swiperclass = document.getElementsByClassName('swiper-wrapper');
+            var newswiper = document.createElement('div');
+            newswiper.classname = 'swiper-slide';
+            newswiper.innerText = '<img src="./images/4.jpg">';
+            swiperclass.classlist.add(newswiper);
+        }
+    </script>
+
+    <div class="plus_minus">
+        <ul class="plus_minus_wrapper">
+            <div class="button_wrapper">
+                <li><button onclick="location.href='./user_choice.html'" id="button">로그인</button></li>
+            </div>
+            <div class="button_wrapper">
+                <li><button onclick="location.href='./user_choice.html'" id="button">삭제</button></li>
+            </div>
+        </ul>
+    </div>
+
+    <div class="home_button">
+        <div class="button_margin">
+            <a href="./Main_page.html">
+                <img src="./images/back.png" style="float: right" width="50px">
+            </a>
+        </div>
+        <div class="button_margin">
+            <a href="./Main_page.html">
+                <img src="./images/Home_Button2.png" style="float: left" width="50px">
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>
