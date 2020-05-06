@@ -22,7 +22,7 @@ router.post('/create', function(req,res){
 	var data = req.body.data;
 	var responseData;
 	var sql = 'INSERT INTO u_id(u_num, u_name, gender, age, job) VALUES (?, ?, ?, ?, ?)';
-	console.log(data)
+	console.log(data + ' ' + data.u_name + ' ' + data.u_gender + ' ' + data.u_age + ' ' + data.u_job + ' ')
 
 	var query = connection.query(sql, [100, data.u_name, data.u_gender, data.u_age, data.u_job], function(err,rows){
 
