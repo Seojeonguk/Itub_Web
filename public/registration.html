@@ -86,7 +86,7 @@
             inputdata = {
                 'u_name': document.getElementById('input_name').value,
                 'u_gender': parseInt(getRadio()),
-                'u_age': document.getElementById('input_age').value,
+                'u_age': document.parseInt(getElementById('input_age').value),
                 'u_job': document.getElementById('input_job').value
             }
 
@@ -111,7 +111,7 @@
                 var result = JSON.parse(xhr.responseText);
                 var resultDiv;
 
-                console.log('데이터 넘겨받음' + result.result + ' ' + result.data)
+                console.log('데이터 넘겨받음' + result.result)
                 if (result.result == 'ok' && result.type == 'reference') {
                     resultDiv = document.querySelector('.find');
                     resultDiv.innerHTML = '조회테스트 : ' + '고유번호 : ' + result.u_num + ', 나이 : ' + result.age + ', 성별 : ' + result.gender + ', 직업 : ' + result.job;
