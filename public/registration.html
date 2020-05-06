@@ -17,16 +17,16 @@
             </div>
             <div>
                 <label for='gender'>성별:</label>
-                <input type='radio' id='gender' class='input_gender_0' value='0' /> <span class='up'> 남성 </span>
-                <input type='radio' id='gender' class='input_gender_1' value='1' /> <span class='up'> 여성 </span>
+                <input type='radio' name='gender_radio' value='0' /> <span class='up'> 남성 </span>
+                <input type='radio' name='gender_radio' value='1' /> <span class='up'> 여성 </span>
             </div>
             <div>
                 <label>나이:</label>
-                <input type='number' class='input_age' />
+                <input type='number' id='input_age' />
             </div>
             <div>
                 <label>직업:</label>
-                <input type='text' class='input_job' />
+                <input type='text' id='input_job' />
             </div>
 
             <p></p>
@@ -74,19 +74,22 @@
         document.querySelector('.submit').addEventListener('click', function () {
             alert('등록 완료');
             var inputdata = {};
-            var radio_checked;
-            inputdata = {
-                'u_name': document.getElementsByClassName('input_name').value,
-                'u_gender': function radioVal(){
-                    var radiobalue = document.getElementById('gender');
-                    for (var i = 0; i < 2; i++){
-                        if (radiovalue[i].checked == true)
-                            radio_checked = radiovalue.value;
+            var radio_btn = document.getElementsByName('gender_radio');
+            var radio_result;
+
+            function getRadio() {
+                    for (var i = 0; i < radio_btn.length; i++){
+                        if (radio_btn[i].checked == true) return radio_btn[i].value;
                     }
-                },
-                'u_age': document.getElementsByClassName('input_age').value,
-                'u_job': document.getElementsByClassName('input_job').value
+            };
+
+            inputdata = {
+                'u_name': document.getElementById('input_name').value,
+                'u_gender': parseInt(getRadio()),
+                'u_age': document.getElementById('input_age').value,
+                'u_job': document.getElementById('input_job').value
             }
+
             console.log(inputdata)
             // 배열로도 정의 가능
             sendDB('/db/create', inputdata)
