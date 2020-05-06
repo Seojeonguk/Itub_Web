@@ -32,7 +32,7 @@
             <p></p>
 
             <button type='button' onclick='alert("원래 창으로 돌아가는 기능 추가 예정")'>취소</button>
-            <button type='button' onclick='alert("등록완료")'>가입</button>
+            <button type='button' class='submit' onclick='alert("등록완료")'>가입</button>
             <div class='create'>조회테스트 : </div>
         </div>
 
@@ -70,7 +70,7 @@
             sendAjax('/db/delete', inputdata)
         });
 
-        document.querySelector('.del').addEventListener('click', function(){
+        document.querySelector('.submit').addEventListener('click', function(){
             var inputdata = {};
             inputdata = {
                 'u_name': document.getElementsByClassName('input_name').value,
