@@ -62,19 +62,14 @@ router.post('/reference', function (req, res) {
 		if (rows.length !== 0) {
 			responseData.type = 'reference';
 			responseData.result = 'ok';
-			for (var i = 0; i < rows.length; i++) {
-				responseData.u_num.push(rows[i].u_num);
-				responseData.ag.push(rows[i].age);
-				responseData.gender.push(rows[i].gender);
-				responseData.job.push(rows[i].job);
-				console.log(responseData)
-			}
+			responseData.DB = rows;
 		} else {
 			responseData.result = 'none';
 			responseData.type = 'reference';
 			console.log('none');
 		}
 
+		console.log(responseData.DB);
 		res.json(responseData); // 비동기이기 때문에 괄호안에 적어야함
 		connection.end();
 	})
