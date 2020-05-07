@@ -63,20 +63,19 @@ router.post('/reference', function (req, res) {
 			responseData.type = 'reference';
 			responseData.result = 'ok';
 			for (var i = 0; i < rows.length; i++) {
-				responseData.u_num = rows[i].u_num;
+				responseData.u_num.push(rows[i].u_num);
 				responseData.age = rows[i].age;
 				responseData.gender = rows[i].gender;
 				responseData.job = rows[i].job;
 				console.log(responseData)
-				res.json(responseData); // 비동기이기 때문에 괄호안에 적어야함
 			}
 		} else {
 			responseData.result = 'none';
 			responseData.type = 'reference';
-			res.json(responseData);
 			console.log('none');
 		}
 
+		res.json(responseData); // 비동기이기 때문에 괄호안에 적어야함
 		connection.end();
 	})
 });
