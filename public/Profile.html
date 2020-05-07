@@ -136,7 +136,7 @@
 
 </head>
 
-<body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080">
+<body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080" onload="sendDB('/db/create', '0')">
     <div class="swiper-container">
         <div class="swiper-wrapper"></div>
 
@@ -258,13 +258,6 @@
         //     // 배열로도 정의 가능
             
         // });
-    </script>
-
-
-    <script src="//code.jquery.com/jquery-3.3.1.min.js">
-        $( document ).ready(function() {
-            sendDB('/db/create','0');
-        });
     </script>
 </body>
 
