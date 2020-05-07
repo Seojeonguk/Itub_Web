@@ -213,7 +213,7 @@
                     else path = './images/granma.png'
                 }
 
-                var htmlCode = '<div class="swiper-slide"><img src=' + path + ' width="80%" height="80%"><p></p><label>' + tmp[i].u_name + '</lavel></div>';
+                var htmlCode = '<div class="swiper-slide"><img src=' + path + ' width="80%" height="80%"><p></p><div>' + tmp[i].u_name + '</div></div>';
                 console.log(htmlCode);
                 console.log(tmp);
                 swiper.appendSlide(htmlCode);
