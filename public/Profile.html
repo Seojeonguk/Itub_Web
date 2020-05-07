@@ -136,7 +136,7 @@
 
 </head>
 
-<body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080">
+<body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080" onload='sendDB("/db/reference", inputdata)'>
     <div class="swiper-container">
         <div class="swiper-wrapper"></div>
 
@@ -157,7 +157,7 @@
 
     <div>
         <button type="button" onclick='location.href="./registration.html"'>생성</button>
-        <button type="button" class='add_profile'>추가</button>
+        <!-- <button type="button" class='add_profile'>추가</button> -->
         <button type="button" >삭제</button>
     </div>
 
@@ -252,12 +252,12 @@
             });
         }
 
-        document.querySelector('.add_profile').addEventListener('click', function () {
-            var inputdata = '0';
-            console.log(inputdata)
-            // 배열로도 정의 가능
-            sendDB('/db/reference', inputdata);
-        });
+        // document.querySelector('.add_profile').addEventListener('click', function () {
+        //     var inputdata = '0';
+        //     console.log(inputdata)
+        //     // 배열로도 정의 가능
+            
+        // });
     </script>
 </body>
 
