@@ -204,7 +204,7 @@
             for (var i = 0; i < div_name.length; i++) {
                 var newDivHtml = div_name[i];
                 var path = './images/test_' + div_name[i] + '.jpg';
-                var htmlCode = '<div class="swiper-slide"><img src=' + path + '></div>';
+                var htmlCode = '<div class="swiper-slide"><img src=' + path + '>' + tmp[i].u_name + '</div>';
                 console.log(htmlCode);
                 console.log(tmp);
                 swiper.appendSlide(htmlCode);
