@@ -136,7 +136,7 @@
 
 </head>
 
-<body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080" onload="sendDB('/db/create', '0')">
+<body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080">
     <div class="swiper-container">
         <div class="swiper-wrapper"></div>
 
@@ -158,7 +158,7 @@
     <div>
         <button type="button" onclick='location.href="./registration.html"'>생성</button>
         <!-- <button type="button" class='add_profile'>추가</button> -->
-        <button type="button" >삭제</button>
+        <button type="button">삭제</button>
     </div>
 
     <div class="home_button">
@@ -205,7 +205,7 @@
                 } else if (tmp[i].age >= 15 && tmp[i].age <= 65) {
                     if (tmp[i].gender == 0) path = './images/fa.png'
                     else path = './images/ma.png'
-                } else{
+                } else {
                     if (tmp[i].gender == 0) path = './images/granfa.png'
                     else path = './images/granma.png'
                 }
@@ -232,7 +232,7 @@
             xhr.send(data); // 문자열 형태로 넣어줘야함
             console.log(data + 'xhr send')
 
-            xhr.addEventListener('load', function() {
+            xhr.addEventListener('load', function () {
                 var result = JSON.parse(xhr.responseText);
                 var resultDiv;
                 console.log('데이터 넘겨받음' + result.result)
@@ -252,11 +252,15 @@
             });
         }
 
+        window.onload = function () {
+            sendDB('/db/create', '0');
+        }
+
         // document.querySelector('.add_profile').addEventListener('click', function () {
         //     var inputdata = '0';
         //     console.log(inputdata)
         //     // 배열로도 정의 가능
-            
+
         // });
     </script>
 </body>
