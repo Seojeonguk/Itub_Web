@@ -174,7 +174,7 @@
             for (var i = 0; i < div_name.length; i++) {
                 var newDivHtml = div_name[i];
                 var path = './images/test_' + div_name[i] + '.jpg';
-                var htmlCode = '<div class="swiper-slide"><img src=' + path + '>' + result.u_name + '</div>';
+                var htmlCode = '<div class="swiper-slide"><img src=' + path + '>' + result.DB[i].u_name + '</div>';
                 console.log(htmlCode);
                 swiper.appendSlide(htmlCode);
                 swiper.update();
@@ -209,7 +209,7 @@
                 console.log('데이터 넘겨받음' + result.result)
                 if (result.result == 'ok' && result.type == 'reference') {
                     resultDiv = document.querySelector('.find');
-                    resultDiv.innerHTML = '조회테스트 : ' + '고유번호 : ' + result.u_num + ', 나이 : ' + result.age + ', 성별 : ' + result.gender + ', 직업 : ' + result.job;
+                    resultDiv.innerHTML = '조회테스트 : ' + '고유번호 : ' + result.DB.length + ', 나이 : ' + result.age + ', 성별 : ' + result.gender + ', 직업 : ' + result.job;
                 } else if (result.result == 'ok' && result.type == 'delete') {
                     resultDiv = document.querySelector('.dele');
                     resultDiv.innerHTML = '삭제테스트 : ' + '삭제가 완료되었습니다.'
