@@ -209,6 +209,7 @@
                 console.log('데이터 넘겨받음' + result.result)
                 if (result.result == 'ok' && result.type == 'reference') {
                     tmp = result.DB;
+                    add_div();
                 } else if (result.result == 'ok' && result.type == 'delete') {
                     resultDiv = document.querySelector('.dele');
                     resultDiv.innerHTML = '삭제테스트 : ' + '삭제가 완료되었습니다.'
