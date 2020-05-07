@@ -147,6 +147,7 @@ body{
 
 .inp_radio{
     top:13px;
+    position: absolute
 }
 
 .inp_g{
@@ -159,8 +160,8 @@ body{
 }
 
 .lab_radio .ico_radio {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     margin: 13px 6px 0 0;
     background-position: -430px -30px;
 }
@@ -183,6 +184,8 @@ input[type="radio" i] {
     margin: 3px 3px 0px 5px;
     padding: initial;
     border: initial;
+    width: 60px;
+    height: 25px;
 }
 
 input {
@@ -207,6 +210,7 @@ input {
     border-style: inset;
     border-color: rgb(118, 118, 118);
     border-image: initial;
+    z-index: 99;
 }
 
 .lab_g {
@@ -221,11 +225,6 @@ input {
 .item_on .lab_radio .ico_radio {
     background-position: -60px -30px;
 }
-
-
-
-
-
 
 
 
