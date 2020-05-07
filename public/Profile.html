@@ -202,12 +202,12 @@
         function add_div() {
             for (var i = 0; i < tmp[i].length; i++) {
                 var newDivHtml = i;
-                var path;
+                var path = "";
 
-                if (tmp[i].u_age < 15) {
+                if (tmp[i].age < 15) {
                     if (tmp[i].gender == 0) path = './images/boy.png'
                     else path = './images/girl.png'
-                } else if (tmp[i].u_age >= 15 && tmp[i].u_age <= 65) {
+                } else if (tmp[i].age >= 15 && tmp[i].age <= 65) {
                     if (tmp[i].gender == 0) path = './images/fa.png'
                     else path = './images/ma.png'
                 } else{
