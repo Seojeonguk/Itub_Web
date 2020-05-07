@@ -8,7 +8,7 @@ var db = require('./db/DBfunc')
 // url routing
 router.get('/', function(req, res){
 	console.log('접속 성공적')
-	res.sendFile(path.join(__dirname + "/../public/Profile.html")) // html 파일을 보내는 것
+	res.sendFile(path.join(__dirname + "/../public/Main_page.html")) // html 파일을 보내는 것
 });
 
 router.use('/main', main)
