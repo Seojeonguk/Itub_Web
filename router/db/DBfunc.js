@@ -67,7 +67,7 @@ router.post('/reference', function (req, res) {
 				responseData.age = rows[i].age;
 				responseData.gender = rows[i].gender;
 				responseData.job = rows[i].job;
-				console.log(rows[i].u_num + ' ' + rows[i].u_age + ' ' + rows[i].u_gender + ' ' + rows[i].u_job + ' ');
+				console.log(rows[i].u_num + '|' + rows[i].age + '|' + rows[i].gender + '|' + rows[i].job);
 			}
 		} else {
 			responseData.result = 'none';
