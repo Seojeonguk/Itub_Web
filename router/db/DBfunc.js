@@ -68,6 +68,8 @@ router.post('/reference', function (req, res) {
 				responseData.gender = rows[i].gender;
 				responseData.job = rows[i].job;
 				console.log(rows[i].u_num + '|' + rows[i].age + '|' + rows[i].gender + '|' + rows[i].job);
+				console.log(responseData)
+				res.json(responseData); // 비동기이기 때문에 괄호안에 적어야함
 			}
 		} else {
 			responseData.result = 'none';
@@ -75,8 +77,7 @@ router.post('/reference', function (req, res) {
 			console.log('none');
 		}
 
-		console.log(responseData)
-		res.json(responseData); // 비동기이기 때문에 괄호안에 적어야함
+		
 		connection.end();
 	})
 });
