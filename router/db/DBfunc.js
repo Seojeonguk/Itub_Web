@@ -64,9 +64,9 @@ router.post('/reference', function (req, res) {
 			responseData.result = 'ok';
 			for (var i = 0; i < rows.length; i++) {
 				responseData.u_num.push(rows[i].u_num);
-				responseData.age = rows[i].age;
-				responseData.gender = rows[i].gender;
-				responseData.job = rows[i].job;
+				responseData.ag.push(rows[i].age);
+				responseData.gender.push(rows[i].gender);
+				responseData.job.push(rows[i].job);
 				console.log(responseData)
 			}
 		} else {
