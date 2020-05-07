@@ -214,8 +214,8 @@
                     if (tmp[i].gender == 0) path = './images/granfa.png'
                     else path = './images/granma.png'
                 }
-                
-                var htmlCode = '<div class="swiper-slide"><img src=' + path + '><p></p>' + tmp[i].u_name + '</div>';
+
+                var htmlCode = '<div class="swiper-slide"><img src=' + path + '>' + tmp[i].u_name + '</div>';
                 console.log(htmlCode);
                 console.log(tmp);
                 swiper.appendSlide(htmlCode);
