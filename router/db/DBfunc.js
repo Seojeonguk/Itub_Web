@@ -49,10 +49,10 @@ router.post('/reference', function(req,res){
 	console.log('db 접속시도');
 	var data = req.body.data;
 	var responseData = {};
-	var sql = 'SELECT * FROM u_id WHERE u_name=?';
+	var sql = 'SELECT * FROM u_id';
 	console.log(data)
 
-	var query = connection.query(sql, [data], function(err,rows){
+	var query = connection.query(sql, function(err,rows){
 
 		if(err) {
 			console.log("[mysql error]",err);
@@ -62,11 +62,11 @@ router.post('/reference', function(req,res){
 		if(rows[0]){
 			responseData.type = 'reference';
 			responseData.result = 'ok';
-			responseData.u_num = rows[0].u_num;
-			responseData.age = rows[0].age;
-			responseData.gender = rows[0].gender;
-			responseData.job = rows[0].job;
-			console.log(rows[0]);
+			responseData.u_num = rows.u_num;
+			responseData.age = rows.age;
+			responseData.gender = rows.gender;
+			responseData.job = rows.job;
+			console.log(rows.u_num + ' ' + rows.u_age + ' ' + rows.u_gender + ' ' + rows.u_job + ' ' );
 		} else{
 			responseData.result = 'none';
 			responseData.type = 'reference';

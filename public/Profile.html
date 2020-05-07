@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="utf-8">
     <title>I-Tub</title>
@@ -141,14 +142,7 @@
 
 <body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080">
     <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <!-- <div class="swiper-slide"><img src="./images/4.jpg"></div>
-            <div class="swiper-slide"><img src="./images/3.jpg"></div>
-            <div class="swiper-slide"><img src="./images/4.jpg"></div>
-            <div class="swiper-slide"><img src="./images/4.jpg"></div>
-            <div class="swiper-slide"><img src="./images/3.jpg"></div>
-            <div class="swiper-slide"><img src="./images/4.jpg"></div> -->
-        </div>
+        <div class="swiper-wrapper"></div>
 
         <div class="swiper-pagination"></div>
 
@@ -167,6 +161,7 @@
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
+                dynamicBullets: true,
             },
 
             navigation: {
@@ -186,28 +181,54 @@
             }
         }
 
-        function remove_div() {
-            var id = document.getElementsByClassName('swiper-slide').value;
-            console.log(id);
-            var tmp = document.getElementById(id);
-            return tmp.parentNode.removeChild(tmp);
+        document.querySelector('.refer').addEventListener('click', function () {
+            var inputdata = document.getElementById('nick_input_find').value;
+            console.log(inputdata)
+            // 배열로도 정의 가능
+            sendDB('/db/reference', inputdata);
+        });
+
+        document.querySelector('.del').addEventListener('click', function () {
+            var inputdata = document.getElementById('nick_input_del').value;
+            console.log(inputdata)
+            // 배열로도 정의 가능
+            sendDB('/db/delete', inputdata)
+        });
+
+        function sendDB(url, data) {
+            var data = {
+                'data': data
+            };
+            console.log(data + '데이터형 변경 전');
+            data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
+            console.log(data + '데이터형 변경 후')
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            // 서버로 보낼때 json 형태의 데이터를 보내기위해 지정
+            xhr.send(data); // 문자열 형태로 넣어줘야함
+            console.log(data + 'xhr send')
+
+            xhr.addEventListener('load', function() {
+                var result = JSON.parse(xhr.responseText);
+                var resultDiv;
+
+                console.log('데이터 넘겨받음' + result.result)
+                if (result.result == 'ok' && result.type == 'reference') {
+                    resultDiv = document.querySelector('.find');
+                    resultDiv.innerHTML = '조회테스트 : ' + '고유번호 : ' + result.u_num + ', 나이 : ' + result.age + ', 성별 : ' + result.gender + ', 직업 : ' + result.job;
+                } else if (result.result == 'ok' && result.type == 'delete') {
+                    resultDiv = document.querySelector('.dele');
+                    resultDiv.innerHTML = '삭제테스트 : ' + '삭제가 완료되었습니다.'
+                } else if (result.result == 'none' && result.type == 'reference') {
+                    resultDiv = document.querySelector('.find');
+                    resultDiv.innerHTML = '되겠냐?';
+                } else if (result.result == 'none' && result.type == 'delete') {
+                    resultDiv = document.querySelector('.dele');
+                    resultDiv.innerHTML = '되겠냐?';
+                }
+            });
         }
-
-        // var swiper = new Swiper('.swiper-container', {
-        //     slidesPerView: 5,
-        //     spaceBetween: 30,
-        //     loop: true,
-
-        //     pagination: {
-        //         el: '.swiper-pagination',
-        //         clickable: true,
-        //     },
-
-        //     navigation: {
-        //         nextEl: '.swiper-button-next',
-        //         prevEl: '.swiper-button-prev',
-        //     },
-        // });
     </script>
 
     <div class="plus_minus">
