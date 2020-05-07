@@ -201,9 +201,18 @@
         });
 
         function add_div() {
-            for (var i = 0; i < div_name.length; i++) {
-                var newDivHtml = div_name[i];
-                var path = './images/test_' + div_name[i] + '.jpg';
+            for (var i = 0; i < tmp.length; i++) {
+                if (tmp[i].age < 15) {
+                    if (tmp[i].gender == 0) path = './images/boy.png'
+                    else path = './images/girl.png'
+                } else if (tmp[i].age >= 15 && tmp[i].age <= 65) {
+                    if (tmp[i].gender == 0) path = './images/fa.png'
+                    else path = './images/ma.png'
+                } else{
+                    if (tmp[i].gender == 0) path = './images/granfa.png'
+                    else path = './images/granma.png'
+                }
+
                 var htmlCode = '<div class="swiper-slide"><img src=' + path + '>' + tmp[i].u_name + '</div>';
                 console.log(htmlCode);
                 console.log(tmp);
