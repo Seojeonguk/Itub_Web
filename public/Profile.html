@@ -148,6 +148,35 @@
 
     </div>
 
+    <div class="plus_minus">
+        <ul class="plus_minus_wrapper">
+            <div class="button_wrapper">
+                <li><button onclick="location.href='./user_choice.html'" id="button">로그인</button></li>
+            </div>
+            <div class="button_wrapper">
+                <li><button onclick="location.href='./user_choice.html'" id="button">삭제</button></li>
+            </div>
+        </ul>
+    </div>
+
+    <div>
+        <button type="button" class='add_profile'>추가</button>
+        <button type="button" >삭제</button>
+    </div>
+
+    <div class="home_button">
+        <div class="button_margin">
+            <a href="./Main_page.html">
+                <img src="./images/back.png" style="float: right" width="50px">
+            </a>
+        </div>
+        <div class="button_margin">
+            <a href="./Main_page.html">
+                <img src="./images/Home_Button2.png" style="float: left" width="50px">
+            </a>
+        </div>
+    </div>
+
     <script src="./swiper.min.js"></script>
 
     <script>
@@ -183,13 +212,6 @@
             }
         }
 
-        document.querySelector('.add').addEventListener('click', function () {
-            var inputdata = '0';
-            console.log(inputdata)
-            // 배열로도 정의 가능
-            sendDB('/db/reference', inputdata);
-        });
-
         function sendDB(url, data) {
             var data = {
                 'data': data
@@ -223,37 +245,14 @@
                 }
             });
         }
+
+        document.querySelector('.add_profile').addEventListener('click', function () {
+            var inputdata = '0';
+            console.log(inputdata)
+            // 배열로도 정의 가능
+            sendDB('/db/reference', inputdata);
+        });
     </script>
-
-    <div class="plus_minus">
-        <ul class="plus_minus_wrapper">
-            <div class="button_wrapper">
-                <li><button onclick="location.href='./user_choice.html'" id="button">로그인</button></li>
-            </div>
-            <div class="button_wrapper">
-                <li><button onclick="location.href='./user_choice.html'" id="button">삭제</button></li>
-            </div>
-        </ul>
-    </div>
-
-    <div>
-        <button type="button" class='add'>추가</button>
-        <button type="button" onclick="remove_div()">삭제</button>
-    </div>
-
-    <div class="home_button">
-        <div class="button_margin">
-            <a href="./Main_page.html">
-                <img src="./images/back.png" style="float: right" width="50px">
-            </a>
-        </div>
-        <div class="button_margin">
-            <a href="./Main_page.html">
-                <img src="./images/Home_Button2.png" style="float: left" width="50px">
-            </a>
-        </div>
-    </div>
-
 </body>
 
 </html>
