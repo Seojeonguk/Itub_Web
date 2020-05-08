@@ -197,7 +197,7 @@
         });
 
         function add_div() {
-            console.log(tmp.length);
+            console.log(tmp);
             for (var i = 0; i < tmp.length; i++) {
                 if (tmp[i].u_age < 15) {
                     if (tmp[i].u_gender == 0) path = './images/boy.png'
@@ -224,7 +224,7 @@
             };
             console.log(data + '데이터형 변경 전');
             data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
-            console.log(data + '데이터형 변경 후')
+            console.log(data + '데이터형 변경 후');
             var xhr = new XMLHttpRequest();
             xhr.open('POST', url);
             xhr.setRequestHeader('Content-Type', 'application/json');
