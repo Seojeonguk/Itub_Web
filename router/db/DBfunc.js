@@ -11,7 +11,7 @@ router.post('/create', function (req, res) {
 	console.log('db 접속시도');
 	var data = req.body.data;
 	var responseData = {};
-	var sql = 'INSERT INTO u_id(u_name, age, gender, job) VALUES (?, ?, ?, ?)';
+	var sql = 'INSERT INTO u_db(u_name, age, gender, job) VALUES (?, ?, ?, ?)';
 	console.log(data)
 
 	var query = connection.query(sql, [data.u_name, parseInt(data.u_age), parseInt(data.u_gender), data.u_job], function (err, rows) {
@@ -39,7 +39,7 @@ router.post('/reference', function (req, res) {
 	console.log('db 접속시도');
 	var data = req.body.data;
 	var responseData = {};
-	var sql = 'SELECT * FROM u_id';
+	var sql = 'SELECT * FROM u_db';
 	console.log(data)
 
 	var query = connection.query(sql, function (err, rows) {
@@ -73,7 +73,7 @@ router.post('/delete', function (req, res) {
 	var responseData = {};
 	console.log(data)
 
-	var sql = 'SELECT * FROM u_id WHERE u_name=?';
+	var sql = 'SELECT * FROM u_db WHERE u_name=?';
 	var query = connection.query(sql, [data], function (err, rows) {
 		if (rows[0]) {
 			responseData.result = 'ok';
