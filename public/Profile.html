@@ -177,7 +177,7 @@
     <script src="./swiper.min.js"></script>
 
     <script>
-        var tmp;
+        var tmp = {};
 
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 5,
@@ -197,6 +197,9 @@
         });
 
         function add_div() {
+            tmp = {};
+
+            console.log(tmp.length);
             for (var i = 0; i < tmp.length; i++) {
                 if (tmp[i].u_age < 15) {
                     if (tmp[i].u_gender == 0) path = './images/boy.png'
