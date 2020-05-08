@@ -239,14 +239,11 @@
                     tmp = result.DB;
                     add_div();
                 } else if (result.result == 'ok' && result.type == 'delete') {
-                    resultDiv = document.querySelector('.dele');
-                    resultDiv.innerHTML = '삭제테스트 : ' + '삭제가 완료되었습니다.'
+                    console.log('삭제테스트 : ' + '삭제가 완료되었습니다.');
                 } else if (result.result == 'none' && result.type == 'reference') {
-                    resultDiv = document.querySelector('.find');
-                    resultDiv.innerHTML = '되겠냐?';
+                    console.log('되겠냐?');
                 } else if (result.result == 'none' && result.type == 'delete') {
-                    resultDiv = document.querySelector('.dele');
-                    resultDiv.innerHTML = '되겠냐?';
+                    console.log('되겠냐?');
                 }
             });
         }
