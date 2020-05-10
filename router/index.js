@@ -7,6 +7,7 @@ var db = require('./db/DBfunc')
 // url routing
 router.get('/', function(req, res){
 	console.log('접속 성공적')
+	console.log(__dirname)
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
