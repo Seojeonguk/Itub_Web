@@ -187,7 +187,8 @@
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 5,
             spaceBetween: 30,
-            loop: true,
+            loop: false,
+            centeredSlides: true,
 
             pagination: {
                 el: '.swiper-pagination',
@@ -252,6 +253,10 @@
                 }
             });
         }
+
+        window.onload = function(){
+            sendDB('/db/reference', 'ok');
+        };
     </script>
 
     
