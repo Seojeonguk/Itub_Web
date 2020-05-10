@@ -10,7 +10,6 @@ router.get('/', function(req, res){
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
-router.use('/main', main)
 router.use('/db', db)
 
 module.exports = router;
