@@ -146,10 +146,13 @@
     <div class="plus_minus">
         <ul class="plus_minus_wrapper">
             <div class="button_wrapper">
+                <li><button onclick="location.href='./register.html'" id="button">생성</button></li>
+            </div>
+            <div class="button_wrapper">
                 <li><button onclick="location.href='./user_choice.html'" id="button">선택</button></li>
             </div>
             <div class="button_wrapper">
-                <li><button onclick="location.href='./user_choice.html'" id="button">삭제</button></li>
+                <li><button onclick='sendDB("/db/delete", tmp[slideNum].u_name)' id="button">삭제</button></li>
             </div>
         </ul>
     </div>
@@ -177,6 +180,7 @@
 
     <script>
         var tmp;
+        var slideNum;
 
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 5,
@@ -194,6 +198,12 @@
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+
+            on: {
+                slideChangeTrasitionEnd: function(){
+                    slideNum = this.activeIndex;
+                }
+            }
         });
 
         function add_div() {
@@ -239,6 +249,7 @@
                     add_div();
                     console.log('조회가 완료되었습니다.');
                 } else if (result.result == 'ok' && result.type == 'delete') {
+                    add_div();
                     console.log('삭제가 완료되었습니다.');
                 } else if (result.result == 'none' && result.type == 'reference') {
                     console.log('되겠냐?');
