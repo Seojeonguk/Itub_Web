@@ -182,6 +182,7 @@
             loop: false,
             centeredSlides: true,
             preventClicks: true,
+            preventClicksPropagation: false,
 
             pagination: {
                 el: '.swiper-pagination',
@@ -211,10 +212,8 @@
                 }
             },
 
-            onClick: (swiper, event) => {
-                //console.log(event.targer);
-                var div = swiper.clickedSilde;
-                console.log(div);
+            onClick: function(btn, err){
+                alert('슬라이드 클릭');
             }
         });
 
