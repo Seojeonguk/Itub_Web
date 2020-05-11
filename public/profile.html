@@ -208,6 +208,17 @@
                     slidesPerView: 5,
                     spaceBetween: 10
                 }
+            },
+
+            onClick: function(swiper, btn){
+                btn.preventDefault();
+                alert('click_click');
+            },
+
+            onTap: function(swiper, btn){
+                btn.preventDefault();
+                swiper.allowClick = false;
+                alert('click_tap');
             }
         });
 
@@ -281,12 +292,6 @@
         window.onload = function () {
             sendDB('/db/reference', 'ok');
         };
-
-        if (tmp !== '') {
-            document.querySelector('.swiper-slide swiper-slide-active').addEventListener('click', function () {
-                alert('슬라이드 클릭');
-            });
-        }
     </script>
 
 
