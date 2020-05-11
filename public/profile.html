@@ -269,9 +269,10 @@
                 } else if (result.result == 'ok' && result.type == 'delete') {
                     console.log('삭제가 완료되었습니다.');
                 } else if (result.result == 'none' && result.type == 'reference') {
-                    tmp = {'':''};
+                    tmp = '';
                     console.log('되겠냐?');
                 } else if (result.result == 'none' && result.type == 'delete') {
+                    tmp = '';
                     console.log('되겠냐?');
                 }
             });
@@ -281,7 +282,7 @@
             sendDB('/db/reference', 'ok');
         };
 
-        if (tmp.length < 1) {
+        if (tmp !== '') {
             document.querySelector('.swiper-slide swiper-slide-active').addEventListener('click', function () {
                 aler('슬라이드 클릭');
             });
