@@ -173,7 +173,7 @@ body{
     line-height: 0;
     text-indent: -9999px;
     vertical-align: top;
-    background: url(./images/ico_account.png);
+    background: url(../images/ico_account.png);
 }
 
 input[type="radio" i] {
