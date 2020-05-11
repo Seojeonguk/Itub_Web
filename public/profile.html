@@ -208,13 +208,15 @@
                     slidesPerView: 5, 
                     spaceBetween: 10 
                 }
-            },
+            }
         });
+
+        document.getElementsByClassName('swiper-slide swiper-slide-active').addEventListener('click', alert('슬라이드 클릭'));
 
         function del_div(){
             slideNum = swiper.realIndex;
 
-            if (tmp.length < 1) alert('지울 사용자가 없습니다.');
+            if (tmp.length < 2) alert('지울 사용자가 없습니다.');
             else { 
                 alert(tmp[slideNum].u_name + ' 사용자가 삭제되었습니다.');
                 sendDB('/db/delete', tmp[slideNum].u_num);
