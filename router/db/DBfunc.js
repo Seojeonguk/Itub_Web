@@ -85,7 +85,7 @@ router.post('/delete', function (req, res) {
 		}
 	});
 
-	sql = 'DELETE FROM u_db WHERE u_num=?';
+	sql = 'DELETE FROM u_db WHERE u_name=?';
 	var query = connection.query(sql, [data], function (err, rows) {
 
 		if (err) {
