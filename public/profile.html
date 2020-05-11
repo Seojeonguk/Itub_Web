@@ -152,7 +152,7 @@
                 <li><button onclick="location.href='./user_choice.html'" id="button">선택</button></li>
             </div>
             <div class="button_wrapper">
-                <li><button onclick='sendDB("/db/delete", "ok")' id="button">삭제</button></li>
+                <li><button onclick=del_div() id="button">삭제</button></li>
             </div>
         </ul>
     </div>
@@ -203,10 +203,13 @@
             on: {
                 slideChangeTrasitionEnd: function(){
                     slideNum = this.activeIndex;
-                    console.log(slideNum);
                 }
             }
         });
+
+        function del_div(){
+            sendDB('/db/delete', tmp[slideNum].u_name);
+        }
 
         function add_div() {
             console.log(tmp);
