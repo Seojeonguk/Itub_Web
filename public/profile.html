@@ -200,15 +200,27 @@
                 prevEl: '.swiper-button-prev',
             },
 
-            on: {
-                slideChangeTrasitionEnd: function(){
-                    slideNum = this.activeIndex;
-                    console.log(slideNum)
+            breakpointsInverse: true, breakpoints: { // when window width is >= 320px 
+                320: {
+                    slidesPerView: 3, 
+                    spaceBetween: 20 
+                }, // when window width is >= 480px 
+                
+                480: { 
+                    slidesPerView: 4, 
+                    spaceBetween: 30 
+                }, // when window width is >= 640px 
+                
+                640: { 
+                    slidesPerView: 5, 
+                    spaceBetween: 10 
                 }
-            }
+            },
         });
 
         function del_div(){
+            slideNum = swiper.realIndex;
+
             if (tmp.length < 1) alert('지울 사용자가 없습니다.');
             else { 
                 alert(tmp[slideNum + 1].u_name + ' 사용자가 삭제되었습니다.');
