@@ -57,7 +57,7 @@ router.post('/reference', function (req, res) {
 			responseData.result = 'none';
 			responseData.type = 'reference';
 			console.log('none');
-			responseData.DB = {};
+			responseData.DB = {'':''};
 			;
 		}
 
@@ -84,7 +84,7 @@ router.post('/delete', function (req, res) {
 			responseData.result = 'none';
 			responseData.type = 'delete'
 			console.log('none : ' + data);
-			responseData.DB = {};
+			responseData.DB = {'':''};
 		}
 	});
 
