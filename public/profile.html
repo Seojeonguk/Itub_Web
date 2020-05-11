@@ -203,6 +203,7 @@
             on: {
                 slideChangeTrasitionEnd: function(){
                     slideNum = this.activeIndex;
+                    console.log(slideNum)
                 }
             }
         });
@@ -212,6 +213,7 @@
             else { 
                 alert(tmp[slideNum + 1].u_name + ' 사용자가 삭제되었습니다.');
                 sendDB('/db/delete', tmp[slideNum + 1].u_num);
+                window.location.reload(true);
             }
         }
 
