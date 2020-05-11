@@ -173,7 +173,7 @@
     <script src="./js/swiper.min.js"></script>
 
     <script>
-        var tmp;
+        var tmp = '';
         var slideNum = 0;
 
         var swiper = new Swiper('.swiper-container', {
@@ -284,7 +284,7 @@
 
         if (tmp !== '') {
             document.querySelector('.swiper-slide swiper-slide-active').addEventListener('click', function () {
-                aler('슬라이드 클릭');
+                alert('슬라이드 클릭');
             });
         }
     </script>
