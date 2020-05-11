@@ -195,29 +195,27 @@
 
             breakpointsInverse: true, breakpoints: { // when window width is >= 320px 
                 320: {
-                    slidesPerView: 3, 
-                    spaceBetween: 20 
+                    slidesPerView: 3,
+                    spaceBetween: 20
                 }, // when window width is >= 480px 
-                
-                480: { 
-                    slidesPerView: 4, 
-                    spaceBetween: 30 
+
+                480: {
+                    slidesPerView: 4,
+                    spaceBetween: 30
                 }, // when window width is >= 640px 
-                
-                640: { 
-                    slidesPerView: 5, 
-                    spaceBetween: 10 
+
+                640: {
+                    slidesPerView: 5,
+                    spaceBetween: 10
                 }
             }
         });
 
-        document.querySelector('.swiper-slide swiper-slide-active').addEventListener('click', alert('슬라이드 클릭'));
-
-        function del_div(){
+        function del_div() {
             slideNum = swiper.realIndex;
 
             if (tmp.length < 2) alert('지울 사용자가 없습니다.');
-            else { 
+            else {
                 alert(tmp[slideNum].u_name + ' 사용자가 삭제되었습니다.');
                 sendDB('/db/delete', tmp[slideNum].u_num);
                 window.location.reload(true);
@@ -271,6 +269,7 @@
                 } else if (result.result == 'ok' && result.type == 'delete') {
                     console.log('삭제가 완료되었습니다.');
                 } else if (result.result == 'none' && result.type == 'reference') {
+                    tmp = {'':''};
                     console.log('되겠냐?');
                 } else if (result.result == 'none' && result.type == 'delete') {
                     console.log('되겠냐?');
@@ -278,12 +277,18 @@
             });
         }
 
-        window.onload = function(){
+        window.onload = function () {
             sendDB('/db/reference', 'ok');
         };
+
+        if (tmp !== 1) {
+            document.querySelector('.swiper-slide swiper-slide-active').addEventListener('click', function () {
+                aler('슬라이드 클릭');
+            });
+        }
     </script>
 
-    
+
 </body>
 
 </html>
