@@ -212,14 +212,13 @@
                 }
             },
 
-            onClick: function(btn, err){
-                e.prevertDefault();
-                alert('슬라이드 클릭');
-            },
-
-            onTap: function(btn, err){
+            onClick: function(sw, e) {
                 e.preventDefault();
-                btn.allowClick = false;
+                alert('clickSlide');
+            },
+            onTap: function(sw, e) {
+                e.preventDefault();
+                sw.allowClick = false;
             }
         });
 
