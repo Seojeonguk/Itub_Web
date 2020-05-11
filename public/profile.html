@@ -181,6 +181,8 @@
             spaceBetween: 30,
             loop: false,
             centeredSlides: true,
+            preventClicks: true,
+            preventClicksPropagation: false ,
 
             pagination: {
                 el: '.swiper-pagination',
@@ -209,7 +211,7 @@
                     spaceBetween: 10
                 }
             },
-
+            
             onClick: function(swiper, btn){
                 btn.preventDefault();
                 alert('click_click');
