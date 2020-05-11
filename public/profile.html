@@ -152,7 +152,7 @@
                 <li><button onclick="location.href='./user_choice.html'" id="button">선택</button></li>
             </div>
             <div class="button_wrapper">
-                <li><button onclick='sendDB("/db/delete", tmp[slideNum].u_name)' id="button">삭제</button></li>
+                <li><button onclick='sendDB("/db/delete", "ok")' id="button">삭제</button></li>
             </div>
         </ul>
     </div>
@@ -180,10 +180,11 @@
 
     <script>
         var tmp;
-        var slideNum;
+        var slideNum = 0;
 
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 5,
+            
             spaceBetween: 30,
             loop: false,
             centeredSlides: true,
@@ -202,6 +203,7 @@
             on: {
                 slideChangeTrasitionEnd: function(){
                     slideNum = this.activeIndex;
+                    console.log(slideNum);
                 }
             }
         });
@@ -224,6 +226,8 @@
                 swiper.appendSlide(htmlCode);
                 swiper.update();
             }
+
+            console.log(slideNum);
         }
 
         function sendDB(url, data) {
