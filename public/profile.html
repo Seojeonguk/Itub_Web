@@ -211,16 +211,11 @@
                     spaceBetween: 10
                 }
             },
-            
-            click: function(swiper, btn){
-                btn.preventDefault();
-                alert('click_click');
-            },
 
-            tap: function(swiper, btn){
-                btn.preventDefault();
-                swiper.allowClick = false;
-                alert('click_tap');
+            on: {
+                tap: function(){
+                    alert('클릭');
+                }
             }
         });
 
