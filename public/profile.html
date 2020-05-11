@@ -211,7 +211,7 @@
             }
         });
 
-        document.getElementsByClassName('swiper-slide swiper-slide-active').addEventListener('click', alert('슬라이드 클릭'));
+        document.querySelector('.swiper-slide swiper-slide-active').addEventListener('click', alert('슬라이드 클릭'));
 
         function del_div(){
             slideNum = swiper.realIndex;
