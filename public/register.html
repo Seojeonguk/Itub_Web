@@ -28,17 +28,17 @@
                 <h3 class="title"><label for='gender'>성별</label></h3>
                 <div class="gender_wrap">
                     <div class="item_inp item_radio">
-                        <input type='radio' name='gender_radio' class="inp_g inp_radio" value='0' />
+                        <input type='radio' name='gender_radio' class="inp_g inp_radio" value='0' onclick='radio_background(this)' />
                         <label class="lab_g lab_radio" for="id_gender_18">
-                            <span class="ico_account ico_radio"></span>
+                            <span class="ico_account ico_radio" id='radio1'></span>
                             <span class="txt_radio">남성</span>
                         </label>
                     </div>
 
                     <div class="item_inp item_radio">
-                        <input type='radio' name='gender_radio' class="inp_g inp_radio" value='1' />
+                        <input type='radio' name='gender_radio' class="inp_g inp_radio" value='1' onclick='radio_background(this)' />
                         <label class="lab_g lab_radio" for="id_gender_18">
-                            <span class="ico_account ico_radio"></span>
+                            <span class="ico_account ico_radio" id='radio2'></span>
                             <span class="txt_radio">여성</span>
                         </label>
                     </div>
@@ -125,6 +125,21 @@
                     resultDiv.innerHTML = '되겠냐?';
                 }
             });
+        }
+        
+        function radio_background(e) {
+            var dc  = document.getElementsByName('gender_radio');
+            var radio1 = document.getElementById('radio1');
+            var radio2 = document.getElementById('radio2');
+            
+            if(dc[0].checked==true) {
+                radio1.style.backgroundPosition="-400px -30px";
+                radio2.style.backgroundPosition="-430px -30px";
+            }
+            else {
+                radio1.style.backgroundPosition="-430px -30px";
+                radio2.style.backgroundPosition="-400px -30px";
+            }
         }
     </script>
 </body>
