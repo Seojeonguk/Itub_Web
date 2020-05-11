@@ -181,7 +181,7 @@
             spaceBetween: 30,
             loop: false,
             centeredSlides: true,
-            preventClicks: true,
+            preventClicks: false,
             preventClicksPropagation: false ,
 
             pagination: {
@@ -212,12 +212,12 @@
                 }
             },
             
-            onClick: function(swiper, btn){
+            click: function(swiper, btn){
                 btn.preventDefault();
                 alert('click_click');
             },
 
-            onTap: function(swiper, btn){
+            tap: function(swiper, btn){
                 btn.preventDefault();
                 swiper.allowClick = false;
                 alert('click_tap');
