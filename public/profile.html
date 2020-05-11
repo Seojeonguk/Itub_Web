@@ -137,7 +137,17 @@
 
 <body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080">
     <div class="swiper-container">
-        <div class="swiper-wrapper"></div>
+        <div class="swiper-wrapper">
+            <!-- <div class='swiper-slide'><img src='./images/ma.png' width='80%' height='80%'></img></div>
+            <div class='swiper-slide'><img src='./images/granma.png' width='80%' height='80%'></img></div>
+            <div class='swiper-slide'><img src='./images/granfa.png' width='80%' height='80%'></img></div>
+            <div class='swiper-slide'><img src='./images/fa.png' width='80%' height='80%'></img></div>
+            <div class='swiper-slide'><img src='./images/granma.png' width='80%' height='80%'></img></div>
+            <div class='swiper-slide'><img src='./images/ma.png' width='80%' height='80%'></img></div>
+            <div class='swiper-slide'><img src='./images/plusBtn.png' width='80%' height='80%'></img></div> -->
+        </div>
+
+        <div>&nbsp</div>
 
         <div class="swiper-pagination"></div>
 
@@ -175,14 +185,16 @@
     <script>
         var tmp = '';
         var slideNum = 0;
+        var previousNum = 0;
 
         var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 5,
-            spaceBetween: 30,
+            effect: 'coverflow',
+            grabCursor: true,
+            slidesPerView: 'auto',
+            spaceBetween: 100,
             loop: false,
             centeredSlides: true,
-            preventClicks: false,
-            preventClicksPropagation: false ,
+            slideToClickedSlide: true,
 
             pagination: {
                 el: '.swiper-pagination',
@@ -212,9 +224,23 @@
                 }
             },
 
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0.5,
+                depth: 100,
+                modifier: 3,
+                slideShadows : false,
+            },
+
             on: {
-                onSlideClick: function(){
-                    alert(swiper.realIndex);
+                tap: function(){
+                    if (swiper.activeIndex === previousNum) {
+                        alert('다음 사용자로 시작하사겠어요?')
+                    }
+
+                    else { 
+                        previousNum = swiper.activeIndex;
+                    }
                 }
             }
         });
@@ -245,7 +271,9 @@
                 }
 
                 var htmlCode = '<div class="swiper-slide"><img src=' + path + ' width="80%" height="80%"><div></div>' + tmp[i].u_name + '</div>';
+                //var voidDiv = '<div class="void">' + '</div>';
                 swiper.appendSlide(htmlCode);
+                //swiper.appendSlide(voidDiv);
                 swiper.update();
             }
 
