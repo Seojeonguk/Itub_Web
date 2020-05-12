@@ -26,7 +26,7 @@
                             <h3>닉네임</h3>
                         </div>
                         <div class="label-context">
-                            <label class="labeling" id='label_name'>'사용자를 추가시켜 주세요'</label>
+                            <label class="labeling" id='label_name'>사용자를 추가시켜 주세요'</label>
                         </div>
                     </div>
 
@@ -37,7 +37,7 @@
                             <h3>성별</h3>
                         </div>
                         <div class="label-context">
-                            <label class="labeling" id='label_gender'>'사용자를 추가시켜 주세요'</label>
+                            <label class="labeling" id='label_gender'>사용자를 추가시켜 주세요'</label>
                         </div>
                     </div>
 
@@ -49,7 +49,7 @@
                             <h3>나이</h3>
                         </div>
                         <div class="label-context">
-                            <label class="labeling" id='label_age'>'사용자를 추가시켜 주세요'</label>
+                            <label class="labeling" id='label_age'>사용자를 추가시켜 주세요'</label>
                         </div>
                     </div>
                 </li>
@@ -60,7 +60,7 @@
                             <h3>직업</h3>
                         </div>
                         <div class="label-context">
-                            <label class="labeling" id='label_job'>'사용자를 추가시켜 주세요'</label>
+                            <label class="labeling" id='label_job'>사용자를 추가시켜 주세요'</label>
                         </div>
                     </div>
                 </li>
@@ -114,14 +114,14 @@
 
                         on: {
                             tap: function () {
-                                alert('다음 사용자로 시작하사겠어요?[' + tmp[swiper.activeIndex - 1].u_name + ']');
+                                alert('[' + tmp[swiper.activeIndex - 1].u_name + ']다음 사용자로 시작하사겠어요?');
                             },
 
                             slideChangeTransitionStart: function () {
                                 if (swiper.activeIndex !== 0){
                                     document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex - 1].u_name;
                                     if (!tmp[swiper.activeIndex - 1].u_gender) document.getElementById('label_gender').innerHTML = '남성';
-                                    else document.getElementById('label_gender').innerHTML = '여성';
+                                     else document.getElementById('label_gender').innerHTML = '여성';
                                     document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex - 1].u_age;
                                     document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex - 1].u_job;
                                 }
@@ -142,7 +142,7 @@
                         if (tmp.length < 1) alert('지울 사용자가 없습니다.');
                         else {
                             alert(tmp[slideNum].u_name + ' 사용자가 삭제되었습니다.');
-                            sendDB('/db/delete', tmp[slideNum].u_num);
+                            sendDB('/db/delete', tmp[slideNum - 1].u_num);
                             window.location.reload(true);
                         }
                     }
