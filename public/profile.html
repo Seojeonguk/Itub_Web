@@ -147,7 +147,7 @@
                     function del_div() {
                         if (tmp.length < 1) alert('지울 사용자가 없습니다.');
                         else {
-                            alert(tmp[swiper.activeIndex - 1].u_name + ' 사용자가 삭제되었습니다.');
+                            alert(tmp[swiper.activeIndex].u_name + ' 사용자가 삭제되었습니다.');
                             sendDB('/db/delete', tmp[swiper.activeIndex].u_num);
                             window.location.reload(true);
                         }
