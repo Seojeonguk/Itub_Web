@@ -603,35 +603,3 @@ button.swiper-pagination-bullet {
     backface-visibility: hidden
 }
 
-.plus_minus {
-    width: auto;
-    height: 40%;
-}
-
-.plus_minus .plus_minus_wrapper{
-    z-index: 1;
-    transition-property: transform;
-    box-sizing: content-box;
-    text-align: center;
-    display: flex;
-}
-
-ol,
-ul {
-    list-style: none
-}
-
-.plus_minus .plus_minus_wrapper .button_wrapper {
-    margin: 20px;
-}
-
-.home_button {
-    float: right;
-    text-align: right;
-    flex-direction: row;
-    display: flex;
-}
-
-.home_button .button_margin {
-    margin: 5px;
-}
