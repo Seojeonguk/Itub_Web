@@ -118,10 +118,19 @@
                             },
 
                             slideChangeTransitionStart: function () {
-                                document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex - 1].u_name;
-                                document.getElementById('label_gender').innerHTML = tmp[swiper.activeIndex - 1].u_gender;
-                                document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex - 1].u_age;
-                                document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex - 1].u_job;
+                                if (swiper.activeIndex !== 0){
+                                    document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex - 1].u_name;
+                                    document.getElementById('label_gender').innerHTML = tmp[swiper.activeIndex - 1].u_gender;
+                                    document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex - 1].u_age;
+                                    document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex - 1].u_job;
+                                }
+
+                                else {
+                                    document.getElementById('label_name').innerHTML = '사용자를 추가시켜 주세요';
+                                    document.getElementById('label_gender').innerHTML = '사용자를 추가시켜 주세요';
+                                    document.getElementById('label_age').innerHTML = '사용자를 추가시켜 주세요';
+                                    document.getElementById('label_job').innerHTML = '사용자를 추가시켜 주세요';
+                                }
                             }
                         }
                     });
