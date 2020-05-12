@@ -31,35 +31,33 @@
             }
         }
 
-        ul {
+        ul,
+        li {
             list-style: none;
         }
 
         html,
         body {
             position: relative;
-            height: 100%;
+            height: 90%;
+
         }
 
         body {
             background: #eee;
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            font-size: 14px;
             color: #000;
             margin: 0;
-            padding: 0;
+            padding: 5vmin;
         }
 
         .swiper-container {
             width: 100%;
-            height: 30%;
-            margin: 10px;
-            margin-bottom: 50px;
+            height: 100%;
         }
 
         .swiper-slide {
             text-align: center;
-            font-size: 18px;
 
             /* Center slide text vertically */
             -webkit-box-pack: center;
@@ -132,33 +130,138 @@
             background: -ms-linear-gradient(#7acff4, #77b6d1);
             background: linear-gradient(#7acff4, #77b6d1);
         }
+
+        .all-wrap {
+            display: flex;
+            height: 100%;
+        }
+
+        .side-wrap {
+            display: table;
+            border-left: 1px solid grey;
+            width: 40%;
+            vertical-align: middle;
+            height: 100%;
+        }
+
+        .side-wrap-box {
+            height: 60%;
+            
+        }
+
+        .label-box {
+            display: table-cell;
+            vertical-align: middle;
+            height: 100%;
+        }
+
+        li+li {
+            margin-top: 20%;
+        }
+
+        body,
+        th,
+        td,
+        input,
+        select,
+        textarea,
+        button {
+            line-height: 100%;
+            font-family: NotoSans-Regular, AppleSDGothicNeo-Regular, "맑은 고딕", Malgun Gothic, "돋움", dotum, sans-serif;
+            color: #7c7c7c;
+            letter-spacing: -0.03em;
+            word-wrap: break-word;
+        }
+
+        .labeling {
+            display: table-cell;
+            height: 40%;
+            vertical-align: middle;
+            padding-left: 25px;
+        }
+        h3{
+            display: table-cell;
+            margin: 0;
+            height: 100%;
+            vertical-align: middle;
+            font-size: 3vmin;
+        }
+        
+        .label-title{
+            display: table;
+            height: 60%;
+            width: 100%;
+        }
+        li{
+            height: 10%;
+        }
+        .label-context{
+            height: 40%;
+            width: 100%;
+            display: table;
+            font-size: 2.4vmin;
+        }
     </style>
 </head>
 
 <body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080">
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class='swiper-slide'><img src='./images/plusBtn.png' width='80%' height='80%'></img></div>
+    <div class="all-wrap">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class='swiper-slide'><img src='./images/plusBtn.png' width='80%' height='80%'></div>
+            </div>
+
+            <div class="swiper-pagination"></div>
+
         </div>
+        <div class="side-wrap">
+            <ul class="label-box">
+                <li>
+                    <div class="side-wrap-box">
+                            <div class="label-title">
+                                <h3>닉네임</h3>
+                            </div>
+                            <div class="label-context">
+                                <label class="labeling">빠방</label>
+                            </div>
+                    </div>
 
-        <div>&nbsp</div>
+                </li>
+                <li>
+                    <div class="side-wrap-box">
+                        <div class="label-title">
+                            <h3>성별</h3>
+                        </div>
+                        <div class="label-context">
+                            <label class="labeling">빠방2</label>
+                        </div>
+                    </div>
 
-        <div class="swiper-pagination"></div>
+                </li>
 
-    </div>
+                <li>
+                    <div class="side-wrap-box">
+                        <div class="label-title">
+                            <h3>나이</h3>
+                        </div>
+                        <div class="label-context">
+                            <label class="labeling">빠방3</label>
+                        </div>
+                    </div>
+                </li>
 
-    <div class="plus_minus">
-        <ul class="plus_minus_wrapper">
-            <div class="button_wrapper">
-                <li><button onclick="location.href='./register.html'" id="button">생성</button></li>
-            </div>
-            <div class="button_wrapper">
-                <li><button onclick="location.href='./user_choice.html'" id="button">선택</button></li>
-            </div>
-            <div class="button_wrapper">
-                <li><button onclick=del_div() id="button">삭제</button></li>
-            </div>
-        </ul>
+                <li>
+                    <div class="side-wrap-box">
+                        <div class="label-title">
+                            <h3>직업</h3>
+                        </div>
+                        <div class="label-context">
+                            <label class="labeling">빠방4</label>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <div class="home_button">
@@ -196,7 +299,7 @@
             },
 
             on: {
-                tap: function(){
+                tap: function() {
                     alert('다음 사용자로 시작하사겠어요?')
                 }
             }
@@ -251,7 +354,7 @@
             xhr.send(data); // 문자열 형태로 넣어줘야함
             console.log(data + 'xhr send')
 
-            xhr.addEventListener('load', function () {
+            xhr.addEventListener('load', function() {
                 var result = JSON.parse(xhr.responseText);
                 var resultDiv;
                 console.log('데이터 넘겨받음' + result.result)
@@ -271,7 +374,7 @@
             });
         }
 
-        window.onload = function () {
+        window.onload = function() {
             sendDB('/db/reference', 'ok');
         };
     </script>
