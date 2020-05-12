@@ -605,8 +605,7 @@ button.swiper-pagination-bullet {
 
 .plus_minus {
     width: auto;
-    height: auto;
-    
+    height: 40%;
 }
 
 .plus_minus .plus_minus_wrapper{
