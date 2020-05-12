@@ -26,7 +26,7 @@
                             <h3>닉네임</h3>
                         </div>
                         <div class="label-context">
-                            <label class="labeling" id='label_name'>빠방</label>
+                            <label class="labeling" id='label_name'>'사용자를 추가시켜 주세요'</label>
                         </div>
                     </div>
 
@@ -37,7 +37,7 @@
                             <h3>성별</h3>
                         </div>
                         <div class="label-context">
-                            <label class="labeling" id='label_gender'>빠방2</label>
+                            <label class="labeling" id='label_gender'>'사용자를 추가시켜 주세요'</label>
                         </div>
                     </div>
 
@@ -49,7 +49,7 @@
                             <h3>나이</h3>
                         </div>
                         <div class="label-context">
-                            <label class="labeling" id='label_age'>빠방3</label>
+                            <label class="labeling" id='label_age'>'사용자를 추가시켜 주세요'</label>
                         </div>
                     </div>
                 </li>
@@ -60,7 +60,7 @@
                             <h3>직업</h3>
                         </div>
                         <div class="label-context">
-                            <label class="labeling" id='label_job'>빠방4</label>
+                            <label class="labeling" id='label_job'>'사용자를 추가시켜 주세요'</label>
                         </div>
                     </div>
                 </li>
@@ -120,7 +120,8 @@
                             slideChangeTransitionStart: function () {
                                 if (swiper.activeIndex !== 0){
                                     document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex - 1].u_name;
-                                    document.getElementById('label_gender').innerHTML = tmp[swiper.activeIndex - 1].u_gender;
+                                    if (!tmp[swiper.activeIndex - 1].u_gender) document.getElementById('label_gender').innerHTML = '남성';
+                                    else document.getElementById('label_gender').innerHTML = '여성';
                                     document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex - 1].u_age;
                                     document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex - 1].u_job;
                                 }
