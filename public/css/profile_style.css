@@ -229,8 +229,8 @@ ul {
 
 .btn{
     position: absolute;
-    width: 2vw;
-    height: 2vh;
+    width: 20px;
+    height: 20px;
     z-index: 99;
     padding: 0;
     margin: 0;
