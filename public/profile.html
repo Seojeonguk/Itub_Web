@@ -146,7 +146,7 @@
 
         .side-wrap-box {
             height: 60%;
-            
+
         }
 
         .label-box {
@@ -179,23 +179,26 @@
             vertical-align: middle;
             padding-left: 25px;
         }
-        h3{
+
+        h3 {
             display: table-cell;
             margin: 0;
             height: 100%;
             vertical-align: middle;
             font-size: 3vmin;
         }
-        
-        .label-title{
+
+        .label-title {
             display: table;
             height: 60%;
             width: 100%;
         }
-        li{
+
+        li {
             height: 10%;
         }
-        .label-context{
+
+        .label-context {
             height: 40%;
             width: 100%;
             display: table;
@@ -218,12 +221,12 @@
             <ul class="label-box">
                 <li>
                     <div class="side-wrap-box">
-                            <div class="label-title">
-                                <h3>닉네임</h3>
-                            </div>
-                            <div class="label-context">
-                                <label class="labeling">빠방</label>
-                            </div>
+                        <div class="label-title">
+                            <h3>닉네임</h3>
+                        </div>
+                        <div class="label-context">
+                            <label class="labeling">빠방</label>
+                        </div>
                     </div>
 
                 </li>
@@ -275,109 +278,119 @@
                 <img src="./images/homeBtn.png" style="float: left" width="50px">
             </a>
         </div>
-    </div>
+        <div class="plus_minus">
+            <ul class="plus_minus_wrapper">
+                <div class="button_wrapper">
+                    <li><button onclick="location.href='./register.html'" id="button">생성</button></li>
+                </div>
+                <div class="button_wrapper">
+                    <li><button onclick="location.href='./user_choice.html'" id="button">선택</button></li>
+                </div>
+                <div class="button_wrapper">
+                    <li><button onclick=del_div() id="button">삭제</button></li>
+                </div>
 
-    <script src="./js/swiper.min.js"></script>
+                <script src="./js/swiper.min.js"></script>
 
-    <script>
-        var tmp = '';
-        var slideNum = 0;
-        var previousNum = 0;
+                <script>
+                    var tmp = '';
+                    var slideNum = 0;
+                    var previousNum = 0;
 
-        var swiper = new Swiper('.swiper-container', {
-            loop: false,
+                    var swiper = new Swiper('.swiper-container', {
+                        loop: false,
 
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-                dynamicBullets: true,
-            },
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                            dynamicBullets: true,
+                        },
 
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
 
-            on: {
-                tap: function() {
-                    alert('다음 사용자로 시작하사겠어요?')
-                }
-            }
-        });
+                        on: {
+                            tap: function() {
+                                alert('다음 사용자로 시작하사겠어요?')
+                            }
+                        }
+                    });
 
-        function del_div() {
-            slideNum = swiper.realIndex;
+                    function del_div() {
+                        slideNum = swiper.realIndex;
 
-            if (tmp.length < 1) alert('지울 사용자가 없습니다.');
-            else {
-                alert(tmp[slideNum].u_name + ' 사용자가 삭제되었습니다.');
-                sendDB('/db/delete', tmp[slideNum].u_num);
-                window.location.reload(true);
-            }
-        }
+                        if (tmp.length < 1) alert('지울 사용자가 없습니다.');
+                        else {
+                            alert(tmp[slideNum].u_name + ' 사용자가 삭제되었습니다.');
+                            sendDB('/db/delete', tmp[slideNum].u_num);
+                            window.location.reload(true);
+                        }
+                    }
 
-        function add_div() {
-            console.log(tmp);
-            for (var i = 0; i < tmp.length; i++) {
-                if (tmp[i].u_age < 15) {
-                    if (tmp[i].u_gender == 0) path = './images/boy.png'
-                    else path = './images/girl.png'
-                } else if (tmp[i].u_age >= 15 && tmp[i].u_age <= 65) {
-                    if (tmp[i].u_gender == 0) path = './images/fa.png'
-                    else path = './images/ma.png'
-                } else {
-                    if (tmp[i].u_gender == 0) path = './images/granfa.png'
-                    else path = './images/granma.png'
-                }
+                    function add_div() {
+                        console.log(tmp);
+                        for (var i = 0; i < tmp.length; i++) {
+                            if (tmp[i].u_age < 15) {
+                                if (tmp[i].u_gender == 0) path = './images/boy.png'
+                                else path = './images/girl.png'
+                            } else if (tmp[i].u_age >= 15 && tmp[i].u_age <= 65) {
+                                if (tmp[i].u_gender == 0) path = './images/fa.png'
+                                else path = './images/ma.png'
+                            } else {
+                                if (tmp[i].u_gender == 0) path = './images/granfa.png'
+                                else path = './images/granma.png'
+                            }
 
-                var htmlCode = '<div class="swiper-slide"><img src=' + path + ' width="80%" height="80%"><div></div>' + tmp[i].u_name + '</div>';
-                //var voidDiv = '<div class="void">' + '</div>';
-                swiper.appendSlide(htmlCode);
-                //swiper.appendSlide(voidDiv);
-                swiper.update();
-            }
+                            var htmlCode = '<div class="swiper-slide"><img src=' + path + ' width="80%" height="80%"><div></div>' + tmp[i].u_name + '</div>';
+                            //var voidDiv = '<div class="void">' + '</div>';
+                            swiper.appendSlide(htmlCode);
+                            //swiper.appendSlide(voidDiv);
+                            swiper.update();
+                        }
 
-            console.log(slideNum);
-        }
+                        console.log(slideNum);
+                    }
 
-        function sendDB(url, data) {
-            var data = {
-                'data': data
-            };
-            console.log(data + '데이터형 변경 전');
-            data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
-            console.log(data + '데이터형 변경 후');
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', url);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            // 서버로 보낼때 json 형태의 데이터를 보내기위해 지정
-            xhr.send(data); // 문자열 형태로 넣어줘야함
-            console.log(data + 'xhr send')
+                    function sendDB(url, data) {
+                        var data = {
+                            'data': data
+                        };
+                        console.log(data + '데이터형 변경 전');
+                        data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
+                        console.log(data + '데이터형 변경 후');
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', url);
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                        // 서버로 보낼때 json 형태의 데이터를 보내기위해 지정
+                        xhr.send(data); // 문자열 형태로 넣어줘야함
+                        console.log(data + 'xhr send')
 
-            xhr.addEventListener('load', function() {
-                var result = JSON.parse(xhr.responseText);
-                var resultDiv;
-                console.log('데이터 넘겨받음' + result.result)
-                if (result.result == 'ok' && result.type == 'reference') {
-                    tmp = result.DB;
-                    add_div();
-                    console.log('조회가 완료되었습니다.');
-                } else if (result.result == 'ok' && result.type == 'delete') {
-                    console.log('삭제가 완료되었습니다.');
-                } else if (result.result == 'none' && result.type == 'reference') {
-                    tmp = '';
-                    console.log('되겠냐?');
-                } else if (result.result == 'none' && result.type == 'delete') {
-                    tmp = '';
-                    console.log('되겠냐?');
-                }
-            });
-        }
+                        xhr.addEventListener('load', function() {
+                            var result = JSON.parse(xhr.responseText);
+                            var resultDiv;
+                            console.log('데이터 넘겨받음' + result.result)
+                            if (result.result == 'ok' && result.type == 'reference') {
+                                tmp = result.DB;
+                                add_div();
+                                console.log('조회가 완료되었습니다.');
+                            } else if (result.result == 'ok' && result.type == 'delete') {
+                                console.log('삭제가 완료되었습니다.');
+                            } else if (result.result == 'none' && result.type == 'reference') {
+                                tmp = '';
+                                console.log('되겠냐?');
+                            } else if (result.result == 'none' && result.type == 'delete') {
+                                tmp = '';
+                                console.log('되겠냐?');
+                            }
+                        });
+                    }
 
-        window.onload = function() {
-            sendDB('/db/reference', 'ok');
-        };
-    </script>
+                    window.onload = function() {
+                        sendDB('/db/reference', 'ok');
+                    };
+                </script>
 
 
 </body>

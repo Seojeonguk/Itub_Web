@@ -613,6 +613,7 @@ button.swiper-pagination-bullet {
     transition-property: transform;
     box-sizing: content-box;
     text-align: center;
+    display: flex;
 }
 
 ol,
