@@ -114,14 +114,14 @@
 
                         on: {
                             tap: function() {
-                                alert('다음 사용자로 시작하사겠어요?[' + tmp[swiper.activeIndex].u_name + ']');
+                                alert('다음 사용자로 시작하사겠어요?[' + tmp[swiper.activeIndex + 1].u_name + ']');
                             },
 
                             slideChangeTransitionStart: function() {
-                                document.getElementById('#label_name').innerHTML = tmp[swiper.activeIndex].u_name;
-                                document.getElementById('#label_gender').innerHTML = tmp[swiper.activeIndex].u_gender;
-                                document.getElementById('#label_age').innerHTML = tmp[swiper.activeIndex].u_age;
-                                document.getElementById('#label_job').innerHTML = tmp[swiper.activeIndex].u_job;
+                                document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex].u_name;
+                                document.getElementById('label_gender').innerHTML = tmp[swiper.activeIndex].u_gender;
+                                document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex].u_age;
+                                document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex].u_job;
                             }
                         }
                     });
