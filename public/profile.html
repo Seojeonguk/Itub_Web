@@ -123,16 +123,16 @@
 
             on: {
                 tap: function () {
-                    alert('[' + tmp[swiper.activeIndex - 1].u_name + '] 사용자로 시작하사겠어요?');
+                    alert('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하사겠어요?');
                 },
 
                 slideChangeTransitionStart: function () {
-                    if (swiper.activeIndex !== 0) {
-                        document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex - 1].u_name;
-                        if (!tmp[swiper.activeIndex - 1].u_gender) document.getElementById('label_gender').innerHTML = '남성';
+                    if (swiper.activeIndex !== tmp.length) {
+                        document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex].u_name;
+                        if (!tmp[swiper.activeIndex].u_gender) document.getElementById('label_gender').innerHTML = '남성';
                         else document.getElementById('label_gender').innerHTML = '여성';
-                        document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex - 1].u_age;
-                        document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex - 1].u_job;
+                        document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex].u_age;
+                        document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex].u_job;
                     }
 
                     else {
@@ -148,8 +148,8 @@
         function del_div() {
             if (tmp.length < 1) alert('지울 사용자가 없습니다.');
             else {
-                alert(tmp[swiper.activeIndex - 1].u_name + ' 사용자가 삭제되었습니다.');
-                sendDB('/db/delete', tmp[swiper.activeIndex - 1].u_num);
+                alert(tmp[swiper.activeIndex].u_name + ' 사용자가 삭제되었습니다.');
+                sendDB('/db/delete', tmp[swiper.activeIndex].u_num);
                 window.location.reload(true);
             }
         }
