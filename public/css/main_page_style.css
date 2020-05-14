@@ -60,9 +60,9 @@
 }
 
 .press_any{
-    position: absolute;
-    height: 98%;
-    width: 98%;
+    position: relative;
+    height: 100%;
+    width: 100%;
 }
 
 .button2{

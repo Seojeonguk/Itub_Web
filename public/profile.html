@@ -15,7 +15,7 @@
         </button>
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class='swiper-slide'><img src='./images/plusBtn.png' width='80%' height='80%'></div>
+                
             </div>
 
             <div class="swiper-pagination"></div>
@@ -29,10 +29,11 @@
                             <h3>닉네임</h3>
                         </div>
                         <div class="label-context">
-                            <label class="labeling" id='label_name'>사용자를 추가시켜 주세요'</label>
+                            <label class="labeling" id='label_name'>사용자를 추가시켜 주세요</label>
                         </div>
                     </div>
 
+                    
                 </li>
                 <li>
                     <div class="side-wrap-box">
@@ -40,10 +41,9 @@
                             <h3>성별</h3>
                         </div>
                         <div class="label-context">
-                            <label class="labeling" id='label_gender'>사용자를 추가시켜 주세요'</label>
+                            <label class="labeling" id='label_gender'>사용자를 추가시켜 주세요</label>
                         </div>
                     </div>
-
                 </li>
 
                 <li>
@@ -52,7 +52,7 @@
                             <h3>나이</h3>
                         </div>
                         <div class="label-context">
-                            <label class="labeling" id='label_age'>사용자를 추가시켜 주세요'</label>
+                            <label class="labeling" id='label_age'>사용자를 추가시켜 주세요</label>
                         </div>
                     </div>
                 </li>
@@ -63,7 +63,7 @@
                             <h3>직업</h3>
                         </div>
                         <div class="label-context">
-                            <label class="labeling" id='label_job'>사용자를 추가시켜 주세요'</label>
+                            <label class="labeling" id='label_job'>사용자를 추가시켜 주세요</label>
                         </div>
                     </div>
                 </li>
@@ -122,7 +122,7 @@
 
                         on: {
                             tap: function () {
-                                alert('[' + tmp[swiper.activeIndex - 1].u_name + ']다음 사용자로 시작하사겠어요?');
+                                alert('[' + tmp[swiper.activeIndex - 1].u_name + '] 사용자로 시작하사겠어요?');
                             },
 
                             slideChangeTransitionStart: function () {
@@ -168,13 +168,11 @@
                             }
 
                             var htmlCode = '<div class="swiper-slide"><img src=' + path + ' width="80%" height="80%"><div></div>' + tmp[i].u_name + '</div>';
-                            //var voidDiv = '<div class="void">' + '</div>';
                             swiper.appendSlide(htmlCode);
-                            //swiper.appendSlide(voidDiv);
                             swiper.update();
                         }
 
-                        console.log(slideNum);
+                        swiper.appendSlide('<div class="swiper-slide"><img src="./images/plusBtn.png" width="80%" height="80%"></div>')
                     }
 
                     function sendDB(url, data) {
