@@ -49,8 +49,7 @@ body {
 
 .swiper-slide {
     text-align: center;
-    display: table-cell;
-    vertical-align: middle;
+    display: table;
 
     /* Center slide text vertically */
     -webkit-box-pack: center;
