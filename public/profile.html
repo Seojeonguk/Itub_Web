@@ -14,10 +14,10 @@
             <img src='./images/cancelBtn.png' width="100%" height="100%" class="cancel-img">
         </button>
         <div class="swiper-container">
-            <div class="swiper-wrapper">
-                
+            <div class="swiper-wrapper"></div>
+            <div>
+                <div class='swiper-slide'><img src='./images/plusBtn.png' width='60%' height='60%'></div>
             </div>
-
             <div class="swiper-pagination"></div>
 
         </div>
@@ -154,6 +154,7 @@
                     }
 
                     function add_div() {
+                        console.log(tmp);
                         for (var i = 0; i < tmp.length; i++) {
                             if (tmp[i].u_age < 15) {
                                 if (tmp[i].u_gender == 0) path = './images/boy.png'
@@ -171,7 +172,7 @@
                             swiper.update();
                         }
 
-                        swiper.appendSlide('<div class="swiper-slide"><img src="./images/plusBtn.png" width="60%" height="60%"></div>')
+                        console.log(slideNum);
                     }
 
                     function sendDB(url, data) {
