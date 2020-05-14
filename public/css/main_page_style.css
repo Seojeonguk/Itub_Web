@@ -1,3 +1,8 @@
+html,body{
+    width: 99%;
+    height: 98%;
+}
+
 .side_left {
     width: 100%;
     height: 100%;
@@ -7,56 +12,10 @@
 }
 
 .side_left_box {
-    width: 70%;
+    width: 100%;
     height: 100%;
     background-color: blue;
     float: left;
-}
-
-.mid_content {
-    width: 28%;
-    height: 100%;
-    float: left;
-}
-
-.side_content_box1 {
-    margin-top: 40%;
-    text-align: center;
-    font-size: 50px;
-}
-
-.side_content_box2 {
-    margin-top: 40%;
-    text-align: center;
-    font-size: 50px;
-}
-
-.side_rigth {
-    width: 200px;
-    height: 400px;
-    background-color: red;
-    float: left;
-    margin: 5px;
-}
-
-.side_rigth_box {
-    width: 95%;
-    height: 45%;
-    margin: 5px;
-    margin-top: 95%;
-}
-
-.button_login {
-    width: 100px;
-    height: 100px;
-    font-size: 20px;
-}
-
-.btn{
-    width: 60%;
-    height: 40px;
-    border: 0;
-    border-radius: 0;
 }
 
 .press_any{
@@ -65,8 +24,10 @@
     width: 98%;
 }
 
-.button2{
-    width: 100%;
-    height: 100%;
-    opacity: 0;
+.press_any_text {
+    position: absolute;
+    font-size: 241%;
+    color:antiquewhite;
+    top: 80%;
+    left: 70%;
 }
