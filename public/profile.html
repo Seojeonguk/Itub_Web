@@ -15,9 +15,7 @@
         </button>
         <div class="swiper-container">
             <div class="swiper-wrapper"></div>
-            <div>
-                <div class='swiper-slide'><img src='./images/plusBtn.png' width='60%' height='60%'></div>
-            </div>
+
             <div class="swiper-pagination"></div>
 
         </div>
@@ -33,7 +31,7 @@
                         </div>
                     </div>
 
-                    
+
                 </li>
                 <li>
                     <div class="side-wrap-box">
@@ -70,8 +68,8 @@
             </ul>
         </div>
     </div>
-    
-    
+
+
 
     <div class="home_button">
         <div class="button_margin">
@@ -99,120 +97,122 @@
         </div>
     </div>
 
-                <script src="./js/swiper.min.js"></script>
+    <script src="./js/swiper.min.js"></script>
 
-                <script>
-                    var tmp = '';
-                    var slideNum = 0;
-                    var previousNum = 0;
+    <script>
+        var tmp = '';
+        var slideNum = 0;
+        var previousNum = 0;
 
-                    var swiper = new Swiper('.swiper-container', {
-                        loop: false,
+        var swiper = new Swiper('.swiper-container', {
+            loop: false,
 
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable: true,
-                            dynamicBullets: true,
-                        },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
 
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
 
-                        on: {
-                            tap: function () {
-                                alert('[' + tmp[swiper.activeIndex - 1].u_name + '] 사용자로 시작하사겠어요?');
-                            },
+            on: {
+                tap: function () {
+                    alert('[' + tmp[swiper.activeIndex - 1].u_name + '] 사용자로 시작하사겠어요?');
+                },
 
-                            slideChangeTransitionStart: function () {
-                                if (swiper.activeIndex !== 0){
-                                    document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex - 1].u_name;
-                                    if (!tmp[swiper.activeIndex - 1].u_gender) document.getElementById('label_gender').innerHTML = '남성';
-                                     else document.getElementById('label_gender').innerHTML = '여성';
-                                    document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex - 1].u_age;
-                                    document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex - 1].u_job;
-                                }
-
-                                else {
-                                    document.getElementById('label_name').innerHTML = '사용자를 추가시켜 주세요';
-                                    document.getElementById('label_gender').innerHTML = '사용자를 추가시켜 주세요';
-                                    document.getElementById('label_age').innerHTML = '사용자를 추가시켜 주세요';
-                                    document.getElementById('label_job').innerHTML = '사용자를 추가시켜 주세요';
-                                }
-                            }
-                        }
-                    });
-
-                    function del_div() {
-                        if (tmp.length < 1) alert('지울 사용자가 없습니다.');
-                        else {
-                            alert(tmp[swiper.activeIndex-1].u_name + ' 사용자가 삭제되었습니다.');
-                            sendDB('/db/delete', tmp[swiper.activeIndex-1].u_num);
-                            window.location.reload(true);
-                        }
+                slideChangeTransitionStart: function () {
+                    if (swiper.activeIndex !== 0) {
+                        document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex - 1].u_name;
+                        if (!tmp[swiper.activeIndex - 1].u_gender) document.getElementById('label_gender').innerHTML = '남성';
+                        else document.getElementById('label_gender').innerHTML = '여성';
+                        document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex - 1].u_age;
+                        document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex - 1].u_job;
                     }
 
-                    function add_div() {
-                        console.log(tmp);
-                        for (var i = 0; i < tmp.length; i++) {
-                            if (tmp[i].u_age < 15) {
-                                if (tmp[i].u_gender == 0) path = './images/boy.png'
-                                else path = './images/girl.png'
-                            } else if (tmp[i].u_age >= 15 && tmp[i].u_age <= 65) {
-                                if (tmp[i].u_gender == 0) path = './images/fa.png'
-                                else path = './images/ma.png'
-                            } else {
-                                if (tmp[i].u_gender == 0) path = './images/granfa.png'
-                                else path = './images/granma.png'
-                            }
-
-                            var htmlCode = '<div class="swiper-slide"><img src=' + path + ' width="80%" height="80%"><div></div>' + tmp[i].u_name + '</div>';
-                            swiper.appendSlide(htmlCode);
-                            swiper.update();
-                        }
-
-                        console.log(slideNum);
+                    else {
+                        document.getElementById('label_name').innerHTML = '사용자를 추가시켜 주세요';
+                        document.getElementById('label_gender').innerHTML = '사용자를 추가시켜 주세요';
+                        document.getElementById('label_age').innerHTML = '사용자를 추가시켜 주세요';
+                        document.getElementById('label_job').innerHTML = '사용자를 추가시켜 주세요';
                     }
+                }
+            }
+        });
 
-                    function sendDB(url, data) {
-                        var data = {
-                            'data': data
-                        };
-                        console.log(data + '데이터형 변경 전');
-                        data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
-                        console.log(data + '데이터형 변경 후');
-                        var xhr = new XMLHttpRequest();
-                        xhr.open('POST', url);
-                        xhr.setRequestHeader('Content-Type', 'application/json');
-                        // 서버로 보낼때 json 형태의 데이터를 보내기위해 지정
-                        xhr.send(data); // 문자열 형태로 넣어줘야함
-                        console.log(data + 'xhr send')
+        function del_div() {
+            if (tmp.length < 1) alert('지울 사용자가 없습니다.');
+            else {
+                alert(tmp[swiper.activeIndex - 1].u_name + ' 사용자가 삭제되었습니다.');
+                sendDB('/db/delete', tmp[swiper.activeIndex - 1].u_num);
+                window.location.reload(true);
+            }
+        }
 
-                        xhr.addEventListener('load', function () {
-                            var result = JSON.parse(xhr.responseText);
-                            var resultDiv;
-                            console.log('데이터 넘겨받음' + result.result)
-                            if (result.result == 'ok' && result.type == 'reference') {
-                                tmp = result.DB;
-                                add_div();
-                                console.log('조회가 완료되었습니다.');
-                            } else if (result.result == 'ok' && result.type == 'delete') {
-                                console.log('삭제가 완료되었습니다.');
-                            } else if (result.result == 'none' && result.type == 'reference') {
-                                tmp = '';
-                                console.log('되겠냐?');
-                            } else if (result.result == 'none' && result.type == 'delete') {
-                                tmp = '';
-                                console.log('되겠냐?');
-                            }
-                        });
-                    }
+        function add_div() {
+            console.log(tmp);
+            for (var i = 0; i < tmp.length; i++) {
+                if (tmp[i].u_age < 15) {
+                    if (tmp[i].u_gender == 0) path = './images/boy.png'
+                    else path = './images/girl.png'
+                } else if (tmp[i].u_age >= 15 && tmp[i].u_age <= 65) {
+                    if (tmp[i].u_gender == 0) path = './images/fa.png'
+                    else path = './images/ma.png'
+                } else {
+                    if (tmp[i].u_gender == 0) path = './images/granfa.png'
+                    else path = './images/granma.png'
+                }
 
-                    window.onload = function () {
-                        sendDB('/db/reference', 'ok');
-                    };
-                </script>
+                var htmlCode = '<div class="swiper-slide"><img src=' + path + ' width="80%" height="80%"><div></div>' + tmp[i].u_name + '</div>';
+                swiper.appendSlide(htmlCode);
+                swiper.update();
+            }
+
+            swiper.appendSlide('<div class="swiper-slide"><img src="./images/plusBtn.png" width="60%" height="60%"></div>');
+            console.log(slideNum);
+        }
+
+        function sendDB(url, data) {
+            var data = {
+                'data': data
+            };
+            console.log(data + '데이터형 변경 전');
+            data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
+            console.log(data + '데이터형 변경 후');
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            // 서버로 보낼때 json 형태의 데이터를 보내기위해 지정
+            xhr.send(data); // 문자열 형태로 넣어줘야함
+            console.log(data + 'xhr send')
+
+            xhr.addEventListener('load', function () {
+                var result = JSON.parse(xhr.responseText);
+                var resultDiv;
+                console.log('데이터 넘겨받음' + result.result)
+                if (result.result == 'ok' && result.type == 'reference') {
+                    tmp = result.DB;
+                    add_div();
+                    console.log('조회가 완료되었습니다.');
+                } else if (result.result == 'ok' && result.type == 'delete') {
+                    console.log('삭제가 완료되었습니다.');
+                } else if (result.result == 'none' && result.type == 'reference') {
+                    tmp = {'':''};
+                    add_div();
+                    console.log('되겠냐?');
+                } else if (result.result == 'none' && result.type == 'delete') {
+                    tmp = '';
+                    console.log('되겠냐?');
+                }
+            });
+        }
+
+        window.onload = function () {
+            sendDB('/db/reference', 'ok');
+        };
+    </script>
 
 
 </body>
