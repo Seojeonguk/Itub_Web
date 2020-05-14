@@ -169,7 +169,7 @@
                     else path = './images/granma.png'
                 }
 
-                var htmlCode = '<div class="swiper-slide"><img src=' + path + ' width="20vmax" height="20vmax"><div></div>' + tmp[i].u_name + '</div>';
+                var htmlCode = '<div class="swiper-slide"><div class="vectical"><img src=' + path + ' class="imgtag"></div><div></div>' + tmp[i].u_name + '</div>';
                 swiper.appendSlide(htmlCode);
                 swiper.update();
             }
