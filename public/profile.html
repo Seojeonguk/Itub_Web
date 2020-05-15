@@ -15,7 +15,7 @@
         </button>
         <div class="swiper-container">
             <div class="swiper-wrapper"></div>
-                <div>
+            <div>
                 <div class='swiper-slide'><img src='./images/plusBtn.png' width='60%' height='60%'></div>
             </div>
 
@@ -87,7 +87,7 @@
 
     <script src="./js/swiper.min.js"></script>
 
-    <script>
+    <script src='./js/jquery-3.5.1.min.js'>
         var tmp = '';
         var slideNum = 0;
         var previousNum = 0;
@@ -109,33 +109,55 @@
             on: {
                 tap: function () {
                     if (swiper.activeIndex !== tmp.length) {
-                        if (confirm('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?'), '사용자 선택'){
-                            document.location.href = './user_choice.html'
-                        }
-
-                        else {
-                            return false;
-                        }
+                        $(function () {
+                            // 옵션을 설정한다.
+                            dialog.set({
+                                // 다이얼로그가 show될 때의 액션 설정
+                                show: {
+                                    effect: "blind",
+                                    duration: 1000
+                                },
+                                // 다이얼로그가 hide될 때의 액션 설정
+                                hide: {
+                                    effect: "explode",
+                                    duration: 1000
+                                },
+                                // 타이틀 설정
+                                title: "사용자 선택",
+                                // 내용 설정
+                                text: '[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?',
+                                // 모달 여부
+                                modal: true,
+                                // 버튼 설정
+                                buttons: {
+                                    OK: function () {
+                                        document.location.href = './user_choice.html';
+                                    },
+                                    Cancel: function () {
+                                    },
+                                }
+                            });
+                        });
                     }
 
                     else document.location.href = './register.html';
-                },
+                }
+            },
 
-                slideChangeTransitionStart: function () {
-                    if (swiper.activeIndex !== tmp.length) {
-                        document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex].u_name;
-                        if (!tmp[swiper.activeIndex].u_gender) document.getElementById('label_gender').innerHTML = '남성';
-                        else document.getElementById('label_gender').innerHTML = '여성';
-                        document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex].u_age;
-                        document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex].u_job;
-                    }
+            slideChangeTransitionStart: function () {
+                if (swiper.activeIndex !== tmp.length) {
+                    document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex].u_name;
+                    if (!tmp[swiper.activeIndex].u_gender) document.getElementById('label_gender').innerHTML = '남성';
+                    else document.getElementById('label_gender').innerHTML = '여성';
+                    document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex].u_age;
+                    document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex].u_job;
+                }
 
-                    else {
-                        document.getElementById('label_name').innerHTML = '사용자를 추가시켜 주세요';
-                        document.getElementById('label_gender').innerHTML = '사용자를 추가시켜 주세요';
-                        document.getElementById('label_age').innerHTML = '사용자를 추가시켜 주세요';
-                        document.getElementById('label_job').innerHTML = '사용자를 추가시켜 주세요';
-                    }
+                else {
+                    document.getElementById('label_name').innerHTML = '사용자를 추가시켜 주세요';
+                    document.getElementById('label_gender').innerHTML = '사용자를 추가시켜 주세요';
+                    document.getElementById('label_age').innerHTML = '사용자를 추가시켜 주세요';
+                    document.getElementById('label_job').innerHTML = '사용자를 추가시켜 주세요';
                 }
             }
         });
@@ -202,7 +224,7 @@
                 } else if (result.result == 'ok' && result.type == 'delete') {
                     console.log('삭제가 완료되었습니다.');
                 } else if (result.result == 'none' && result.type == 'reference') {
-                    tmp = {'':''};
+                    tmp = { '': '' };
                     add_div();
                     console.log('되겠냐?');
                 } else if (result.result == 'none' && result.type == 'delete') {
@@ -216,7 +238,6 @@
             sendDB('/db/reference', 'ok');
         };
     </script>
-
 
 </body>
 
