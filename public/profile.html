@@ -83,9 +83,7 @@
         </div>
     </div>
 
-    <div id='dialog' title='사용자 선택'>
-        <p id='dialog_text'></p>
-    </div>
+    <div id='dialog' title='사용자 선택'></div>
 
     <script src="./js/jquery-3.5.1.js"></script>
     <script src="./js/jquery-ui.js"></script>
@@ -112,6 +110,7 @@
                 tap: function () {
                     if (swiper.activeIndex !== tmp.length) {
                         $(function () {
+                            $('#dialog_text').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?');
                             $("#dialog").dialog({
                                 //제목 설정
                                 title: '사용자 선택',
@@ -126,7 +125,6 @@
                                         text: "확인",
                                         //클릭이벤트발생시 동작
                                         click: function () {
-                                            $('#dialog_text').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?');
                                             document.location.href = './user_choice.html';
                                         }
                                     },
