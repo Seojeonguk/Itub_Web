@@ -110,7 +110,7 @@
 
             on: {
                 tap: function () {
-                    if (swiper.activeIndex !== tmp.length) {
+                    if (tmp.result !== 'none') {
                         $(function () {
                             $('#dialog_text').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?');
                             $("#dialog").dialog({
