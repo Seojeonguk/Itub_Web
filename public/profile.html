@@ -90,8 +90,8 @@
     </div>
 
     <script src="./js/swiper.min.js"></script>
-    <script src='./js/jquery-3.5.1.min.js'></script>
-    <script src='./js/jquery-ui.js'></script>
+    <!-- <script src='./js/jquery-3.5.1.min.js'></script>
+    <script src='./js/jquery-ui.js'></script> -->
     <script src='./js/jquery-ui.min.js'></script>
 
     <script>
@@ -119,6 +119,14 @@
                         $(function () {
                             // 옵션을 설정한다.
                             $("#dialog").dialog({
+                                autoOpen: false,
+
+                                open: function(event, ui) { 
+                                    $('.swiper-slide').bind('click', function() { 
+                                        $("#dialog").dialog('close'); 
+                                    })
+                                },
+
                                 // 타이틀 설정
                                 title: "사용자 선택",
                                 // 내용 설정
@@ -136,7 +144,7 @@
                                     "취소": function () {
                                         $(this).dialog("close");
                                     },
-                                }
+                                },
                             });
                         });
                     }
