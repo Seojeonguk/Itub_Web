@@ -11,17 +11,6 @@
     border: 1px solid #bcbcbc;
 }
 
-@media (max-width: 480px) {
-    #jb-container {
-        width: auto;
-    }
-
-    #jb-content {
-        float: none;
-        width: auto;
-    }
-}
-
 ul,
 li {
     list-style: none;
@@ -254,4 +243,65 @@ ul {
 .imgtag{
     width: 30vmax;
     height: 30vmax;
+}
+
+@media (max-width: 1920px) {
+    .labeling{
+        font-size: 2rem; 
+    }
+}
+
+@media (max-width: 1280px) {
+    #label_name{
+        font-size: 1.25rem; 
+    }
+
+    #label_gender{
+        font-size: 1.25rem; 
+    }
+
+    #label_age{
+        font-size: 1.25rem; 
+    }
+
+    #label_job{
+        font-size: 1.25rem; 
+    }
+}
+
+@media (max-width: 1024px) {
+    #label_name{
+        font-size: 0.75rem; 
+    }
+
+    #label_gender{
+        font-size: 0.75rem; 
+    }
+
+    #label_age{
+        font-size: 0.75rem;  
+    }
+
+    #label_job{
+        font-size: 0.75rem;  
+    }
+}
+
+
+@media (max-width: 768px) {
+    #label_name{
+        font-size: 0.5rem; 
+    }
+
+    #label_gender{
+        font-size: 0.5rem; 
+    }
+
+    #label_age{
+        font-size: 0.5rem; 
+    }
+
+    #label_job{
+        font-size: 0.5rem;  
+    }
 }
