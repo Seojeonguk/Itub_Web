@@ -154,6 +154,7 @@
                         else document.getElementById('label_gender').innerHTML = '여성';
                         document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex].u_age;
                         document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex].u_job;
+                        $('btn').hide();
                     }
 
                     else {
@@ -161,6 +162,7 @@
                         document.getElementById('label_gender').innerHTML = '사용자를 추가시켜 주세요';
                         document.getElementById('label_age').innerHTML = '사용자를 추가시켜 주세요';
                         document.getElementById('label_job').innerHTML = '사용자를 추가시켜 주세요';
+                        $('btn').show();
                     }
                 }
             }
@@ -211,7 +213,6 @@
             if (tmp.length == 0) {
                 swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
                 swiper.update();
-                $(".btn").hide();
             }
 
             else {
@@ -238,7 +239,6 @@
                 else document.getElementById('label_gender').innerHTML = '여성';
                 document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex].u_age;
                 document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex].u_job;
-                $(".btn").show();
             }
         }
 
