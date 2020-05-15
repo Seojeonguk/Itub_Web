@@ -207,10 +207,10 @@
         }
 
         function add_div() {
-            console.log(tmp);
+            console.log(tmp.length);
             if (tmp.length == 0) {
                 swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
-                swiper.update();
+                //swiper.update();
             }
 
             else {
@@ -232,7 +232,6 @@
                 }
 
                 swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
-                swiper.update();
                 document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex].u_name;
                 if (!tmp[swiper.activeIndex].u_gender) document.getElementById('label_gender').innerHTML = '남성';
                 else document.getElementById('label_gender').innerHTML = '여성';
