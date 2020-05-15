@@ -209,12 +209,11 @@
         function add_div() {
             console.log(tmp.length);
             if (tmp.length == 0) {
-                swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
-                document.getElementById('label_name').innerHTML = '사용자를 추가시켜 주세요';
-                document.getElementById('label_gender').innerHTML = '사용자를 추가시켜 주세요';
-                document.getElementById('label_age').innerHTML = '사용자를 추가시켜 주세요';
-                document.getElementById('label_job').innerHTML = '사용자를 추가시켜 주세요';
-                swiper.update();
+                setTimeout(function () {
+                    swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
+                    swiper.update();
+                    console.log('업데이트 완료');
+                }, 500);
             }
 
             else {
