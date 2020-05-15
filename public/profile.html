@@ -90,9 +90,7 @@
     </div>
 
     <script src="./js/swiper.min.js"></script>
-    <!-- <script src='./js/jquery-3.5.1.min.js'></script>
-    <script src='./js/jquery-ui.js'></script> -->
-    <script src='./js/jquery-ui.min.js'></script>
+    <script src='./js/jquery-3.5.1.min.js'></script>
 
     <script>
         var tmp = '';
@@ -118,12 +116,12 @@
                     if (swiper.activeIndex !== tmp.length) {
                         $(function () {
                             // 옵션을 설정한다.
-                            $("#dialog").dialog({
+                            $.widget({
                                 autoOpen: false,
 
                                 open: function(event, ui) { 
                                     $('.swiper-slide').bind('click', function() { 
-                                        $("#dialog").dialog('close'); 
+                                        $("#dialog").widget('close'); 
                                     })
                                 },
 
@@ -142,7 +140,7 @@
                                     },
 
                                     "취소": function () {
-                                        $(this).dialog("close");
+                                        $(this).widget("close");
                                     },
                                 },
                             });
