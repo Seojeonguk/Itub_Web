@@ -111,7 +111,7 @@
                     if (swiper.activeIndex !== tmp.length) {
                         $(function () {
                             // 옵션을 설정한다.
-                            dialog.set({
+                            $("#dialog").dialog({
                                 // 타이틀 설정
                                 title: "사용자 선택",
                                 // 내용 설정
@@ -120,10 +120,11 @@
                                 modal: true,
                                 // 버튼 설정
                                 buttons: {
-                                    OK: function () {
+                                    "확인": function () {
                                         document.location.href = './user_choice.html';
                                     },
-                                    Cancel: function () {
+
+                                    "취소": function () {
                                     },
                                 }
                             });
