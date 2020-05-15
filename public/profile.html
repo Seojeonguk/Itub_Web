@@ -209,11 +209,9 @@
         function add_div() {
             console.log(tmp.length);
             if (tmp.length == 0) {
-                setTimeout(function () {
-                    swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
-                    swiper.update();
-                    console.log('업데이트 완료');
-                }, 500);
+                swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
+                swiper.update();
+                swiper.slideTo(0);
             }
 
             else {
