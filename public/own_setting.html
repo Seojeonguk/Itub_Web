@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Chioce</title>
+        <link rel="stylesheet" href = "./css/own_setting.css">
+    </head>
+    <body>
+        <div class="wrap">
+            <form action="">
+                <div id="bathing_section" class="section">
+                    <span class="title">입욕제 - <span id="bathing_text"></span></span>
+                    <div class="list">
+                         <!-- <div class="bathing_item">
+                            <label>
+                                <input type="radio" name="bathing_agent" value="입욕제1">
+                                <span class="bathing_item_text" >입욕제1</span>
+                            </label>
+                        </div> -->
+
+                    </div>
+                </div>
+                <div>
+                    <div class="section">
+                        <span class="title">온도 - <span id="range_text">30</span>&degC</span>
+                        0<input name="temperature" id="range_slider" type="range" min="0" max="40" value="30" >40
+                        <p>슬라이더를 조절하여 온도를 설정할 수 있습니다.</p>
+                    </div>
+                    <div id="timeSection" class="section">
+                        <span class="title">타이머 - <span id="timer_text"></span></span>
+                    
+                        <input name="time" id="r0"type="radio" value="설정 안함">
+                        <label for="r0">설정안함</label>
+    
+                        <input name="time" id="r1"type="radio" value="10">
+                        <label for="r1">10분</label>
+    
+                        <input name="time" id="r2"type="radio" value="20">
+                        <label for="r2">20분</label>
+    
+                        <input name="time" id="r3"type="radio" value="30">
+                        <label for="r3">30분</label>
+    
+                        <input name="time" id="r4"type="radio" value="40">
+                        <label for="r4">40분</label>
+    
+                        <input name="time" id="r5"type="radio" value="50">
+                        <label for="r5">50분</label>
+    
+                        <input name="time" id="r6"type="radio" value="60">
+                        <label for="r6">60분</label>
+                    </div>
+                    <button type="submit">저장</button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            // 입욕제 항목들 생성 부분.
+            var parent = document.querySelector(".list");
+            for(var i = 0; i < 100; i++) {
+                var div = document.createElement('div');
+                div.className = 'bathing_item'
+                
+                var label = document.createElement('label');
+                var input = document.createElement("input");
+                input.type = 'radio';
+                input.name = 'bathing_agent';
+                input.value = '입욕제' + (i+1);
+                label.appendChild(input);
+
+                var span = document.createElement("span");
+                span.className = 'bathing_item_text';
+                span.appendChild(document.createTextNode('입욕제' + (i+1)));
+
+                label.appendChild(span);
+                div.appendChild(label);
+                parent.appendChild(div);
+            }
+        
+
+            //입욕제 리스트에서 아이템 클릭시 상단 타이틀에 선택한 입욕제가 출력되게 해주는 부분
+            var bathingItemList = document.querySelectorAll(".bathing_item label");
+            for(var i = 0; i < bathingItemList.length; i++) {
+                bathingItemList[i].addEventListener("click", (e) => {
+                    document.querySelector("#bathing_text").innerHTML = e.target.value;
+                })
+            }
+
+            // 타이머 설정시 타이머 타이틀에 선택한 시간이 출력되게 해주는 부분
+            var timeList = document.querySelectorAll("#timeSection input");
+            for(var i = 0; i < timeList.length; i++) {
+                timeList[i].addEventListener("click", (e) => {
+                    var text = e.target.value;
+                    if(i !== 0) {
+                        text += "분"                        
+                    }
+                    document.querySelector("#timer_text").innerHTML = text;
+                })
+            }
+
+            var range = document.querySelector("#range_slider"); // 온도 설정의 range slider.
+            var value = document.querySelector("#range_text"); // 온도 설정의 온도 표시 텍스트.
+            range.addEventListener("input", (e) => {
+                value.innerHTML = e.target.value; // range의 현재 값을 읽어와 온도 표시 텍스트에 저장.
+            }, false)
+        </script>
+
+    </body>
+</html>
