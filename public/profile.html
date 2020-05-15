@@ -108,8 +108,10 @@
 
             on: {
                 tap: function () {
-                    if (swiper.activeIndex !== tmp.length)
+                    if (swiper.activeIndex !== tmp.length) {
                         alert('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하사겠어요?');
+                        document.location.href = './user_choice';
+                    }
                     else
                          onclick="location.href='./register.html'"
                 },
