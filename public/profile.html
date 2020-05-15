@@ -84,7 +84,6 @@
     </div>
 
     <div id='dialog'>
-        <p></p>
     </div>
 
     <script src="./js/jquery-3.5.1.js"></script>
@@ -117,8 +116,6 @@
                                 width: 400,
                                 //뒷배경을 disable 시키고싶다면 true 
                                 modal: true,
-                                //내용 설정
-                                text: '[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?',
                                 //버튼종류
                                 buttons: [
                                     {
@@ -126,6 +123,7 @@
                                         text: "확인",
                                         //클릭이벤트발생시 동작
                                         click: function () {
+                                            document.getElementById('dialog').innerHTML = '[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?';
                                             document.location.href = './user_choice.html';
                                         }
                                     },
@@ -149,13 +147,6 @@
                             })
 
                         });
-                        // if (confirm('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?')){
-                        //     document.location.href = './user_choice.html';
-                        // }
-
-                        // else {
-                        //     return false;
-                        // }
                     }
 
                     else document.location.href = './register.html';
