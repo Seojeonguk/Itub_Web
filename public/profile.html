@@ -116,12 +116,12 @@
                     if (swiper.activeIndex !== tmp.length) {
                         $(function () {
                             // 옵션을 설정한다.
-                            $.widget({
+                            $('#dialog').dialog({
                                 autoOpen: false,
 
                                 open: function(event, ui) { 
                                     $('.swiper-slide').bind('click', function() { 
-                                        $("#dialog").widget('close'); 
+                                        $("#dialog").dialog('close'); 
                                     })
                                 },
 
@@ -140,7 +140,7 @@
                                     },
 
                                     "취소": function () {
-                                        $(this).widget("close");
+                                        $(this).dialog("close");
                                     },
                                 },
                             });
