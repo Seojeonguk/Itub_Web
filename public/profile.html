@@ -210,7 +210,7 @@
             console.log(tmp.length);
             if (tmp.length == 0) {
                 swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
-                //swiper.update();
+                swiper.update();
             }
 
             else {
@@ -238,6 +238,8 @@
                 document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex].u_age;
                 document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex].u_job;
             }
+
+            swiper.update();
         }
 
         function sendDB(url, data) {
