@@ -21,7 +21,6 @@
         </div>
 
         <script>
-            // 입욕제 항목들 생성 부분.
             var parent = document.querySelector(".list");
             for(var i = 0; i < 20; i++) {
                 var button = document.createElement('button');
@@ -33,7 +32,7 @@
                 var span = document.createElement('span');
                 var p = document.createElement('p');
                 
-                p.appendChild(document.createTextNode('입욕제' + (i+1)));
+                p.appendChild(document.createTextNode('추천모드' + (i+1)));
                 
                 span.appendChild(p);
                 button.appendChild(span);
