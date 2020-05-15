@@ -188,6 +188,8 @@
                                 //클릭이벤트발생시 동작
                                 click: function () {
                                     sendDB('/db/delete', tmp[swiper.activeIndex].u_num);
+                                    alert(tmp[swiper.activeIndex].u_name + ' 사용자가 삭제되었습니다.');
+                                    window.location.reload(true);
                                 }
                             },
                             {
@@ -201,11 +203,6 @@
                         ]
                     });
                 });
-
-
-                alert(tmp[swiper.activeIndex].u_name + ' 사용자가 삭제되었습니다.');
-
-                window.location.reload(true);
             }
         }
 
