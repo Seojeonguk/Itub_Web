@@ -148,7 +148,7 @@
                 },
 
                 slideChangeTransitionStart: function () {
-                    if (swiper.activeIndex !== tmp.length) {
+                    if (tmp.result !== 'none') {
                         document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex].u_name;
                         if (!tmp[swiper.activeIndex].u_gender) document.getElementById('label_gender').innerHTML = '남성';
                         else document.getElementById('label_gender').innerHTML = '여성';
@@ -259,10 +259,12 @@
                 console.log('데이터 넘겨받음' + result.result)
                 if (result.result == 'ok' && result.type == 'reference') {
                     tmp = result.DB;
+                    tmp.result = 'ok';
                     add_div();
                     console.log('조회가 완료되었습니다.');
                 } else if (result.result == 'ok' && result.type == 'delete') {
                     console.log('삭제가 완료되었습니다.');
+                    tmp.result = 'ok';
                 } else if (result.result == 'none' && result.type == 'reference') {
                     tmp = { 'result': 'none' };
                     add_div();
