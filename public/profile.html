@@ -208,29 +208,35 @@
 
         function add_div() {
             console.log(tmp);
-            for (var i = 0; i < tmp.length; i++) {
-                if (tmp[i].u_age < 15) {
-                    if (tmp[i].u_gender == 0) path = './images/boy.png'
-                    else path = './images/girl.png'
-                } else if (tmp[i].u_age >= 15 && tmp[i].u_age <= 65) {
-                    if (tmp[i].u_gender == 0) path = './images/fa.png'
-                    else path = './images/ma.png'
-                } else {
-                    if (tmp[i].u_gender == 0) path = './images/granfa.png'
-                    else path = './images/granma.png'
-                }
-
-                var htmlCode = '<div class="swiper-slide"><div class="vertical"><img src=' + path + ' class="imgtag"></div></div>';
-                swiper.appendSlide(htmlCode);
-                swiper.update();
+            if (tmp.result == 'none') {
+                swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
             }
 
-            swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
-            document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex].u_name;
-            if (!tmp[swiper.activeIndex].u_gender) document.getElementById('label_gender').innerHTML = '남성';
-            else document.getElementById('label_gender').innerHTML = '여성';
-            document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex].u_age;
-            document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex].u_job;
+            else {
+                for (var i = 0; i < tmp.length; i++) {
+                    if (tmp[i].u_age < 15) {
+                        if (tmp[i].u_gender == 0) path = './images/boy.png'
+                        else path = './images/girl.png'
+                    } else if (tmp[i].u_age >= 15 && tmp[i].u_age <= 65) {
+                        if (tmp[i].u_gender == 0) path = './images/fa.png'
+                        else path = './images/ma.png'
+                    } else {
+                        if (tmp[i].u_gender == 0) path = './images/granfa.png'
+                        else path = './images/granma.png'
+                    }
+
+                    var htmlCode = '<div class="swiper-slide"><div class="vertical"><img src=' + path + ' class="imgtag"></div></div>';
+                    swiper.appendSlide(htmlCode);
+                    swiper.update();
+                }
+
+                swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
+                document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex].u_name;
+                if (!tmp[swiper.activeIndex].u_gender) document.getElementById('label_gender').innerHTML = '남성';
+                else document.getElementById('label_gender').innerHTML = '여성';
+                document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex].u_age;
+                document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex].u_job;
+            }
         }
 
         function sendDB(url, data) {
@@ -262,7 +268,7 @@
                     add_div();
                     console.log('되겠냐?');
                 } else if (result.result == 'none' && result.type == 'delete') {
-                    tmp = {'':''};
+                    tmp = { '': '' };
                     console.log('되겠냐?');
                 }
             });
