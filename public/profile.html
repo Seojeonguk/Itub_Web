@@ -112,9 +112,11 @@
                         if (confirm('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?'), '사용자 선택'){
                             document.location.href = './user_choice.html'
                         }
+
+                        else return false;
                     }
 
-                    else return false;
+                    else document.location.href = './register.html';
                 },
 
                 slideChangeTransitionStart: function () {
