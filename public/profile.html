@@ -109,25 +109,25 @@
             on: {
                 tap: function () {
                     if (swiper.activeIndex !== tmp.length) {
-                        $(function () {
-                            // 옵션을 설정한다.
-                            dialog.set({
-                                // 타이틀 설정
-                                title: "사용자 선택",
-                                // 내용 설정
-                                text: '[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?',
-                                // 모달 여부
-                                modal: true,
-                                // 버튼 설정
-                                buttons: {
-                                    OK: function () {
-                                        document.location.href = './user_choice.html';
-                                    },
-                                    Cancel: function () {
-                                    },
-                                }
-                            });
-                        });
+                        // $(function () {
+                        //     // 옵션을 설정한다.
+                        //     dialog.set({
+                        //         // 타이틀 설정
+                        //         title: "사용자 선택",
+                        //         // 내용 설정
+                        //         text: '[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?',
+                        //         // 모달 여부
+                        //         modal: true,
+                        //         // 버튼 설정
+                        //         buttons: {
+                        //             OK: function () {
+                        //                 document.location.href = './user_choice.html';
+                        //             },
+                        //             Cancel: function () {
+                        //             },
+                        //         }
+                        //     });
+                        // });
                     }
 
                     else document.location.href = './register.html';
