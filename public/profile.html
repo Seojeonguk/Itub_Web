@@ -113,7 +113,9 @@
                             document.location.href = './user_choice.html'
                         }
 
-                        else return false;
+                        else {
+                            return false;
+                        }
                     }
 
                     else document.location.href = './register.html';
@@ -167,7 +169,7 @@
                 swiper.update();
             }
 
-            swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png class="imgtag"></div></div>');
+            swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
             document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex].u_name;
             if (!tmp[swiper.activeIndex].u_gender) document.getElementById('label_gender').innerHTML = '남성';
             else document.getElementById('label_gender').innerHTML = '여성';
