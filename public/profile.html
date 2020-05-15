@@ -110,7 +110,7 @@
 
             on: {
                 tap: function () {
-                    if (swiper.activeIndex !== tmp.length && tmp.length !== 1) {
+                    if ((swiper.activeIndex + 1) !== tmp.length && tmp.length !== 1) {
                         $(function () {
                             $('#dialog_text').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?');
                             $("#dialog").dialog({
@@ -148,7 +148,7 @@
                 },
 
                 slideChangeTransitionStart: function () {
-                    if (swiper.activeIndex !== tmp.length && tmp.length !== 1) {
+                    if ((swiper.activeIndex + 1) !== tmp.length && tmp.length !== 1) {
                         document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex].u_name;
                         if (!tmp[swiper.activeIndex].u_gender) document.getElementById('label_gender').innerHTML = '남성';
                         else document.getElementById('label_gender').innerHTML = '여성';
@@ -168,7 +168,7 @@
 
 
         function del_div() {
-            if (tmp.length <= 1) {alert('지울 사용자가 없습니다.'); console.log(tmp.length);}
+            if (tmp.length < 1) {alert('지울 사용자가 없습니다.'); console.log(tmp.length);}
             else {
                 $(function () {
                     $('#dialog_text').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자를 삭제하시겠습니까?');
