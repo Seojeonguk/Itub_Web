@@ -141,15 +141,6 @@
                                     }
                                 ]
                             });
-
-
-                            // 이벤트 설정
-
-                            $("#button").click(function () {
-                                alert("1");
-                                $("#dialog").dialog("open");
-                            })
-
                         });
                     }
 
@@ -179,8 +170,41 @@
         function del_div() {
             if (tmp.length < 1) alert('지울 사용자가 없습니다.');
             else {
+                $(function () {
+                    $('#dialog_text').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자를 삭제하시겠습니까?');
+                    $("#dialog").dialog({
+                        //제목 설정
+                        title: '사용자 선택',
+                        //레이어팝업 넓이 
+                        width: 400,
+                        height: 200,
+                        //뒷배경을 disable 시키고싶다면 true 
+                        modal: true,
+                        //버튼종류
+                        buttons: [
+                            {
+                                //버튼텍스트
+                                text: "확인",
+                                //클릭이벤트발생시 동작
+                                click: function () {
+                                    sendDB('/db/delete', tmp[swiper.activeIndex].u_num);
+                                }
+                            },
+                            {
+                                //버튼텍스트
+                                text: "취소",
+                                //클릭이벤트발생시 동작
+                                click: function () {
+                                    $(this).dialog("close");
+                                }
+                            }
+                        ]
+                    });
+                });
+
+
                 alert(tmp[swiper.activeIndex].u_name + ' 사용자가 삭제되었습니다.');
-                sendDB('/db/delete', tmp[swiper.activeIndex].u_num);
+
                 window.location.reload(true);
             }
         }
