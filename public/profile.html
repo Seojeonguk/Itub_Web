@@ -95,7 +95,6 @@
         var tmp = '';
 
         var swiper = new Swiper('.swiper-container', {
-            slidesPerColumn: 1,
             loop: false,
 
             pagination: {
@@ -169,7 +168,7 @@
 
 
         function del_div() {
-            if (tmp.length < 1 || swiper.activeIndex == tmp.length) { alert('지울 사용자가 없습니다.'); console.log(tmp.length); }
+            if (tmp.length < 1 || swiper.activeIndex == tmp.length) { alert('지울 사용자가 없습니다.'); }
             else {
                 $(function () {
                     $('#dialog_text').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자를 삭제하시겠습니까?');
@@ -212,6 +211,7 @@
             if (tmp.length == 0) {
                 swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
                 swiper.update();
+                $(".btn").hide();
             }
 
             else {
@@ -238,6 +238,7 @@
                 else document.getElementById('label_gender').innerHTML = '여성';
                 document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex].u_age;
                 document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex].u_job;
+                $(".btn").show();
             }
         }
 
