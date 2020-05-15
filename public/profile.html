@@ -83,7 +83,9 @@
         </div>
     </div>
 
-    <div id='dialog' title='사용자 선택'></div>
+    <div id='dialog' title='사용자 선택'>
+        <p id='dialog_text'></p>
+    </div>
 
     <script src="./js/jquery-3.5.1.js"></script>
     <script src="./js/jquery-ui.js"></script>
@@ -110,12 +112,13 @@
                 tap: function () {
                     if (swiper.activeIndex !== tmp.length) {
                         $(function () {
-                            $('#dialog').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?');
+                            $('#dialog_text').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?');
                             $("#dialog").dialog({
                                 //제목 설정
                                 title: '사용자 선택',
                                 //레이어팝업 넓이 
                                 width: 400,
+                                height: 300,
                                 //뒷배경을 disable 시키고싶다면 true 
                                 modal: true,
                                 //버튼종류
