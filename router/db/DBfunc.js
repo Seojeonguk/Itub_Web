@@ -82,6 +82,7 @@ router.post('/delete', function (req, res) {
 			responseData.result = 'none';
 			responseData.type = 'delete'
 			console.log('none : ' + data);
+			return;
 		}
 	});
 
