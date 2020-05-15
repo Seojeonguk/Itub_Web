@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: auto;
+}
+.wrap {
+    margin: auto;
+    max-width: 1400px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
+.list {
+    font-size: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 250px;
+}
+
+button {
+    width: 40%;
+    height: 100%;
+    font-size: 1.5rem;
+    display: block;
+    background-color: white;
+    margin: auto;
+    margin-top: 4vmin;
+}
