@@ -109,12 +109,12 @@
             on: {
                 tap: function () {
                     if (swiper.activeIndex !== tmp.length) {
-                        if (confirm('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?')){
-                            document.location.href = "='./register.html'"
+                        if (confirm('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?'), '사용자 선택'){
+                            document.location.href = './register.html'
                         }
                     }
 
-                    else document.location.href = './user_choice.html';
+                    else return false;
                 },
 
                 slideChangeTransitionStart: function () {
