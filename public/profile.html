@@ -168,7 +168,7 @@
 
 
         function del_div() {
-            if (tmp.length < 1) alert('지울 사용자가 없습니다.');
+            if (tmp.length <= 1) alert('지울 사용자가 없습니다.');
             else {
                 $(function () {
                     $('#dialog_text').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자를 삭제하시겠습니까?');
