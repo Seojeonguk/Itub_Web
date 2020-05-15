@@ -17,7 +17,6 @@
                                 <span class="bathing_item_text" >입욕제1</span>
                             </label>
                         </div> -->
-
                     </div>
                 </div>
                 <div>
@@ -92,7 +91,8 @@
             for(var i = 0; i < timeList.length; i++) {
                 timeList[i].addEventListener("click", (e) => {
                     var text = e.target.value;
-                    if(i !== 0) {
+                    console.log(e.target.value);
+                    if(text !== '설정 안함') {
                         text += "분"                        
                     }
                     document.querySelector("#timer_text").innerHTML = text;
