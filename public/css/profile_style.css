@@ -251,44 +251,44 @@ ul {
     }
 }
 
+@media (max-width: 1680px) {
+    #label_name{
+        font-size: 1.5rem; 
+    }
+
+    #label_gender{
+        font-size: 1.5rem; 
+    }
+
+    #label_age{
+        font-size: 1.5rem; 
+    }
+
+    #label_job{
+        font-size: 1.5rem; 
+    }
+}
+
 @media (max-width: 1280px) {
     #label_name{
-        font-size: 1.25rem; 
+        font-size: 1rem; 
     }
 
     #label_gender{
-        font-size: 1.25rem; 
+        font-size: 1rem; 
     }
 
     #label_age{
-        font-size: 1.25rem; 
+        font-size: 1rem;  
     }
 
     #label_job{
-        font-size: 1.25rem; 
-    }
-}
-
-@media (max-width: 1024px) {
-    #label_name{
-        font-size: 0.75rem; 
-    }
-
-    #label_gender{
-        font-size: 0.75rem; 
-    }
-
-    #label_age{
-        font-size: 0.75rem;  
-    }
-
-    #label_job{
-        font-size: 0.75rem;  
+        font-size: 1rem;  
     }
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 950px) {
     #label_name{
         font-size: 0.5rem; 
     }
@@ -303,5 +303,23 @@ ul {
 
     #label_job{
         font-size: 0.5rem;  
+    }
+}
+
+@media (max-width: 480px) {
+    #label_name{
+        font-size: 0.25rem; 
+    }
+
+    #label_gender{
+        font-size: 0.25rem; 
+    }
+
+    #label_age{
+        font-size: 0.25rem; 
+    }
+
+    #label_job{
+        font-size: 0.25rem;  
     }
 }
