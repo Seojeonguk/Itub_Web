@@ -123,7 +123,7 @@
                                         text: "확인",
                                         //클릭이벤트발생시 동작
                                         click: function () {
-                                            document.getElementById('dialog').innerHTML = '[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?';
+                                            jQuery('#dialog').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?');
                                             document.location.href = './user_choice.html';
                                         }
                                     },

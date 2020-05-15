@@ -507,6 +507,7 @@ button.ui-button::-moz-focus-inner {
 	text-overflow: ellipsis;
 }
 .ui-dialog .ui-dialog-titlebar-close {
+	display: none;
 	position: absolute;
 	right: .3em;
 	top: 50%;
