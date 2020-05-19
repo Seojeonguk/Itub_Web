@@ -4,6 +4,7 @@ html {
     margin: auto;
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 .all-wrap {
@@ -14,7 +15,7 @@ html {
 
 .all-wrap .row-wrap {
     display: flex;
-    height: 90%;
+    height: 89.9wh;
 }
 
 .all-wrap .row-wrap .wrap {
@@ -30,9 +31,9 @@ html {
 }
 
 .title {
-    height: 8%;
+    height: 15%;
     text-align: center;
-    padding: 5%;
+    padding: 1.4vh 0 0 2vw;
 }
 
 p{
@@ -48,20 +49,35 @@ b{
     vertical-align: middle;
     text-align: center;
 }
-
 ul,li {
     margin: 0;
-    padding-right: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0;
 }
 ul {
     padding-left: 13%;
-    height: 84%;
+    height: 33.9vh;
     width: 87%;
 }
 
 li {
-    height: 20%;
+    height: 6.77vh;
     font-size: 120%;
+}
+
+@media(max-height:600px) {
+    body {
+        font-size: 70%;
+    }
+}
+
+@media(max-height:400px) {
+    body{
+        font-size: 40%;
+    }
+}
+
+@media(max-height:200px) {
+    body{
+        font-size: 20%;
+    }
 }
