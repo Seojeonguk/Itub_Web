@@ -24,6 +24,7 @@
                 </span>
             </div>
 
+            <!--성별 라디오버튼 클릭시 이미지변경부분구현-->
             <div class="wrap">
                 <h3 class="title"><label for='gender'>성별</label></h3>
                 <div class="gender_wrap">
@@ -73,6 +74,7 @@
     </form>
 
     <script>
+        //사용자정보 가져온뒤 전달부분
         document.querySelector('.submit').addEventListener('click', function() {
             alert('등록 완료');
             var inputdata = {};
@@ -93,7 +95,7 @@
             }
 
             console.log(inputdata)
-            // 배열로도 정의 가능
+                // 배열로도 정의 가능, 아래구현된함수로 사용자입력정보전달
             sendDB('/db/create', inputdata)
             location.href = './profile.html'
         });
@@ -105,7 +107,7 @@
             console.log(data + '데이터형 변경 전');
             data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
             console.log(data + '데이터형 변경 후')
-            var xhr = new XMLHttpRequest();
+            var xhr = new XMLHttpRequest(); //서버로 데이터전송을위한 생성자
             xhr.open('POST', url);
             xhr.setRequestHeader('Content-Type', 'application/json');
             // 서버로 보낼때 json 형태의 데이터를 보내기위해 지정
@@ -120,25 +122,25 @@
                 if (result.result == 'ok' && result.type == 'create') {
                     resultDiv = document.querySelector('.create');
                     resultDiv.innerHTML = '가입테스트 : ' + '가입이 완료되었습니다.'
-                }  else if (result.result == 'none' && result.type == 'create') {
+                } else if (result.result == 'none' && result.type == 'create') {
+                    //예외처리
                     resultDiv = document.querySelector('.create');
                     resultDiv.innerHTML = '되겠냐?';
                 }
             });
         }
-        
+        //라디오버튼 배경변경함수
         function radio_background(e) {
-            var dc  = document.getElementsByName('gender_radio');
+            var dc = document.getElementsByName('gender_radio');
             var radio1 = document.getElementById('radio1');
             var radio2 = document.getElementById('radio2');
-            
-            if(dc[0].checked==true) {
-                radio1.style.backgroundPosition="-400px -30px";
-                radio2.style.backgroundPosition="-430px -30px";
-            }
-            else {
-                radio1.style.backgroundPosition="-430px -30px";
-                radio2.style.backgroundPosition="-400px -30px";
+
+            if (dc[0].checked == true) {
+                radio1.style.backgroundPosition = "-400px -30px";
+                radio2.style.backgroundPosition = "-430px -30px";
+            } else {
+                radio1.style.backgroundPosition = "-430px -30px";
+                radio2.style.backgroundPosition = "-400px -30px";
             }
         }
     </script>
