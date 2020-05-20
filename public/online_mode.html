@@ -13,24 +13,32 @@
         <div class="row-wrap">
             <div class="wrap">
                 <div class="box">
-                    <div class="title"><p><b>나이</b></p></div>
+                    <div class="title">
+                        <p><b>나이</b></p>
+                    </div>
                     <ul class="box-wrap">
                     </ul>
                 </div>
                 <div class="box">
-                    <div class="title"><p><b>직업</b></p></div>
+                    <div class="title">
+                        <p><b>직업</b></p>
+                    </div>
                     <ul class="box-wrap">
                     </ul>
                 </div>
             </div>
             <div class="wrap">
                 <div class="box">
-                    <div class="title"><p><b>성별</b></p></div>
+                    <div class="title">
+                        <p><b>성별</b></p>
+                    </div>
                     <ul class="box-wrap">
                     </ul>
                 </div>
                 <div class="box">
-                    <div class="title"><p><b>날씨</b></p></div>
+                    <div class="title">
+                        <p><b>날씨</b></p>
+                    </div>
                     <ul class="box-wrap">
                     </ul>
                 </div>
@@ -43,7 +51,7 @@
         for (var i = 0; i < parent.length; i++) {
             for (var l = 0; l < 5; l++) {
                 var li = document.createElement('li');
-                li.appendChild(document.createTextNode('랭킹' + (l+1)));
+                li.appendChild(document.createTextNode('랭킹' + (l + 1)));
                 parent.item(i).appendChild(li);
             }
         }
