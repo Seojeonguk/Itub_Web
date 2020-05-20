@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Chioce</title>
+        <link rel="stylesheet" href = "./css/recommed_style.css">
+    </head>
+    <body>
+        <div class="wrap">
+            <form action="">
+                    <div class="list">
+                        <!--
+                        <button class="btn">
+                            <span><p>
+                                추천 1 <br> 온도 : <br> 입욕제 <br> 타이머 <br>
+                            </p></span>
+                        </button>
+                        -->
+                    </div>
+            </form>
+        </div>
+
+        <script>
+            // 입욕제 항목들 생성 부분.
+            var parent = document.querySelector(".list");
+            for(var i = 0; i < 20; i++) {
+                var button = document.createElement('button');
+                button.className='btn';
+                button.onclick= function(){
+                    alert('구현중');
+                }
+                
+                var span = document.createElement('span');
+                var p = document.createElement('p');
+                
+                p.appendChild(document.createTextNode('입욕제' + (i+1)));
+                
+                span.appendChild(p);
+                button.appendChild(span);
+                parent.appendChild(button);
+            }
+        </script>
+    </body>
+</html>

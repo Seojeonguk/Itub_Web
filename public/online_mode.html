@@ -30,43 +30,57 @@
             <div id='temp'></div>
         </div>
     </div>
-
+    <script type="text/javascript" src="./js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
     <script>
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(drawVisualization);
 
         var table_data1 = [
-                ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
-                ['2004/05', 165, 938, 522, 998, 450, 614.6],
-                ['2005/06', 135, 1120, 599, 1268, 288, 682],
-                ['2006/07', 157, 1167, 587, 807, 397, 623],
-                ['2007/08', 139, 1110, 615, 968, 215, 609.4],
-                ['2008/09', 136, 691, 629, 1026, 366, 569.6]
+            ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
+            ['2004/05', 165, 938, 522, 998, 450, 614.6],
+            ['2005/06', 135, 1120, 599, 1268, 288, 682],
+            ['2006/07', 157, 1167, 587, 807, 397, 623],
+            ['2007/08', 139, 1110, 615, 968, 215, 609.4],
+            ['2008/09', 136, 691, 629, 1026, 366, 569.6]
         ]
-        
-        var table_option1  = {
-                title: 'Monthly Coffee Production by Country',
-                vAxis: { title: 'Cups' },
-                hAxis: { title: 'Month' },
-                seriesType: 'bars',
-                series: { 5: { type: 'line' } }
+
+        var table_option1 = {
+            title: 'Monthly Coffee Production by Country',
+            vAxis: { title: 'Cups' },
+            hAxis: { title: 'Month' },
+            seriesType: 'bars',
+            series: { 5: { type: 'line' } }
         };
 
         var div_id = 'name'
 
+        var table_option2 = {
+            title: 'test',
+            vAxis: { title: 's_gender' },
+            hAxis: { title: 's_temp' },
+            seriesType: 'bars',
+            series: { 5: { type: 'line' } }
+        };
+
         function drawVisualization() {
             // Some raw data (not necessarily accurate)
-            
-            console.log(table_data1)
+
             var data = google.visualization.arrayToDataTable(table_data1);
             var options = table_option1
 
             var chart = new google.visualization.ComboChart(document.getElementById(div_id));
             chart.draw(data, options);
 
-            var chart = new google.visualization.ComboChart(document.getElementById('gender'));
-            chart.draw(data, options);
+            $.get("shower.csv", function(csvString) {
+                var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar})
+                console.log(arrayData)
+                var chart = new google.visualization.ComboChart(document.getElementById('gender'));
+                chart.draw(google.visualization.arrayToDataTable(arrayData), table_option2);
+            });
 
             var chart = new google.visualization.ComboChart(document.getElementById('job'));
             chart.draw(data, options);
@@ -74,6 +88,8 @@
             var chart = new google.visualization.ComboChart(document.getElementById('temp'));
             chart.draw(data, options);
         }
+
+        
     </script>
 </body>
 
