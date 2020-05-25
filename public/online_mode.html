@@ -9,34 +9,62 @@
 </head>
 
 <body>
-    <div class='wrap' style='overflow:scroll'>
-        <div>
-            <p><b>나이</b></p>
-            <div id='name'></div>
-        </div>
+    <div class='all-wrap'>
+        <div class='row-wrap'>
+            <div class='wrap'>
+                <p><b>나이</b></p>
+                <div id='name' class='box'></div>
+            </div>
 
-        <div>
-            <p><b>성별</b></p>
-            <div id='gender'></div>
+            <div class='wrap'>
+                <p><b>성별</b></p>
+                <div id='gender' class='box'></div>
+            </div>
         </div>
+        <div class='row-wrap'>
+            <div class='wrap'>
+                <p><b>직업</b></p>
+                <div id='job' class='box'></div>
+            </div>
 
-        <div>
-            <p><b>직업</b></p>
-            <div id='job'></div>
+            <div class='wrap'>
+                <p><b>온도</b></p>
+                <div id='temp' class='box'></div>
+            </div>
         </div>
+        <div class="test">
+            <div class="test1">
 
-        <div>
-            <p><b>온도</b></p>
-            <div id='temp'></div>
+            </div>
+
+            <div class="test2">
+                <div class="test3">
+                    <label class="test4">1
+                    </label>
+                </div>
+                <div class="test3">
+                    <label class="test4">2
+                    </label>
+                </div>
+                <div class="test3">
+                    <label class="test4">3
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
     <script type="text/javascript" src="./js/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
+
+    <script type="text/javascript" src="./js/debouncedresize.js"></script>
+    <script type="text/javascript" src="./js/throttledresize.js"></script>
+
     <script>
-        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
         google.charts.setOnLoadCallback(drawVisualization);
 
         var table_data1 = [
@@ -49,21 +77,32 @@
         ]
 
         var table_option1 = {
-            title: 'Monthly Coffee Production by Country',
-            vAxis: { title: 'Cups' },
-            hAxis: { title: 'Month' },
+            title: '직업',
+            vAxis: {
+                title: 'Cups'
+            },
+            hAxis: {
+                title: 'Month'
+            },
             seriesType: 'bars',
-            series: { 5: { type: 'line' } }
+            series: {
+                5: {
+                    type: 'line'
+                }
+            }
         };
 
         var div_id = 'name'
 
         var table_option2 = {
             title: 'test',
-            vAxis: { title: 's_temp' },
-            hAxis: { title: 's_gender' },
-            seriesType: 'bars',
-            series: { 10: { type: 'line' } }
+            vAxis: {
+                title: 's_temp'
+            },
+            hAxis: {
+                title: 's_gender'
+            },
+            seriesType: 'line',
         };
 
         function drawVisualization() {
@@ -76,7 +115,9 @@
             chart.draw(data, options);
 
             $.get("shower.csv", function(csvString) {
-                var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar})
+                var arrayData = $.csv.toArrays(csvString, {
+                    onParseValue: $.csv.hooks.castToScalar
+                })
                 console.log(arrayData)
                 var chart = new google.visualization.ComboChart(document.getElementById('gender'));
                 chart.draw(google.visualization.arrayToDataTable(arrayData), table_option2);
@@ -89,7 +130,11 @@
             chart.draw(data, options);
         }
 
-        
+        $(function() {
+            $(window).bind("debouncedresize", function() {
+                drawVisualization();
+            });
+        });
     </script>
 </body>
 
