@@ -16,7 +16,7 @@
 
         <script>
             var parent = document.querySelector(".list");
-            for(var i = 0; i < 20; i++) {
+            for(let i = 0; i < 10; i++) {
                 var button = document.createElement('button');
                 button.className='btn';
                 button.onclick= function(){
@@ -26,8 +26,18 @@
                 var span = document.createElement('span');
                 var p = document.createElement('p');
                 
-                p.appendChild(document.createTextNode('추천모드' + (i+1)));
+                if(i==0) p.appendChild(document.createTextNode('입욕제 없는 따뜻한 물'));
+                else if(i==1) p.appendChild(document.createTextNode('자몽, 오렌지, 레몬의 새콤달콤한 과일 향기'));
+                else if(i==2) p.appendChild(document.createTextNode('크리미한 바닐라와 이국적인 꽃향기'));
+                else if(i==3) p.appendChild(document.createTextNode('신선하고 포근한 라벤더 꽃향기'));
+                else if(i==4) p.appendChild(document.createTextNode('감정이 파도처럼 밀려오는 날'));
+                else if(i==5) p.appendChild(document.createTextNode('로맨스 영화 속 주인공처럼'));
+                else if(i==6) p.appendChild(document.createTextNode('새벽녘, 그 감성속으로'));
+                else if(i==7) p.appendChild(document.createTextNode('감성이 필요한 당신을 위한 선물'));
+                else if(i==8) p.appendChild(document.createTextNode('꾸리꾸리 비오는 날엔'));
+                else if(i==9) p.appendChild(document.createTextNode('생각이 많은 요즘'));
                 
+
                 span.appendChild(p);
                 button.appendChild(span);
                 parent.appendChild(button);
