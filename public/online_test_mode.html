@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Mode</title>
+    <!-- <link rel="stylesheet" href="./css/online_style copy.css"> -->
+</head>
+
+<body>
+    <div class='wrap' style='overflow:scroll'>
+        <div>
+            <p><b>오늘의 추천 모드</b></p>
+            <div id='today_mode'></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+        google.charts.load('current', {
+            packages: ["orgchart"]
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            $.get("shower_test.csv", function(csvString) {
+                var arrayData = $.csv.toArrays(csvString, {
+                        onParseValue: $.csv.hooks.castToScalar
+                    })
+                    // console.log(arrayData);
+                var agearray = new Array(10);
+                var temp = new Array(10);
+                for (var k = 0; k < 10; k++) {
+                    agearray[k] = new Array(2);
+                    agearray[k][0] = agearray[k][1] = 0;
+                    temp[k] = new Array(3);
+                    temp[k][0] = temp[k][1] = temp[k][2] = 0;
+                }
+                // console.log(agearray);
+                for (var k = 1; k < arrayData.length; k++) {
+                    /*온도정보*/
+                    // console.log(arrayData[k][2]);
+                    var age_data = parseInt(arrayData[k][2] / 10);
+                    // console.log(age_data);
+
+                    if (arrayData[k][3] == "시원함") {
+                        temp[age_data][0] += 1;
+                    } else if (arrayData[k][3] == "미지근함") {
+                        temp[age_data][1] += 1;
+                    } else if (arrayData[k][3] == "따뜻함") {
+                        temp[age_data][2] += 1;
+                    }
+                    // console.log(temp);
+                    /*시작시간*/
+                    agearray[age_data][0] += arrayData[k][4];
+                    // console.log(agearray[age_data][0]);
+                }
+                // console.log(temp);
+                // console.log(agearray);
+                // console.log(temp);
+                var divtemp = arrayData.length - 1;
+                for (var k = 1; k < 10; k++) {
+                    // console.log(agearray[k][0]);
+                    // console.log("array 길이 " + arrayData.length);
+                    var index = -1;
+                    var value = 0;
+                    for (var i = 0; i < 3; i++) {
+                        if (temp[k][i] > value) {
+                            index = i;
+                            value = temp[k][i];
+                        }
+                    }
+
+                    if (index == 0) {
+                        agearray[k][1] = "시원함";
+                    } else if (index == 1) {
+                        agearray[k][1] = "미지근함";
+                    } else if (index == 2) {
+                        agearray[k][1] = "따뜻함";
+                    } else {
+                        agearray[k][1] = "온도없음";
+                    }
+                    agearray[k][0] = parseInt(agearray[k][0] / divtemp);
+                    console.log(agearray[k][0])
+                }
+                // console.log(agearray);
+                var todaydata = new google.visualization.DataTable();
+                todaydata.addColumn('string', 'Name');
+                todaydata.addColumn('string', 'Manager');
+                todaydata.addColumn('string', 'ToolTip');
+
+                // For each orgchart box, provide the name, manager, and tooltip to show.
+                todaydata.addRows([
+                    [{
+                            'v': 'today',
+                            'f': 'today'
+                        },
+                        '', 'The President'
+                    ],
+                    [{
+                            'v': 'age',
+                            'f': 'age'
+                        },
+                        'today', 'VP'
+                    ],
+                    [{
+                            'v': 'gender',
+                            'f': 'gender'
+                        },
+                        'today', 'VP'
+                    ],
+                    ['age', 'today', ''],
+                    ['gender', 'today', ''],
+                    ['남', 'gender', ''],
+                    ['여', 'gender', '']
+                ]);
+                console.log(agearray)
+                for (var i = 1; i < 10; i++) {
+                    todaydata.addRows([
+                        [i.toString(), 'age', ''],
+                        ['<div>' + i.toString() + '대의 시작시간</br>' + agearray[i][0] + '</br></div>', i.toString(), ''],
+                        ['<div>' + i.toString() + '대의 온도</br>' + agearray[i][1] + '</br></div>', '<div>' + i.toString() + '대의 시작시간</br>' + agearray[i][0] + '</br></div>', '']
+                    ])
+                }
+
+                console.log(todaydata)
+                var options = {
+                    'allowHtml': true,
+                    // nodeClass: 'myNodeClass',
+                    // selectedNodeClass: 'mySelectedNodeClass'
+                }
+
+                var chart = new google.visualization.OrgChart(document.getElementById('today_mode'));
+                chart.draw(todaydata, options);
+            })
+        }
+    </script>
+</body>
+
+</html>
