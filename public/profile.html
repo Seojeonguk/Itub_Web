@@ -276,7 +276,7 @@
             });
         }
 
-        var ref = request.header('Referer')
+        var ref = express.header('Referer')
 
         if (ref !== null && ref.length() > 0){
             console.log('정상적인 접근')
