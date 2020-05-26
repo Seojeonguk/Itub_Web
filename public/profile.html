@@ -276,7 +276,7 @@
             });
         }
 
-        var ref = request.getHeader('referer');
+        var ref = request.header('Referer')
 
         if (ref !== null && ref.length() > 0){
             console.log('정상적인 접근')
@@ -288,7 +288,7 @@
         window.onload = function () {
             sendDB('/db/reference', 'ok');
         };
-        
+
     </script>
 
 </body>
