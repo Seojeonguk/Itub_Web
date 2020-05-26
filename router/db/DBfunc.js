@@ -6,6 +6,15 @@ var path = require('path') // 상대경로 사용하는 모듈
 var dbconfig = require('../../config.js')
 
 router.post('/create', function (req, res) {
+	var ref = req.header('Referer')
+
+	if (ref !== null && ref.length() > 0) {
+		console.log('정상적인 접근')
+	} else {
+		alert('직접쳐서 들어오지마!')
+		document.location.href = './register.html';
+	}
+
 	var connection = mysql.createConnection(dbconfig);
 
 	console.log('db 접속시도');
@@ -34,6 +43,15 @@ router.post('/create', function (req, res) {
 
 
 router.post('/reference', function (req, res) {
+	var ref = req.header('Referer')
+
+	if (ref !== null && ref.length() > 0) {
+		console.log('정상적인 접근')
+	} else {
+		alert('직접쳐서 들어오지마!')
+		document.location.href = './register.html';
+	}
+
 	var connection = mysql.createConnection(dbconfig);
 
 	console.log('db 접속시도');
@@ -66,6 +84,15 @@ router.post('/reference', function (req, res) {
 });
 
 router.post('/delete', function (req, res) {
+	var ref = req.header('Referer')
+
+	if (ref !== null && ref.length() > 0) {
+		console.log('정상적인 접근')
+	} else {
+		alert('직접쳐서 들어오지마!')
+		document.location.href = './register.html';
+	}
+
 	var connection = mysql.createConnection(dbconfig);
 
 	console.log('db 접속시도');
