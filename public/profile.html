@@ -276,9 +276,19 @@
             });
         }
 
+        var ref = request.getHeader('referer');
+
+        if (ref !== null && ref.length() > 0){
+            console.log('정상적인 접근')
+        } else {
+            alert('직접쳐서 들어오지마!')
+            document.location.href = './register.html';
+        }
+
         window.onload = function () {
             sendDB('/db/reference', 'ok');
         };
+        
     </script>
 
 </body>
