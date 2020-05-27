@@ -47,7 +47,6 @@ router.post('/resister', function (req, res) {
 router.get('/*.html', function (req, res) {
 	console.log('직접 접근하지 마라 ㅡㅡ')
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
-	'<script type="text/javascript">alert("오류발생");</script>'
 });
 
 module.exports = router;
