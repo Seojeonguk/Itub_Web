@@ -1,8 +1,15 @@
-var express = require('express')
-var app = express()
+var express = require('express');
+var path = require('path');
+var bodyParser = require('body-parser')
 var router = express.Router();
-var path = require('path') // 상대경로 사용하는 모듈
-var db = require('./db/DBfunc')
+var db = require('./db/DBfunc');
+
+app = express();
+
+app.use(bodyParser.json()) // json의 형태로 받을때
+app.use(bodyParser.urlencoded({extended:true})) // 인코딩된 url 형태로 받을때
+
+router.use('/db', db);
 
 // url routing
 router.get('/', function(req, res){
@@ -11,8 +18,32 @@ router.get('/', function(req, res){
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
-router.use('/db', db)
+
+router.post('/profile', function(req, res){
+	res.sendFile(path.join(__dirname + "/../public/profile.html")) // html 파일을 보내는 것
+});
+
+router.post('/online', function(req, res){
+	res.sendFile(path.join(__dirname + "/../public/online_test_mode.html")) // html 파일을 보내는 것
+});
+
+router.post('/recommend', function(req, res){
+	res.sendFile(path.join(__dirname + "/../public/recommend_mode.html")) // html 파일을 보내는 것
+});
+
+router.post('/user', function(req, res){
+	res.sendFile(path.join(__dirname + "/../public/user_choice.html")) // html 파일을 보내는 것
+});
+
+router.post('/own', function(req, res){
+	res.sendFile(path.join(__dirname + "/../public/own_setting.html")) // html 파일을 보내는 것
+});
+
+router.post('/resister', function(req, res){
+	res.sendFile(path.join(__dirname + "/../public/register.html")) // html 파일을 보내는 것
+});
 
 module.exports = router;
 
 // 이렇게 index.js가 컨트롤러 역할을 해준다.
+
