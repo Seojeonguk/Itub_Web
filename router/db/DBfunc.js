@@ -10,8 +10,10 @@ router.post('/create', function (req, res) {
 	var connection = mysql.createConnection(dbconfig);
 
 	console.log('db 접속시도');
+	var data = req.body.data;
 	var responseData = {};
 	var sql = 'INSERT INTO u_db(u_name, u_age, u_gender, u_job) VALUES (?, ?, ?, ?)';
+	console.log(data)
 
 	var query = connection.query(sql, [data.u_name, parseInt(data.u_age), parseInt(data.u_gender), data.u_job], function (err, rows) {
 
@@ -37,10 +39,8 @@ router.post('/reference', function (req, res) {
 	var connection = mysql.createConnection(dbconfig);
 
 	console.log('db 접속시도');
-	var data = req.body.data;
 	var responseData = {};
 	var sql = 'SELECT * FROM u_db';
-	console.log(data)
 
 	var query = connection.query(sql, function (err, rows) {
 
