@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-    <head>
-        <meta charset="utf-8">
-        <title>I-Tub</title>
-        <link rel="stylesheet" href="./css/main_page_style.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>I-Tub</title>
+    <link rel="stylesheet" href="./css/main_page_style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-    <body>
-        <a href="./profile.html">
-            <img src="./images/main_image.jpg">
-        </a>
-        
-    </body>
+<body>
+    <form action='/profile' method='POST'>
+        <button type='submit' id='submit_btn'></button>
+    </form>
+
+    <a onclick='document.getElementById("submit_btn").click()'>
+        <img src="./images/main_image.jpg">
+    </a>
+
+</body>
 
 </html>

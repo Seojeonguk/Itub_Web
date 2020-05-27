@@ -36,3 +36,9 @@ img {
 .col-div + .col-div {
     margin-top: 2vh;
 }
+
+#own_submit,
+#recommend_submit,
+#online_submit{
+    visibility: hidden;
+}

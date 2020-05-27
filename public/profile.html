@@ -11,6 +11,14 @@
 
 <body bgcolor="#000000" text="#ffffff" link="000ff" vlink="808080">
     <div class="all-wrap">
+        <form action='/user' method='POST'>
+            <input type='hidden' value='name'>
+            <input type='hidden' value='gender'>
+            <input type='hidden' value='age'>
+            <input type='hidden' value='job'>
+            <input type='submit' id='hidden_submit'> 
+        </form>
+
         <button onclick=del_div() class="btn">
             <img src='./images/cancelBtn.png' width="100%" height="100%" class="cancel-img">
         </button>
@@ -128,7 +136,7 @@
                                         text: "확인",
                                         //클릭이벤트발생시 동작
                                         click: function () {
-                                            document.location.href = './user_choice.html';
+                                            document.getElementById('hidden_submit').click();
                                         }
                                     },
                                     {
@@ -167,7 +175,6 @@
                 }
             }
         });
-
 
         function del_div() {
             if (tmp.length < 1 || swiper.activeIndex == tmp.length) { alert('지울 사용자가 없습니다.'); }

@@ -8,18 +8,30 @@
 </head>
 
 <body>
+    <form action='/own' method='POST'>
+        <button type='submit' id='own_submit'></button>
+    </form>
+
+    <form action='/recommend' method='POST'>
+        <button type='submit' id='recommend_submit'></button>
+    </form>
+
+    <form action='/online' method='POST'>
+        <button type='submit' id='online_submit'></button>
+    </form>
+
     <div class="wrap">
         <div class="lidiv">
-            <a href="./own_setting.html"> <img src="./images/own_setting_image.jpg" class=""></a>
+            <a onclick='document.getElementById("own_submit").click()'> <img src="./images/own_setting_image.jpg" class=""></a>
         </div>
 
         <div class="col-wrap">
             <div class="col-div">
-                <a href="./recommend_mode.html"><img src="./images/recommend_image.jpg" class=""></a>
+                <a onclick='document.getElementById("recommend_submit").click()'><img src="./images/recommend_image.jpg" class=""></a>
 
             </div>
             <div class="col-div">
-                <a href="./online_mode.html"><img src="./images/online_image.jpg" class=""></a>
+                <a onclick='document.getElementById("online_submit").click()'><img src="./images/online_image.jpg" class=""></a>
 
             </div>
         </div>

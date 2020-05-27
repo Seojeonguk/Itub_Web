@@ -245,6 +245,10 @@ ul {
     height: 30vmax;
 }
 
+#hidden_submit{
+    visibility: hidden;
+}
+
 @media (max-width: 1920px) {
     .labeling{
         font-size: 2rem; 
