@@ -18,7 +18,6 @@ app.use('/', index);
 // app.use('/recommand', index);
 // app.use('/online', index);
 
-
 // 이부분을 middleware 라고 한다.
 app.use(express.static('public'))
 app.use(bodyParser.json()) // json의 형태로 받을때
