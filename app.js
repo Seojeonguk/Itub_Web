@@ -7,16 +7,16 @@ var index = require('./router/index')
 
 port = process.env.PORT || 8000;
 
-app.listen(port, function() {
+app.listen(port, function(req, res) {
 	console.log("Open I-Tub server!! congratulation");
 });
 
 app.use('/', index);
-// app.use('/profile', index);
-// app.use('/user', index);
-// app.use('/own', index);
-// app.use('/recommand', index);
-// app.use('/online', index);
+app.use('/profile', index);
+app.use('/user', index);
+app.use('/own', index);
+app.use('/recommand', index);
+app.use('/online', index);
 
 // 이부분을 middleware 라고 한다.
 app.use(express.static('public'))

@@ -3,44 +3,51 @@ var path = require('path');
 var bodyParser = require('body-parser')
 var router = express.Router();
 var db = require('./db/DBfunc');
+var http = require('http');
 
 app = express();
 
 app.use(bodyParser.json()) // json의 형태로 받을때
-app.use(bodyParser.urlencoded({extended:true})) // 인코딩된 url 형태로 받을때
+app.use(bodyParser.urlencoded({ extended: true })) // 인코딩된 url 형태로 받을때
 
 router.use('/db', db);
 
 // url routing
-router.get('/', function(req, res){
+router.get('/', function (req, res) {
 	console.log('접속 성공적')
-	console.log(__dirname)
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
-
-router.post('/profile', function(req, res){
+router.post('/profile', function (req, res) {
+	console.log(req.headers.referer)
 	res.sendFile(path.join(__dirname + "/../public/profile.html")) // html 파일을 보내는 것
 });
 
-router.post('/online', function(req, res){
+router.post('/online', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/online_test_mode.html")) // html 파일을 보내는 것
 });
 
-router.post('/recommend', function(req, res){
+router.post('/recommend', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/recommend_mode.html")) // html 파일을 보내는 것
 });
 
-router.post('/user', function(req, res){
+router.post('/user', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/user_choice.html")) // html 파일을 보내는 것
 });
 
-router.post('/own', function(req, res){
+router.post('/own', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/own_setting.html")) // html 파일을 보내는 것
 });
 
-router.post('/resister', function(req, res){
+router.post('/resister', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/register.html")) // html 파일을 보내는 것
+});
+
+// URL 직접 접근 막기
+router.get('/*.html', function (req, res) {
+	console.log('직접 접근하지 마라 ㅡㅡ')
+	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
+	'<script type="text/javascript">alert("오류발생");</script>'
 });
 
 module.exports = router;
