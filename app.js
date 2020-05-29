@@ -12,8 +12,8 @@ app.listen(port, function(req, res) {
 	console.log("Open I-Tub server!! congratulation");
 });
 
-app.use(index);
-app.use(db);
+router.use(index);
+router.use(db);
 
 app.use('/', index);
 app.use('/profile', index);
@@ -22,9 +22,7 @@ app.use('/own', index);
 app.use('/recommand', index);
 app.use('/online', index);
 app.use('/register', index);
-app.use('/db/reference', db);
-app.use('/db/delete', db);
-app.use('/db/create', db);
+app.use('/db', index);
 
 // 이부분을 middleware 라고 한다.
 app.use(express.static('public'))
