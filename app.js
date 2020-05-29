@@ -22,7 +22,9 @@ app.use('/own', index);
 app.use('/recommand', index);
 app.use('/online', index);
 app.use('/register', index);
-app.use('/db', db);
+app.use('/db/reference', db);
+app.use('/db/delete', db);
+app.use('/db/create', db);
 
 // 이부분을 middleware 라고 한다.
 app.use(express.static('public'))
