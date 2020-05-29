@@ -4,6 +4,7 @@ var path = require('path')
 var router = express.Router();
 var bodyParser = require('body-parser')
 var index = require('./router/index')
+var db = require('./router/db/DBfunc')
 
 port = process.env.PORT || 8000;
 
@@ -18,6 +19,7 @@ app.use('/own', index);
 app.use('/recommand', index);
 app.use('/online', index);
 app.use('/register', index);
+app.use('/db', db);
 
 // 이부분을 middleware 라고 한다.
 app.use(express.static('public'))
