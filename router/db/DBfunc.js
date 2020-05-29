@@ -1,11 +1,10 @@
 var express = require('express')
+var app = express()
 var router = express.Router();
-var bodyParser = require('body-parser')
 var mysql = require('mysql')
 var dbconfig = require('../../config.js')
 
 router.post('/create', function (req, res) {
-
 	var connection = mysql.createConnection(dbconfig);
 
 	console.log('db 접속시도');
@@ -32,12 +31,11 @@ router.post('/create', function (req, res) {
 	})
 });
 
-
 router.post('/reference', function (req, res) {
-
 	var connection = mysql.createConnection(dbconfig);
 
 	console.log('db 접속시도');
+	//var data = req.body.data;
 	var responseData = {};
 	var sql = 'SELECT * FROM u_db';
 
@@ -65,7 +63,6 @@ router.post('/reference', function (req, res) {
 });
 
 router.post('/delete', function (req, res) {
-
 	var connection = mysql.createConnection(dbconfig);
 
 	console.log('db 접속시도');

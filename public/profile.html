@@ -266,7 +266,6 @@
             xhr.setRequestHeader('Content-Type', 'application/json');
             // 서버로 보낼때 json 형태의 데이터를 보내기위해 지정
             xhr.send(data); // 문자열 형태로 넣어줘야함
-            console.log(data + 'xhr send')
 
             xhr.addEventListener('load', function () {
                 var result = JSON.parse(xhr.responseText);
