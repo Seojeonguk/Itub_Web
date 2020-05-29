@@ -9,7 +9,6 @@ app.listen(port, function(req, res) {
 	console.log("Open I-Tub server!! congratulation");
 });
 
-app.use('/db', index);
 app.use('/', index);
 app.use('/profile', index);
 app.use('/user', index);
