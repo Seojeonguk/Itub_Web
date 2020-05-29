@@ -21,6 +21,8 @@ app.use('/online', index);
 app.use('/register', index);
 app.use('/db', db);
 
+app.use(router);
+
 // 이부분을 middleware 라고 한다.
 app.use(express.static('public'))
 app.use(bodyParser.json()) // json의 형태로 받을때
