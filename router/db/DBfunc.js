@@ -1,8 +1,7 @@
 var express = require('express')
-var app = express()
 var router = express.Router();
+var bodyParser = require('body-parser')
 var mysql = require('mysql')
-var path = require('path') // 상대경로 사용하는 모듈
 var dbconfig = require('../../config.js')
 
 router.post('/create', function (req, res) {

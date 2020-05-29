@@ -17,6 +17,7 @@ app.use('/user', index);
 app.use('/own', index);
 app.use('/recommand', index);
 app.use('/online', index);
+app.use('/register', index);
 
 // 이부분을 middleware 라고 한다.
 app.use(express.static('public'))

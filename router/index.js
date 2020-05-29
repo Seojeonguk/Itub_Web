@@ -39,7 +39,7 @@ router.post('/own', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/own_setting.html")) // html 파일을 보내는 것
 });
 
-router.post('/resister', function (req, res) {
+router.post('/register', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/register.html")) // html 파일을 보내는 것
 });
 
