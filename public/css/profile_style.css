@@ -245,7 +245,8 @@ ul {
     height: 30vmax;
 }
 
-#hidden_submit{
+#register_submit,
+#user_submit {
     visibility: hidden;
 }
 
