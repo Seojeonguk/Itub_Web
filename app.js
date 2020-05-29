@@ -4,16 +4,12 @@ var path = require('path')
 var router = express.Router();
 var bodyParser = require('body-parser')
 var index = require('./router/index')
-var db = require('./router/db/DBfunc')
 
 port = process.env.PORT || 8000;
 
 app.listen(port, function(req, res) {
 	console.log("Open I-Tub server!! congratulation");
 });
-
-router.use(index);
-router.use(db);
 
 app.use('/', index);
 app.use('/profile', index);

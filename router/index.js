@@ -3,12 +3,12 @@ var path = require('path');
 var bodyParser = require('body-parser')
 var router = express.Router();
 var db = require('./db/DBfunc');
-var http = require('http');
-
 app = express();
 
 app.use(bodyParser.json()) // json의 형태로 받을때
 app.use(bodyParser.urlencoded({ extended: true })) // 인코딩된 url 형태로 받을때
+
+router.use(db)
 
 // url routing
 router.get('/', function (req, res) {
