@@ -99,6 +99,3 @@ router.post('/delete', function (req, res) {
 		connection.end();
 	})
 });
-
-
-module.exports = router;
