@@ -74,3 +74,59 @@ button {
     width: 100%;
     height: 100%;
 }
+
+/* water */
+.slider-wrapper {
+    display: inline-block;
+    width: 100%;
+}
+
+input[class="water-slider"] {
+    display: inline-block;
+    -webkit-appearance: none;
+    overflow: hidden;
+    transform: rotate(-90deg);
+    margin-top: -50px;
+    /*tlx trx brx blx / tly try bry bly*/
+    /*시계방향으로 tlx 부터
+        1   2
+    5           6           
+    8           7   
+        4   3
+
+    90도회전
+        6   7
+    2           3
+    1           4
+        5   8
+        */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 75px;
+    border-bottom-left-radius: 75px;
+    border-left: 10px solid black;
+    border-top: 20px solid black;
+    border-bottom: 10px solid black;
+}
+
+input[class="water-slider"]:focus {
+    outline: none;
+}
+
+
+/*webkit :: 구글,사파리 브라우저*/
+
+input[class="water-slider"]::-webkit-slider-runnable-track {
+    background: white;
+}
+
+input[class="water-slider"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1px;
+    height: 200px;
+    background: #fff;
+    box-shadow: -100vw 0 0 100vw dodgerblue;
+}
+
+.image_icon {
+    /* position: absolute; */
+}
