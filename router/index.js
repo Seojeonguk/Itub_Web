@@ -1,6 +1,18 @@
 var express = require('express');
 var path = require('path');
+var cookie = require('cookie-parser')
+var bodyParser = require('body-parser')
 var router = express.Router();
+var db = require('./db/DBfunc');
+var http = require('http');
+
+app = express();
+
+app.use(cookie());
+app.use(bodyParser.json()) // json의 형태로 받을때
+app.use(bodyParser.urlencoded({ extended: true })) // 인코딩된 url 형태로 받을때
+
+router.use('/db', db);
 
 // url routing
 router.get('/', function (req, res) {
@@ -9,11 +21,16 @@ router.get('/', function (req, res) {
 });
 
 router.post('/profile', function (req, res) {
-	console.log(req.headers.referer)
 	res.sendFile(path.join(__dirname + "/../public/profile.html")) // html 파일을 보내는 것
 });
 
+router.post('/profile_cookie', function (req, res) {
+	console.log(req.body.cookie_name);
+	res.redirect(307, '/profile');
+});
+
 router.post('/online', function (req, res) {
+	
 	res.sendFile(path.join(__dirname + "/../public/online_test_mode.html")) // html 파일을 보내는 것
 });
 
@@ -42,3 +59,4 @@ router.get('/*.html', function (req, res) {
 module.exports = router;
 
 // 이렇게 index.js가 컨트롤러 역할을 해준다.
+
