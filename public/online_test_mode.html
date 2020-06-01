@@ -5,450 +5,154 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Mode</title>
-    <!-- <link rel="stylesheet" href="./css/online_style copy.css"> -->
+    <link rel="stylesheet" href="./css/online_style.css">
 </head>
 
 <body>
-    <div class='wrap' style='overflow:scroll'>
-        <div>
-            <p><b>오늘의 추천 모드</b></p>
-            <div id='today_mode'></div>
+    <div class='all-wrap'>
+        <div class='row-wrap'>
+            <div class='wrap'>
+                <p><b>나이</b></p>
+                <div id='name' class='box'></div>
+            </div>
+
+            <div class='wrap'>
+                <p><b>성별</b></p>
+                <div id='gender' class='box'></div>
+            </div>
         </div>
+        <div class='row-wrap'>
+            <div class='wrap'>
+                <p><b>직업</b></p>
+                <div id='job' class='box'></div>
+            </div>
+
+            <div class='wrap'>
+                <p><b>온도</b></p>
+                <div id='temp' class='box'></div>
+            </div>
+        </div>
+
+        <div class="t">
+            <div class="t1">
+            </div>
+            <div class="t2">
+                <div class="t3">
+                    <img src="./images/1.jpg" width="100%" height="100%">
+                </div>
+                <div class="t4">
+                    <div class="t5" style="background-color: aquamarine">
+                    </div>
+                    <div class="t5" style="background-color: blue">
+                    </div>
+                    <div class="t5" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <table>
+            <tr>
+                <td colspan="2">1</td>
+            </tr>
+            <tr>
+                <td rowspan="3">
+                    <img src="./images/1.jpg" height="100%" width="100%">
+                </td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>5</td>
+            </tr>
+        </table>
+        
     </div>
     <script type="text/javascript" src="./js/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+    <script type="text/javascript" src="./js/debouncedresize.js"></script>
+    <script type="text/javascript" src="./js/throttledresize.js"></script>
+
     <script>
         google.charts.load('current', {
-            packages: ["orgchart"]
+            'packages': ['corechart']
         });
-        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawVisualization);
 
-        function drawChart() {
-            $.get("shower_test.csv", function(csvString) {
+        var table_data1 = [
+            ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
+            ['2004/05', 165, 938, 522, 998, 450, 614.6],
+            ['2005/06', 135, 1120, 599, 1268, 288, 682],
+            ['2006/07', 157, 1167, 587, 807, 397, 623],
+            ['2007/08', 139, 1110, 615, 968, 215, 609.4],
+            ['2008/09', 136, 691, 629, 1026, 366, 569.6]
+        ]
+
+        var table_option1 = {
+            title: '직업',
+            vAxis: {
+                title: 'Cups'
+            },
+            hAxis: {
+                title: 'Month'
+            },
+            seriesType: 'bars',
+            series: {
+                5: {
+                    type: 'line'
+                }
+            }
+        };
+
+        var div_id = 'name'
+
+        var table_option2 = {
+            title: 'test',
+            vAxis: {
+                title: 's_temp'
+            },
+            hAxis: {
+                title: 's_gender'
+            },
+            seriesType: 'line',
+        };
+
+        function drawVisualization() {
+            // Some raw data (not necessarily accurate)
+
+            var data = google.visualization.arrayToDataTable(table_data1);
+            var options = table_option1
+
+            var chart = new google.visualization.ComboChart(document.getElementById(div_id));
+            chart.draw(data, options);
+
+            $.get("shower.csv", function(csvString) {
                 var arrayData = $.csv.toArrays(csvString, {
-                        onParseValue: $.csv.hooks.castToScalar
-                    })
-                    //배열전체길이 (합산의 평균 구할때 사용)
-                var arraylength = arrayData.length - 1;
+                    onParseValue: $.csv.hooks.castToScalar
+                })
+                console.log(arrayData)
+                var chart = new google.visualization.ComboChart(document.getElementById('gender'));
+                chart.draw(google.visualization.arrayToDataTable(arrayData), table_option2);
+            });
 
-                /*
-                배열공통구성내용
-                [0] :: 시작시간
-                [1] :: 사용시간
-                [2] :: 사용온도
-                [3] :: 입욕제종류
-                */
+            var chart = new google.visualization.ComboChart(document.getElementById('job'));
+            chart.draw(data, options);
 
-                //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡageㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-                //배열생성및 초기화
-                var agearray = new Array(10);
-                var agetemp = new Array(10);
-                var agelength = new Array(10);
-                for (var k = 0; k < 10; k++) {
-                    //각age에 맞는 정보 넣기
-                    agearray[k] = new Array(4);
-                    agearray[k][0] = agearray[k][1] = agearray[k][2] = agearray[k][3] = 0;
-                    //agetemp :: 온도카운팅
-                    agetemp[k] = new Array(3);
-                    agetemp[k][0] = agetemp[k][1] = agetemp[k][2] = 0;
-                    agelength[k] = 0;
-                }
-
-                //나이에 따른 값저장
-                for (var k = 1; k < arrayData.length; k++) {
-                    //나이에따라 1~9 index구분 : [ 자신의나이/10의 ] 값
-                    //age_data는 해당 record의 age값의 index 찾아가는 값
-                    var age_data = parseInt(arrayData[k][2] / 10);
-                    //insert되는 age수 카운팅
-                    agelength[age_data] += 1;
-                    //온도사용정보 카운팅
-                    if (arrayData[k][3] == "시원함") {
-                        agetemp[age_data][0] += 1;
-                    } else if (arrayData[k][3] == "미지근함") {
-                        agetemp[age_data][1] += 1;
-                    } else if (arrayData[k][3] == "따뜻함") {
-                        agetemp[age_data][2] += 1;
-                    }
-                    //맞는 index에 시작시간 합
-                    agearray[age_data][0] += arrayData[k][4];
-                    //맞는 index에 사용시간 합
-                    agearray[age_data][1] += arrayData[k][5];
-                }
-                //평균및 합산
-                for (var k = 1; k < 10; k++) {
-                    var ageindex = -1;
-                    var agevalue = 0;
-                    for (var i = 0; i < 3; i++) {
-                        if (agetemp[k][i] > agevalue) {
-                            ageindex = i;
-                            agevalue = agetemp[k][i];
-                        }
-                    }
-                    if (ageindex == 0) {
-                        agearray[k][2] = "시원함";
-                    } else if (ageindex == 1) {
-                        agearray[k][2] = "미지근함";
-                    } else if (ageindex == 2) {
-                        agearray[k][2] = "따뜻함";
-                    } else {
-                        agearray[k][2] = "온도없음";
-                    }
-                    agearray[k][0] = parseInt(agearray[k][0] / agelength[k]);
-                    agearray[k][1] = parseInt(agearray[k][1] / agelength[k]);
-                }
-                // console.log(agearray)
-                //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡageㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-                //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡgenderㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-                //배열생성및 초기화
-                var genderarray = new Array(2);
-                var gendertemp = new Array(2);
-                var genderlength = new Array(2);
-                for (var k = 0; k < 2; k++) {
-                    genderarray[k] = new Array(4);
-                    genderarray[k][0] = genderarray[k][1] = genderarray[k][2] = genderarray[k][3] = 0
-                    gendertemp[k] = new Array(3);
-                    gendertemp[k][0] = gendertemp[k][1] = gendertemp[k][2] = 0
-                    genderlength[k] = 0;
-                }
-                //성별에 따른 값저장
-                for (var k = 1; k < arrayData.length; k++) {
-                    //성별에따라 index조정
-                    var genderindex = -1;
-                    if (arrayData[k][1] == "남") {
-                        genderindex = 1;
-                    } else if (arrayData[k][1] == "여") {
-                        genderindex = 0;
-                    }
-                    genderlength[genderindex] += 1;
-                    if (genderindex == -1) continue;
-
-                    //온도사용정보 카운팅
-                    if (arrayData[k][3] == "시원함") {
-                        gendertemp[genderindex][0] += 1;
-                    } else if (arrayData[k][3] == "미지근함") {
-                        gendertemp[genderindex][1] += 1;
-                    } else if (arrayData[k][3] == "따뜻함") {
-                        gendertemp[genderindex][2] += 1;
-                    }
-                    //맞는 index에 시작시간 합
-                    genderarray[genderindex][0] += arrayData[k][4];
-                    //맞는 index에 사용시간 합
-                    genderarray[genderindex][1] += arrayData[k][5];
-                }
-                // console.log(genderlength)
-                //평균및 합산
-                for (var k = 0; k < 2; k++) {
-                    var genderindex = -1;
-                    var gendervalue = 0;
-                    for (var i = 0; i < 3; i++) {
-                        if (gendertemp[k][i] > gendervalue) {
-                            genderindex = i;
-                            gendervalue = gendertemp[k][i];
-                        }
-                    }
-                    if (genderindex == 0) {
-                        genderarray[k][2] = "시원함";
-                    } else if (genderindex == 1) {
-                        genderarray[k][2] = "미지근함";
-                    } else if (genderindex == 2) {
-                        genderarray[k][2] = "따뜻함";
-                    } else {
-                        genderarray[k][2] = "온도없음";
-                    }
-                    genderarray[k][0] = parseInt(genderarray[k][0] / genderlength[k]);
-                    genderarray[k][1] = parseInt(genderarray[k][1] / genderlength[k]);
-                }
-                // console.log(genderarray);
-                //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡgenderㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-
-                //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡjobㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-                //배열생성및 초기화
-                var jobarray = new Array(2);
-                var jobtemp = new Array(2);
-                var joblength = new Array(14);
-                for (var k = 0; k < 14; k++) {
-                    jobarray[k] = new Array(4);
-                    jobarray[k][0] = jobarray[k][1] = jobarray[k][2] = jobarray[k][3] = 0
-                    jobtemp[k] = new Array(3);
-                    jobtemp[k][0] = jobtemp[k][1] = jobtemp[k][2] = 0
-                    joblength[k] = 0;
-                }
-                //직업에 따른 값저장
-                for (var k = 1; k < arrayData.length; k++) {
-                    //직업에따라 index조정
-                    var jobindex = -1;
-                    if (arrayData[k][8] == "무직") jobindex = 0;
-                    else if (arrayData[k][8] == "학생") jobindex = 1;
-                    else if (arrayData[k][8] == "군인") jobindex = 2;
-                    else if (arrayData[k][8] == "주부") jobindex = 3;
-                    else if (arrayData[k][8] == "자영업자") jobindex = 4;
-                    else if (arrayData[k][8] == "농업") jobindex = 5;
-                    else if (arrayData[k][8] == "서비스업") jobindex = 6;
-                    else if (arrayData[k][8] == "회사원") jobindex = 7;
-                    else if (arrayData[k][8] == "공무원") jobindex = 8;
-                    else if (arrayData[k][8] == "건설업") jobindex = 9;
-                    else if (arrayData[k][8] == "연구원") jobindex = 10;
-                    else if (arrayData[k][8] == "간호사") jobindex = 11;
-                    else if (arrayData[k][8] == "회계사") jobindex = 12;
-                    else if (arrayData[k][8] == "한의사") jobindex = 13;
-                    // else if (arrayData[k][8] == "") jobindex = 14;
-                    joblength[jobindex] += 1;
-                    if (jobindex == -1) continue;
-
-                    //온도사용정보 카운팅
-                    if (arrayData[k][3] == "시원함") {
-                        jobtemp[jobindex][0] += 1;
-                    } else if (arrayData[k][3] == "미지근함") {
-                        jobtemp[jobindex][1] += 1;
-                    } else if (arrayData[k][3] == "따뜻함") {
-                        jobtemp[jobindex][2] += 1;
-                    }
-                    //맞는 index에 시작시간 합
-                    jobarray[jobindex][0] += arrayData[k][4];
-                    //맞는 index에 사용시간 합
-                    jobarray[jobindex][1] += arrayData[k][5];
-                }
-
-                //평균및 합산
-                for (var k = 0; k < 14; k++) {
-                    var jobindex = -1;
-                    var jobvalue = 0;
-                    for (var i = 0; i < 3; i++) {
-                        if (jobtemp[k][i] > jobvalue) {
-                            jobindex = i;
-                            jobvalue = jobtemp[k][i];
-                        }
-                    }
-                    if (jobindex == 0) {
-                        jobarray[k][2] = "시원함";
-                    } else if (jobindex == 1) {
-                        jobarray[k][2] = "미지근함";
-                    } else if (jobindex == 2) {
-                        jobarray[k][2] = "따뜻함";
-                    } else {
-                        jobarray[k][2] = "온도없음";
-                    }
-                    jobarray[k][0] = parseInt(jobarray[k][0] / joblength[k]);
-                    jobarray[k][1] = parseInt(jobarray[k][1] / joblength[k]);
-                }
-                // console.log(jobarray);
-                //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡjobㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-                //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡweatherㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-                var weatherarray = new Array(2);
-                var weathertemp = new Array(2);
-                var weatherlength = new Array(9);
-                for (var k = 0; k < 9; k++) {
-                    weatherarray[k] = new Array(4);
-                    weatherarray[k][0] = weatherarray[k][1] = weatherarray[k][2] = weatherarray[k][3] = 0
-                    weathertemp[k] = new Array(3);
-                    weathertemp[k][0] = weathertemp[k][1] = weathertemp[k][2] = 0
-                    weatherlength[k] = 0;
-                }
-                //온도에 따른 값저장
-                for (var k = 1; k < arrayData.length; k++) {
-                    //온도에따라 index조정
-                    var weatherindex = -1;
-
-                    var weatherindex = parseInt(parseInt(arrayData[k][9]) / 5);
-                    weatherlength[weatherindex] += 1;
-                    if (weatherindex == -1) continue;
-
-                    //온도사용정보 카운팅
-                    if (arrayData[k][3] == "시원함") {
-                        weathertemp[weatherindex][0] += 1;
-                    } else if (arrayData[k][3] == "미지근함") {
-                        weathertemp[weatherindex][1] += 1;
-                    } else if (arrayData[k][3] == "따뜻함") {
-                        weathertemp[weatherindex][2] += 1;
-                    }
-                    //맞는 index에 시작시간 합
-                    weatherarray[weatherindex][0] += arrayData[k][4];
-                    //맞는 index에 사용시간 합
-                    weatherarray[weatherindex][1] += arrayData[k][5];
-                }
-
-                //평균및 합산
-                for (var k = 0; k < 9; k++) {
-                    var weatherindex = -1;
-                    var weathervalue = 0;
-                    for (var i = 0; i < 3; i++) {
-                        if (weathertemp[k][i] > weathervalue) {
-                            weatherindex = i;
-                            weathervalue = weathertemp[k][i];
-                        }
-                    }
-                    if (weatherindex == 0) {
-                        weatherarray[k][2] = "시원함";
-                    } else if (weatherindex == 1) {
-                        weatherarray[k][2] = "미지근함";
-                    } else if (weatherindex == 2) {
-                        weatherarray[k][2] = "따뜻함";
-                    } else {
-                        weatherarray[k][2] = "온도없음";
-                    }
-                    weatherarray[k][0] = parseInt(weatherarray[k][0] / weatherlength[k]);
-                    weatherarray[k][1] = parseInt(weatherarray[k][1] / weatherlength[k]);
-                }
-                // console.log(weatherarray);
-                //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡweatherㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-                //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡorgchartㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-                var todaydata = new google.visualization.DataTable();
-                todaydata.addColumn('string', 'Name');
-                todaydata.addColumn('string', 'Manager');
-                todaydata.addColumn('string', 'ToolTip');
-
-                // For each orgchart box, provide the name, manager, and tooltip to show.
-                todaydata.addRows([
-                    [{
-                            'v': 'today',
-                            'f': 'today'
-                        },
-                        '', 'The President'
-                    ],
-                    [{
-                            'v': 'age',
-                            'f': 'age'
-                        },
-                        'today', 'VP'
-                    ],
-                    [{
-                            'v': 'gender',
-                            'f': 'gender'
-                        },
-                        'today', 'VP'
-                    ],
-                    [{
-                            'v': 'job',
-                            'f': 'job'
-                        },
-                        'today', 'VP'
-                    ],
-                    [{
-                            'v': 'weather',
-                            'f': 'weather'
-                        },
-                        'today', 'VP'
-                    ],
-
-                    ['age', 'today', ''],
-                    ['gender', 'today', ''],
-                    ['남', 'gender', ''],
-                    ['여', 'gender', '']
-                ]);
-                //age구성
-                for (var i = 1; i < 10; i++) {
-                    /*agearray
-                    agearray[4]
-                    */
-                    todaydata.addRows([
-                        [(i * 10).toString() + '대', 'age', ''],
-                        ['<p>나이</p><div>' + agearray[i][0] +
-                            '</div><div>' + agearray[i][1] + '</div>' +
-                            '</div><div>' + agearray[i][2] + '</div>' +
-                            '</div><div>' + agearray[i][3] + '</div>', (i * 10).toString() + '대', ''
-                        ]
-                    ])
-                }
-                //gender구성
-                for (var i = 0; i < 2; i++) {
-                    todaydata.addRows([
-                        ['<p>남자</p><div>' + genderarray[i][0] +
-                            '</div><div>' + genderarray[i][1] + '</div>' +
-                            '</div><div>' + genderarray[i][2] + '</div>' +
-                            '</div><div>' + genderarray[i][3] + '</div>', '남', ''
-                        ],
-                        ['<p>여자</p><div>' + genderarray[i][0] +
-                            '</div><div>' + genderarray[i][1] + '</div>' +
-                            '</div><div>' + genderarray[i][2] + '</div>' +
-                            '</div><div>' + genderarray[i][3] + '</div>', '여', ''
-                        ]
-                    ])
-                }
-                console.log(jobarray)
-                    //job구성
-                for (var i = 0; i < 14; i++) {
-                    var myjob = "";
-                    switch (i) {
-                        case 0:
-                            myjob = "무직";
-                            break;
-                        case 1:
-                            myjob = "학생";
-                            break;
-                        case 2:
-                            myjob = "군인";
-                            break;
-                        case 3:
-                            myjob = "주부";
-                            break;
-                        case 4:
-                            myjob = "자영업자";
-                            break;
-                        case 5:
-                            myjob = "농업";
-                            break;
-                        case 6:
-                            myjob = "서비스업";
-                            break;
-                        case 7:
-                            myjob = "회사원";
-                            break;
-                        case 8:
-                            myjob = "공무원";
-                            break;
-                        case 9:
-                            myjob = "건설업";
-                            break;
-                        case 10:
-                            myjob = "연구원";
-                            break;
-                        case 11:
-                            myjob = "간호사";
-                            break;
-                        case 12:
-                            myjob = "회계사";
-                            break;
-                        case 13:
-                            myjob = "한의사";
-                            break;
-                    }
-                    console.log(myjob)
-                    todaydata.addRows([
-                        ['<p>' + myjob + '</p><div>' + jobarray[i][0] +
-                            '</div><div>' + jobarray[i][1] + '</div>' +
-                            '</div><div>' + jobarray[i][2] + '</div>' +
-                            '</div><div>' + jobarray[i][3] + '</div>', 'job', ''
-                        ]
-                    ])
-                }
-                //weather구성
-                for (var i = 0; i < 9; i++) {
-                    todaydata.addRows([
-                        ['<p>' + i * 5 + '℃</p><div>' + weatherarray[i][0] +
-                            '</div><div>' + weatherarray[i][1] + '</div>' +
-                            '</div><div>' + weatherarray[i][2] + '</div>' +
-                            '</div><div>' + weatherarray[i][3] + '</div>', 'weather', ''
-                        ]
-                    ])
-                }
-                //drawchart option
-                var options = {
-                    'allowHtml': true,
-                    // nodeClass: 'myNodeClass',
-                    // selectedNodeClass: 'mySelectedNodeClass'
-                }
-
-                var chart = new google.visualization.OrgChart(document.getElementById('today_mode'));
-                chart.draw(todaydata, options);
-            })
+            var chart = new google.visualization.ComboChart(document.getElementById('temp'));
+            chart.draw(data, options);
         }
+
+        $(function() {
+            $(window).bind("debouncedresize", function() {
+                drawVisualization();
+            });
+        });
     </script>
 </body>
 
