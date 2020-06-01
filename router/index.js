@@ -1,14 +1,14 @@
 var express = require('express');
 var path = require('path');
-var cookie = require('cookie-parser')
-var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var router = express.Router();
 var db = require('./db/DBfunc');
-var http = require('http');
+var querystring = require('querystring');
 
 app = express();
 
-app.use(cookie());
+app.use(cookieParser());
 app.use(bodyParser.json()) // json의 형태로 받을때
 app.use(bodyParser.urlencoded({ extended: true })) // 인코딩된 url 형태로 받을때
 
@@ -25,8 +25,11 @@ router.post('/profile', function (req, res) {
 });
 
 router.post('/profile_cookie', function (req, res) {
-	console.log(req.body.cookie_name);
-	res.redirect(307, '/profile');
+	res.cookie('cookie_name', req.body.cookie_name);
+	res.cookie('cookie_age', req.body.cookie_age);
+	res.cookie('cookie_gender', req.body.cookie_gender);
+	res.cookie('cookie_job', req.body.cookie_job);
+	res.redirect(307, '/user');
 });
 
 router.post('/online', function (req, res) {

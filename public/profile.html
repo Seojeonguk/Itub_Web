@@ -20,8 +20,11 @@
         </form>
 
         <form action="/profile_cookie" method="POST">
-            <input type='text' id='cookie_name' name='cookie_name'>
-            <input type="submit" id='profile_cookie'>
+            <input type='hidden' id='cookie_name' name='cookie_name' value=''>
+            <input type='hidden' id='cookie_gender' name='cookie_gender' value=''>
+            <input type='hidden' id='cookie_age' name='cookie_age' value=''>
+            <input type='hidden' id='cookie_job' name='cookie_job' value=''>
+            <input type="submit" id='cookie_submit'>
         </form>
 
         <button onclick=del_div() class="btn">
@@ -141,16 +144,14 @@
                                         text: "확인",
                                         //클릭이벤트발생시 동작
                                         click: function () {
-                                            var profile_cookie2 = {
-                                                'name': document.getElementById('label_name').innerHTML,
-                                                'age': document.getElementById('label_age').innerHTML,
-                                                'job': document.getElementById('label_job').innerHTML,
-                                                'gender': document.getElementById('label_gender').innerHTML
-                                            };
-
-                                            document.getElementById('select_submit').click();
+                                            document.getElementById('cookie_name').value = document.getElementById('label_name').innerText;
+                                            document.getElementById('cookie_age').value = document.getElementById('label_age').innerText;
+                                            document.getElementById('cookie_gender').value = document.getElementById('label_gender').innerText;
+                                            document.getElementById('cookie_job').value = document.getElementById('label_job').innerText;
+                                            document.getElementById('cookie_submit').click();
                                         }
                                     },
+
                                     {
                                         //버튼텍스트
                                         text: "취소",
