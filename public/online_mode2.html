@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Organization Chart Plugin</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="./css/online_mode_style.css">
+
+</head>
+
+<body>
+    <ul>
+        <li><button style="margin: 10px;" id="btn-chart1">Age</button></li>
+        <li><button style="margin: 10px;" id="btn-chart2">Gender</button></li>
+        <li><button style="margin: 10px;" id="btn-chart3">Job</button></li>
+        <li><button style="margin: 10px;" id="btn-chart4">Weather</button></li>
+    </ul>
+
+    <div id="chart-container"></div>
+    
+    <label id = "label-test">
+    </label>
+
+    <script type="text/javascript" src="./js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="./js/orgchart.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            // 각 타이틀
+            var age_title = ['청소년', '중장년', '노년'];
+            var gender_title = ['남자', '여자'];
+            var Job_title = ['군인', '무직', '학생', '회사원', '연구원'];
+            var weather_title = ['5~10도', '10~15도', '15~20도', '20~25도', '25~30도','30~35도','35~40도'];
+
+            function take_data(idx) {
+                // idx : 1(나이), 2(성별), 3(직업), 4(날씨)
+                var $this = $(".node");
+                $('.node').data('node', $this);
+
+                var str_size = 0;
+                if (idx == 1) str_size = age_title.length;
+                else if (idx == 2) str_size = gender_title.length;
+                else if (idx == 3) str_size = Job_title.length;
+                else str_size = weather_title.length;
+
+                for (var i = 0; i < str_size; i++) {
+                    var avgstart = '16시'; // 평균 시작 시간
+                    var avgtime = '10분'; // 평균 걸린시간
+                    var bath_bomb = '사용'; // 입욕제 여부 
+                    var temp = '미지근함';
+                    var nodeVals = [];
+                    var real_idx = i < 2 ? 1 - i : i;
+                    if (idx == 1) nodeVals.push(age_title[real_idx]);
+                    else if (idx == 2) nodeVals.push(gender_title[real_idx]);
+                    else if (idx == 3) nodeVals.push(Job_title[real_idx]);
+                    else nodeVals.push(weather_title[real_idx]);
+
+                    var imagepic = ""; // 이미지 출력 클래스
+                    if (i * 10 <= 20) imagepic = 'boypic';
+                    else if (i * 10 <= 60) imagepic = 'fapic';
+                    else imagepic = 'granfapic';
+                    var code = '<table class="t" id="t">\
+                        <colgroup>\
+                            <col style="width:50%">\
+                            <col style="width:50%">\
+                        </colgroup>\
+                        <tr>\
+                            <td rowspan="10" class="imagine ' + imagepic + '">\
+                            </td>\
+                        </tr>\
+                        <tr>\
+                            <td>평균시작시간</td>\
+                        </tr>\
+                        <tr>\
+                            <td class="lb">' + avgstart + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td>평균걸린시간</td>\
+                        </tr>\
+                        <tr>\
+                            <td class="lb">' + avgtime + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td>평균온도</td>\
+                        </tr>\
+                        <tr>\
+                            <td class="lb">' + temp + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td>입욕제여부</td>\
+                        </tr>\
+                        <tr>\
+                            <td class="lb">' + bath_bomb + '</td>\
+                        </tr>\
+                    </table>';
+
+                    var $node = $('.node').data('node');
+                    var hasChild = $node.parent().attr('colspan') > 0 ? true : false;
+                    console.log(i * 10, hasChild);
+
+                    if (!hasChild) {
+
+                        var rel = nodeVals.length > 1 ? '110' : '100';
+                        oc.addChildren($node, nodeVals.map(function(item) {
+                            return {
+                                'name': item,
+                                'relationship': '110',
+                                'id': getId(),
+                                'title': code
+                            };
+                        }));
+                    } else {
+                        console.log($node.closest('tr').siblings('.nodes').find('.node:first'));
+                        oc.addSiblings($node.closest('tr').siblings('.nodes').find('.node:first'), nodeVals.map(function(item) {
+                            return {
+                                'name': item,
+                                'relationship': '110',
+                                'id': getId(),
+                                'title': code
+                            };
+                        }));
+                    }
+                }
+            }
+
+            var getId = function() { //node ID 구하기
+                return (new Date().getTime()) * 1000 + Math.floor(Math.random() * 1001);
+            };
+
+            // 초기화면 데이터
+            var datasource = {
+                'name': 'Age',
+                'title': ''
+            };
+
+            var oc = $('#chart-container').orgchart({
+                'data': datasource,
+                'nodeContent': 'title',
+                'chartClass': 'edit-state',
+                'exportFilename': 'SportsChart',
+                'createNode': function($node, data) {
+                    var secondMenuIcon = $('<i>', {
+                        'class': 'oci oci-info-circle second-menu-icon',
+                        click: function() {
+                            $(this).siblings('.second-menu').toggle();
+                        }
+                    });
+                    var secondMenu = '<div class="second-menu"><img class="avatar" src="./images/' + 'boy' + '.png"></div>';
+                    $node.append(secondMenuIcon).append(secondMenu);
+                }
+            });
+
+            take_data(1);
+
+            var box = document.getElementsByClassName("content");
+            box[0].style.height = 0;
+
+            $('#btn-chart1').on('click', function(argument) {
+                oc.init({
+                    'data': datasource
+                });
+                var box = document.getElementsByClassName("content");
+                box[0].style.height = 0;
+                take_data(1);
+            });
+
+            $('#btn-chart2').on('click', function(argument) {
+                var data = {
+                    'name': 'Gender'
+                };
+                oc.init({
+                    'data': data
+                });
+                var box = document.getElementsByClassName("content");
+                box[0].style.height = 0;
+
+                take_data(2);
+
+            });
+
+            $('#btn-chart3').on('click', function(argument) {
+                var data = {
+                    'name': 'Job'
+                };
+                oc.init({
+                    'data': data
+                });
+                var box = document.getElementsByClassName("content");
+                box[0].style.height = 0;
+
+                take_data(3);
+            });
+
+            $('#btn-chart4').on('click', function(argument) {
+                var data = {
+                    'name': 'Weather'
+                };
+                oc.init({
+                    'data': data
+                });
+                var box = document.getElementsByClassName("content");
+                box[0].style.height = 0;
+
+                take_data(4);
+            });
+        });
+    </script>
+</body>
+
+</html>
