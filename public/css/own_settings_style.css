@@ -1,9 +1,3 @@
-html,
-body {
-    -webkit-overflow-scrolling: touch;
-    overflow: scroll;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -90,6 +84,7 @@ button {
 }
 
 input[class="water-slider"] {
+    overflow: scroll;
     display: inline-block;
     -webkit-appearance: none;
     overflow: hidden;
@@ -135,6 +130,6 @@ input[class="water-slider"]::-webkit-slider-thumb {
     box-shadow: -100vw 0 0 100vw dodgerblue;
 }
 
-.image_icon {
+input[class="water-slider"]::-webkit-scrollbar .image_icon {
     /* position: absolute; */
 }
