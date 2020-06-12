@@ -1,3 +1,9 @@
+html,
+body {
+    -webkit-overflow-scrolling: touch;
+    overflow: scroll;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -75,7 +81,9 @@ button {
     height: 100%;
 }
 
+
 /* water */
+
 .slider-wrapper {
     display: inline-block;
     width: 100%;
