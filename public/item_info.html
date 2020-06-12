@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Information</title>
+    <link rel="stylesheet" href="./css/item_info_style.css">
+</head>
+
+<body>
+    <div class="all-wrap">
+        <div id="left-column-wrap">
+            <div id="water-section" class="section">
+                <div class="water-title">
+                    <span class="title">수위 <span id="water-value">70</span></span>
+                </div>
+                    <div>
+                        <div class="image_icon">
+                            <img src="./images/faucet.png" width='45px' height='45px'>
+                        </div>
+                        <div class="slider-wrapper">
+                            <input type="range" class="water-slider" min="0" max="100" value="70" step="1">
+                        </div>
+                    </div>
+            </div>
+            <div id="bathing_section" class="section">
+                <span class="title">입욕제</span>
+                <p id="bathing-value">장미향 입욕제</p>
+            </div>
+            <div class="section">
+                <span class="title">온도</span>
+                <p id="temperature-value">30<span>&degC</span><p>
+            </div>
+            <div id="timeSection" class="section">
+                <span class="title">타이머<span id="time_value"></span></span>
+                <p id="time-value">30분</p>
+            </div>
+            <button onclick="window.history.go(-2)">취소</button>
+        </div>
+        <div id="right-column-wrap">
+            <iframe id="youtube-player" src="https://www.youtube.com/embed/ptB-lZKZuAs?autoplay=1&loop=1"></iframe>
+        </div>
+        
+            
+    </div>
+    <script>
+        var slider = document.querySelector('.water-slider');
+        slider.disabled = true;
+
+        var getCookie = function(name) {
+            var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return value? value[2] : null;
+        };
+        
+        var water = decodeURI(getCookie('cookie_water'));
+        var bathing = decodeURI(getCookie('cookie_bathing'));
+        var temperature = decodeURI(getCookie('cookie_temperature'));
+        var time = decodeURI(getCookie('cookie_time'));
+
+        var waterSlider = document.querySelector('.water-slider');
+        waterSlider.value = water;
+
+        var waterFiled = document.querySelector('#water-value');
+        waterFiled.innerText = water;
+
+        var bathingFiled = document.querySelector('#bathing-value');
+        bathingFiled.innerText = bathing;
+
+        var temperatureFiled = document.querySelector('#temperature-value')
+        temperatureFiled.innerHTML = temperature + '<span>&degC</span>';
+
+        var timeFiled = document.querySelector('#time-value');
+        if(time != '설정 안함') {
+            time += '분'
+        }
+        timeFiled.innerHTML = time ;
+    </script>
+</body>
+
+</html>

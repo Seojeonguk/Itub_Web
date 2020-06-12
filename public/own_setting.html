@@ -59,10 +59,52 @@
                 </div>
             </div>
         </div>
-        <button type="submit">저장</button>
+        <button id="save-btn">저장</button>
+
     </div>
 
     <script>
+        var water = null;
+        var bathing = null;
+        var temperature = null;
+        var time = null;
+        //쿠키 설정
+        saveBtn = document.querySelector('#save-btn')
+        saveBtn.addEventListener('click', function(e) {
+            if(water != null && bathing != null && temperature != null && time != null) {
+                var form = document.createElement('form');
+                form.setAttribute('method', 'POST');
+                form.setAttribute('action', '/item_cookie' );
+        
+                var waterFiled = document.createElement('input')
+                waterFiled.setAttribute('type', 'hidden');
+                waterFiled.setAttribute('name', 'water');
+                waterFiled.setAttribute('value', water);
+                form.appendChild(waterFiled);
+
+                var bathingFiled = document.createElement('input');
+                bathingFiled.setAttribute('type', 'hidden');
+                bathingFiled.setAttribute('name', 'bathing');
+                bathingFiled.setAttribute('value', bathing);
+                form.appendChild(bathingFiled);
+
+                var temperatrueFiled = document.createElement('input');
+                temperatrueFiled.setAttribute('type', 'hidden');
+                temperatrueFiled.setAttribute('name', 'temperature');
+                temperatrueFiled.setAttribute('value', temperature);
+                form.appendChild(temperatrueFiled);
+
+                var timeFiled = document.createElement('input');
+                timeFiled.setAttribute('type', 'hidden');
+                timeFiled.setAttribute('name', 'time');
+                timeFiled.setAttribute('value', time);
+                form.appendChild(timeFiled);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+        })
+
         // 입욕제 항목들 생성 부분.
         var parent = document.querySelector(".list");
         for (var i = 0; i < 100; i++) {
@@ -78,19 +120,20 @@
 
             var span = document.createElement("span");
             span.className = 'bathing_item_text';
-            span.appendChild(document.createTextNode('입욕제' + (i + 1)));
+            span.appendChild(document.createTextNode(' 입욕제' + (i + 1)));
 
             label.appendChild(span);
             div.appendChild(label);
             parent.appendChild(div);
         }
 
-
+        
         //입욕제 리스트에서 아이템 클릭시 상단 타이틀에 선택한 입욕제가 출력되게 해주는 부분
         var bathingItemList = document.querySelectorAll(".bathing_item label");
         for (var i = 0; i < bathingItemList.length; i++) {
             bathingItemList[i].addEventListener("click", (e) => {
                 document.querySelector("#bathing_text").innerHTML = e.target.value;
+                bathing = e.target.value;
             })
         }
 
@@ -99,11 +142,13 @@
         for (var i = 0; i < timeList.length; i++) {
             timeList[i].addEventListener("click", (e) => {
                 var text = e.target.value;
+                //
+                time = e.target.value;
                 console.log(e.target.value);
                 if (text !== '설정 안함') {
                     text += "분"
                 }
-                document.querySelector("#timer_text").innerHTML = text;
+                document.querySelector("#timer_text").innerHTML = ' ' + text;
             })
         }
 
@@ -111,11 +156,15 @@
         var tempvalue = document.querySelector("#range_text"); // 온도 설정의 온도 표시 텍스트.
         temprange.addEventListener("input", (e) => {
             tempvalue.innerHTML = e.target.value; // range의 현재 값을 읽어와 온도 표시 텍스트에 저장.
+            //
+            temperature = e.target.value;
         }, false)
         var waterrange = document.querySelector(".water-slider");
         var watervalue = document.querySelector("#water-title");
         waterrange.addEventListener("input", (e) => {
             watervalue.innerHTML = e.target.value;
+            //
+            water = e.target.value
         }, false)
     </script>
 
