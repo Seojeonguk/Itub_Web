@@ -18,48 +18,69 @@
     </ul>
 
     <div id="chart-container"></div>
-    
-    <label id = "label-test">
+
+    <label id="label-test">
     </label>
 
     <script type="text/javascript" src="./js/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="./js/orgchart.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
     <script type="text/javascript">
         $(function() {
             // 각 타이틀
-            var age_title = ['청소년', '중장년', '노년'];
-            var gender_title = ['남자', '여자'];
-            var Job_title = ['군인', '무직', '학생', '회사원', '연구원'];
-            var weather_title = ['5~10도', '10~15도', '15~20도', '20~25도', '25~30도','30~35도','35~40도'];
+            var title = [['청소년','중장년','노년'],['남자','여자'],[],['5~10도', '10~15도', '15~20도', '20~25도', '25~30도', '30~35도', '35~40도']];
 
-            function take_data(idx) {
-                // idx : 1(나이), 2(성별), 3(직업), 4(날씨)
-                var $this = $(".node");
-                $('.node').data('node', $this);
+            function csvreading(idx) {
+                $.get("survey_data.csv", function(csvString) { // 페이지 로딩 이후 실행됨
+                    var csvdata = $.csv.toArrays(csvString, {
+                        onParseValue: $.csv.hooks.castToScalar
+                    }); // csv 파일을 array로 저장
 
-                var str_size = 0;
-                if (idx == 1) str_size = age_title.length;
-                else if (idx == 2) str_size = gender_title.length;
-                else if (idx == 3) str_size = Job_title.length;
-                else str_size = weather_title.length;
+                    
+                    var arraylength = csvdata.length; // 저장된 csv 파일의 데이터 길이
+                    for(var i=1;i<arraylength;i++) {
+                        title[2].push(csvdata[i][8]);
+                        
+                    }
+                    // 중복된 직업이름 제거
+                    title[2] = title[2].filter((item,index)=>title[2].indexOf(item)==index);
+                    
+                    var str_size = title[idx].length; // 타이틀 크기
+                    
+                    // 각 타이틀에 들어갈 내용 저장할 배열
+                    var text_data = new Array(str_size);
+                    for(var i=0 ;i<str_size;i++) {
+                        text_data[i] = new Array(4);
+                    }
+                    
+                    // 컬럼 전부 돌면서 전체 데이터 계산
+                    for(var i=1;i<arraylength;i++) {
+                        
+                    }
+                    
 
-                for (var i = 0; i < str_size; i++) {
-                    var avgstart = '16시'; // 평균 시작 시간
-                    var avgtime = '10분'; // 평균 걸린시간
-                    var bath_bomb = '사용'; // 입욕제 여부 
-                    var temp = '미지근함';
-                    var nodeVals = [];
-                    var real_idx = i < 2 ? 1 - i : i;
-                    if (idx == 1) nodeVals.push(age_title[real_idx]);
-                    else if (idx == 2) nodeVals.push(gender_title[real_idx]);
-                    else if (idx == 3) nodeVals.push(Job_title[real_idx]);
-                    else nodeVals.push(weather_title[real_idx]);
+                    
+                    console.log(csvdata[0],csvdata[1]);
 
-                    var imagepic = ""; // 이미지 출력 클래스
-                    if (i * 10 <= 20) imagepic = 'boypic';
-                    else if (i * 10 <= 60) imagepic = 'fapic';
-                    else imagepic = 'granfapic';
-                    var code = '<table class="t" id="t">\
+                    // org차트 수정
+                    var $this = $(".node");
+                    $('.node').data('node', $this);
+
+                    // 선택된 메뉴의 각 타이틀 만큼 반복
+                    for (var i = 0; i < str_size; i++) {
+                        var avgstart = '15시'; // 평균 시작 시간
+                        var avgtime = '10분'; // 평균 걸린시간
+                        var bath_bomb = '사용'; // 입욕제 여부 
+                        var temp = '미지근함';
+                        var nodeVals = [];
+                        var real_idx = i < 2 ? 1 - i : i;
+                        nodeVals.push(title[idx][real_idx]);
+
+                        var imagepic = ""; // 이미지 출력 클래스
+                        if (i * 10 <= 20) imagepic = 'boypic';
+                        else if (i * 10 <= 60) imagepic = 'fapic';
+                        else imagepic = 'granfapic';
+                        var code = '<table class="t" id="t">\
                         <colgroup>\
                             <col style="width:50%">\
                             <col style="width:50%">\
@@ -94,34 +115,33 @@
                         </tr>\
                     </table>';
 
-                    var $node = $('.node').data('node');
-                    var hasChild = $node.parent().attr('colspan') > 0 ? true : false;
-                    console.log(i * 10, hasChild);
+                        var $node = $('.node').data('node');
+                        var hasChild = $node.parent().attr('colspan') > 0 ? true : false;
 
-                    if (!hasChild) {
+                        if (!hasChild) {
 
-                        var rel = nodeVals.length > 1 ? '110' : '100';
-                        oc.addChildren($node, nodeVals.map(function(item) {
-                            return {
-                                'name': item,
-                                'relationship': '110',
-                                'id': getId(),
-                                'title': code
-                            };
-                        }));
-                    } else {
-                        console.log($node.closest('tr').siblings('.nodes').find('.node:first'));
-                        oc.addSiblings($node.closest('tr').siblings('.nodes').find('.node:first'), nodeVals.map(function(item) {
-                            return {
-                                'name': item,
-                                'relationship': '110',
-                                'id': getId(),
-                                'title': code
-                            };
-                        }));
+                            var rel = nodeVals.length > 1 ? '110' : '100';
+                            oc.addChildren($node, nodeVals.map(function(item) {
+                                return {
+                                    'name': item,
+                                    'relationship': '110',
+                                    'id': getId(),
+                                    'title': code
+                                };
+                            }));
+                        } else {
+                            oc.addSiblings($node.closest('tr').siblings('.nodes').find('.node:first'), nodeVals.map(function(item) {
+                                return {
+                                    'name': item,
+                                    'relationship': '110',
+                                    'id': getId(),
+                                    'title': code
+                                };
+                            }));
+                        }
                     }
-                }
-            }
+                })
+            };
 
             var getId = function() { //node ID 구하기
                 return (new Date().getTime()) * 1000 + Math.floor(Math.random() * 1001);
@@ -150,7 +170,7 @@
                 }
             });
 
-            take_data(1);
+            csvreading(0);
 
             var box = document.getElementsByClassName("content");
             box[0].style.height = 0;
@@ -161,7 +181,7 @@
                 });
                 var box = document.getElementsByClassName("content");
                 box[0].style.height = 0;
-                take_data(1);
+                csvreading(0);
             });
 
             $('#btn-chart2').on('click', function(argument) {
@@ -174,7 +194,7 @@
                 var box = document.getElementsByClassName("content");
                 box[0].style.height = 0;
 
-                take_data(2);
+                csvreading(1);
 
             });
 
@@ -188,7 +208,7 @@
                 var box = document.getElementsByClassName("content");
                 box[0].style.height = 0;
 
-                take_data(3);
+                csvreading(2);
             });
 
             $('#btn-chart4').on('click', function(argument) {
@@ -201,7 +221,7 @@
                 var box = document.getElementsByClassName("content");
                 box[0].style.height = 0;
 
-                take_data(4);
+                csvreading(3);
             });
         });
     </script>
