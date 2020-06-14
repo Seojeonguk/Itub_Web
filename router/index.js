@@ -45,7 +45,6 @@ router.post('/item', function(req, res) {
 })
 
 router.post('/online', function (req, res) {
-    console.log("여기");
     res.sendFile(path.join(__dirname+"/../public/online_mode.html"))
 });
 
@@ -54,6 +53,7 @@ router.post('/online_mode', function (req, res) {
 	res.cookie('cookie_avg_during', req.body.avg_during);
 	res.cookie('cookie_avg_temp', req.body.avg_temp);
 	res.cookie('cookie_avg_bath', req.body.avg_bath);
+    res.redirect(307,'/item');
 });
 
 router.post('/recommend', function (req, res) {
