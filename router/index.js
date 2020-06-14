@@ -45,6 +45,7 @@ router.post('/item', function(req, res) {
 })
 
 router.post('/online', function (req, res) {
+    console.log("여기");
     res.sendFile(path.join(__dirname+"/../public/online_mode.html"))
 });
 
