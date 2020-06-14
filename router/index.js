@@ -37,7 +37,7 @@ router.post('/item_cookie', function(req, res) {
 	res.cookie('cookie_bathing', req.body.bathing);
 	res.cookie('cookie_temperature', req.body.temperature);
 	res.cookie('cookie_time', req.body.time);
-	res.redirect(307, '/item')
+	res.redirect(307, '/item');
 })
 
 router.post('/item', function(req, res) {
@@ -45,8 +45,14 @@ router.post('/item', function(req, res) {
 })
 
 router.post('/online', function (req, res) {
-	
-	res.sendFile(path.join(__dirname + "/../public/online_test_mode.html")) // html 파일을 보내는 것
+    res.sendFile(path.join(__dirname+"/../public/online_mode.html"))
+});
+
+router.post('/online_mode', function (req, res) {
+    res.cookie('cookie_avg_start', req.body.avg_start);
+	res.cookie('cookie_avg_during', req.body.avg_during);
+	res.cookie('cookie_avg_temp', req.body.avg_temp);
+	res.cookie('cookie_avg_bath', req.body.avg_bath);
 });
 
 router.post('/recommend', function (req, res) {
