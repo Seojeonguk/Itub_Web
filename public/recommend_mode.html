@@ -1,37 +1,126 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>User Chioce</title>
-        <link rel="stylesheet" href = "./css/recommed_style.css">
-    </head>
-    <body>
-        <div class="wrap">
-                <div class="list">
-                </div>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Chioce</title>
+    <link rel="stylesheet" href="./css/recommed_style.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="list">
         </div>
+    </div>
 
-        <script>
-            var title_name = new Array('입욕제 없는 따뜻한 물', '자몽, 오렌지, 레몬의 새콤달콤한 과일 향기', '크리미한 바닐라와 이국적인 꽃향기', '신선하고 포근한 라벤더 꽃향기', '감정이 파도처럼 밀려오는 날', '로맨스 영화 속 주인공처럼', '새벽녘, 그 감성속으로', '감성이 필요한 당신을 위한 선물', '꾸리꾸리 비오는 날엔', '생각이 많은 요즘')
-            var parent = document.querySelector(".list");
-            for(let i = 0; i < 10; i++) {
-                var button = document.createElement('button');
-                button.className='btn';
-                button.onclick= function(){
-                    alert('구현중');
-                }
-                
-                var span = document.createElement('span');
-                var p = document.createElement('p');
-                
-                p.appendChild(document.createTextNode(title_name[i]));
-                
+    <script>
+        var a = '',
+            b = '',
+            c = '',
+            d = '';
 
-                span.appendChild(p);
-                button.appendChild(span);
-                parent.appendChild(button);
+        var title_name = new Array('입욕제 없는 따뜻한 물', '자몽, 오렌지, 레몬의 새콤달콤한 과일 향기', '크리미한 바닐라와 이국적인 꽃향기', '신선하고 포근한 라벤더 꽃향기', '감정이 파도처럼 밀려오는 날', '로맨스 영화 속 주인공처럼', '새벽녘, 그 감성속으로', '감성이 필요한 당신을 위한 선물', '꾸리꾸리 비오는 날엔', '생각이 많은 요즘')
+        var title_set = new Array(title_name.length);
+        for (var i = 0; i < title_name.length; i++)
+            title_set[i] = new Array(4);
+        //입욕제 없는 따뜻한 물
+        title_set[0][0] = 80;
+        title_set[0][1] = 5;
+        title_set[0][2] = 43;
+        title_set[0][3] = "없음";
+        //자몽, 오렌지, 레몬의 새콤달콤한 과일 향기
+        title_set[1][0] = 80;
+        title_set[1][1] = 30;
+        title_set[1][2] = 38;
+        title_set[1][3] = "귤";
+        //크리미한 바닐라와 이국적인 꽃향기
+        title_set[2][0] = 80;
+        title_set[2][1] = 30;
+        title_set[2][2] = 38;
+        title_set[2][3] = "바닐라";
+        //신선하고 포근한 라벤더 꽃향기
+        title_set[3][0] = 80;
+        title_set[3][1] = 20;
+        title_set[3][2] = 38;
+        title_set[3][3] = "라벤더";
+        //감정이 파도처럼 밀려오는 날
+        title_set[4][0] = 80;
+        title_set[4][1] = 20;
+        title_set[4][2] = 38;
+        title_set[4][3] = "레몬";
+        //로맨스 영화 속 주인공처럼
+        title_set[5][0] = 80;
+        title_set[5][1] = 30;
+        title_set[5][2] = 38;
+        title_set[5][3] = "자스민";
+        //새벽녘, 그 감성속으로
+        title_set[6][0] = 80;
+        title_set[6][1] = 30;
+        title_set[6][2] = 38;
+        title_set[6][3] = "로즈제라늄";
+        //감성이 필요한 당신을 위한 선물
+        title_set[7][0] = 80;
+        title_set[7][1] = 30;
+        title_set[7][2] = 30;
+        title_set[7][3] = "로즈마리";
+        //꾸리꾸리 비오는 날엔
+        title_set[8][0] = 80;
+        title_set[8][1] = 25;
+        title_set[8][2] = 38;
+        title_set[8][3] = "블루마린";
+        //생각이 많은 요즘
+        title_set[9][0] = 80;
+        title_set[9][1] = 30;
+        title_set[9][2] = 36;
+        title_set[9][3] = "일랑일랑";
+
+        var parent = document.querySelector(".list");
+        for (let i = 0; i < title_name.length; i++) {
+            var button = document.createElement('button');
+            button.className = 'btn';
+            button.onclick = function() {
+                var form = document.createElement('form');
+                form.setAttribute('method', 'POST');
+                form.setAttribute('action', '/item_cookie');
+
+                var a_Field = document.createElement('input');
+                a_Field.setAttribute('type', 'hidden');
+                a_Field.setAttribute('name', 'water');
+                a_Field.setAttribute('value', title_set[i][0]);
+                form.appendChild(a_Field);
+
+                var b_Field = document.createElement('input');
+                b_Field.setAttribute('type', 'hidden');
+                b_Field.setAttribute('name', 'temperature');
+                b_Field.setAttribute('value', title_set[i][1]);
+                form.appendChild(b_Field);
+
+                var c_Field = document.createElement('input');
+                c_Field.setAttribute('type', 'hidden');
+                c_Field.setAttribute('name', 'time');
+                c_Field.setAttribute('value', title_set[i][2]);
+                form.appendChild(c_Field);
+
+                var d_Field = document.createElement('input');
+                d_Field.setAttribute('type', 'hidden');
+                d_Field.setAttribute('name', 'bathing');
+                d_Field.setAttribute('value', title_set[i][3]);
+                form.appendChild(d_Field);
+
+                //alert(title_set[i][0] + ' ' + title_set[i][1] + ' ' + title_set[i][2] + ' ' + title_set[i][3]);
+                document.body.appendChild(form);
+                form.submit();
             }
-        </script>
-    </body>
+
+            var span = document.createElement('span');
+            var p = document.createElement('p');
+            p.appendChild(document.createTextNode(title_name[i]));
+            span.appendChild(p);
+            button.appendChild(span);
+            parent.appendChild(button);
+        }
+    </script>
+</body>
+
 </html>
