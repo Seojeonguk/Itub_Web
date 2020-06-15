@@ -14,6 +14,7 @@
         <li><button style="margin: 10px;" id="btn-chart2">Gender</button></li>
         <li><button style="margin: 10px;" id="btn-chart3">Job</button></li>
         <li><button style="margin: 10px;" id="btn-chart4">Weather</button></li>
+        <li><button style="margin: 10px;" id="btn-chart5">recommeded for you</button></li>
     </ul>
 
     <div id="chart-container"></div>
@@ -176,7 +177,7 @@
                             <td><b>평균시작시간</b></td>\
                         </tr>\
                         <tr>\
-                            <td class="lb">' + (text_data[real_idx][0] == 0 ? '데이터없음 ' : (text_data[real_idx][0] / text_data[real_idx][4]).toFixed(2)) + (text_data[real_idx][0] == 0 ? ' ' : '시') + '</td>\
+                            <td class="lb">' + (text_data[real_idx][0] == 0 ? '데이터없음 ' : (text_data[real_idx][0] / text_data[real_idx][4]).toFixed(0)) + (text_data[real_idx][0] == 0 ? ' ' : '시') + '</td>\
                         </tr>\
                         <tr>\
                             <td><b>평균걸린시간</td>\
@@ -305,6 +306,8 @@
                 box[0].style.height = 0;
 
                 csvreading(3);
+            });
+            $('#btn-chart5').on('click', function(argument) {
             });
         });
     </script>
