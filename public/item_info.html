@@ -75,6 +75,44 @@
             time += '분'
         }
         timeFiled.innerHTML = time ;
+
+        var getCookie = function(name) {
+            var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return value? value[2] : null;
+        };
+
+        sendData = decodeURI(getCookie('cookie_name')) + ' / ' + decodeURI(getCookie('cookie_age')) + ' / ' + decodeURI(getCookie('cookie_gender')) + ' / ' + decodeURI(getCookie('cookie_job')) + water + bathing + temperature + time;
+
+        var webSocket = new WebSocket("ws://localhost:9998");
+
+        var messageTextArea = '신호 보낸다.'
+
+        // 소켓 접속이 되면 호출되는 함수
+        webSocket.onopen = function (message) {
+            messageTextArea.value += "Server connect...\n";
+        };
+        // 소켓 접속이 끝나면 호출되는 함수
+        webSocket.onclose = function (message) {
+            messageTextArea.value += "Server Disconnect...\n";
+        };
+        // 소켓 통신 중에 에러가 발생되면 호출되는 함수
+        webSocket.onerror = function (message) {
+            messageTextArea.value += "error...\n";
+        };
+        // 소켓 서버로 부터 메시지가 오면 호출되는 함수.
+        webSocket.onmessage = function (message) {
+            // 출력 area에 메시지를 표시한다.
+            messageTextArea.value += "Recieve From Server => " + message.data + "\n";
+        };
+
+        function sendMessage() {
+            webSocket.send(sendData);
+        }
+        function disconnect() {
+            webSocket.close();
+        }
+
+        sendMessage();
     </script>
 </body>
 
