@@ -102,10 +102,11 @@
 
                 document.body.appendChild(form);
 
-                sendData = decodeURI(getCookie('cookie_name')) + ' / ' + decodeURI(getCookie('cookie_age')) + ' / ' + decodeURI(getCookie('cookie_gender')) + ' / ' + decodeURI(getCookie('cookie_job')) + '/' + water + '/' + bathing + '/' + temperature + '/' + time;
+                sendData = 'user_data/' + decodeURI(getCookie('cookie_name')) + '/' + decodeURI(getCookie('cookie_age')) + '/' + decodeURI(getCookie('cookie_gender')) + '/' + decodeURI(getCookie('cookie_job')) + '/' + water + '/' + bathing + '/' + temperature + '/' + time;
 
                 sendMessage();
                 form.submit();
+                
             }
         })
 
