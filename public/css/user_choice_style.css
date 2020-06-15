@@ -1,44 +1,36 @@
 html,
 body{
     width: 98%;
-    height: 93%;
     margin: auto;
-    padding-top: 5vh;
 }
 
-.wrap {
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
     margin: auto;
-    display: flex;
-    width: 70%;
-    height: 80%;
 }
 
 img {
-    height: 100%;
+    height: 70%;
     width: 100%;
 }
 
-.lidiv {
-    height: 103%;
-    width: 100%;
-}
-
-.col-wrap{
-    height: 100%;
-    width: 100%;
-    margin-left: 2vw;
-}
-
-.col-wrap .col-div {
-    height: 50%;
-}
-
-.col-div + .col-div {
-    margin-top: 2vh;
-}
 
 #own_submit,
 #recommend_submit,
 #online_submit{
     visibility: hidden;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    width: 30%;
+    height: 96vh;
+    margin: 4%;
 }
