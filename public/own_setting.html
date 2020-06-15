@@ -107,7 +107,8 @@
 
         // 입욕제 항목들 생성 부분.
         var parent = document.querySelector(".list");
-        for (var i = 0; i < 100; i++) {
+        for (var i = 0; i < 9; i++) {
+            var bathbomb = new Array('귤', '바닐라', '라벤더', '레몬', '자스민', '로즈제라늄', '로즈마리', '블루마린', '일랑일랑')
             var div = document.createElement('div');
             div.className = 'bathing_item'
 
@@ -115,12 +116,12 @@
             var input = document.createElement("input");
             input.type = 'radio';
             input.name = 'bathing_agent';
-            input.value = '입욕제' + (i + 1);
+            input.value = bathbomb[i];
             label.appendChild(input);
 
             var span = document.createElement("span");
             span.className = 'bathing_item_text';
-            span.appendChild(document.createTextNode(' 입욕제' + (i + 1)));
+            span.appendChild(document.createTextNode(bathbomb[i]));
 
             label.appendChild(span);
             div.appendChild(label);
