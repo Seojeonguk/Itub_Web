@@ -803,44 +803,56 @@
             $(event.delegateTarget).addClass('focused');
             var node_click_text = (this.$chart.find('.focused')[0].innerText).split('\n');
             
-            var avg_start = node_click_text[3];
-            var avg_during = node_click_text[5];
-            var avg_temp = node_click_text[7];
-            var avg_bath = node_click_text[9];
+            var water;
+            var age = document.cookie.match('(^|;) ?' + 'cookie_age' + '=([^;]*)(;|$)')[2];
+            if(age<16) water = Math.floor(Math.random()*10+50);
+            else water = Math.floor(Math.random()*20+70);
             
+            var bathing_night = ['일랑일랑','라벤더'];
+            var bathing_night_else = ['레몬','오렌지'];
+            var now_time = new Date().getHours();
+            var bathing;
+            if(now_time > 22 || now_time < 5) bathing = bathing_night[Math.floor(Math.random()*bathing_night.length)];
+            else bathing = bathing_night_else[Math.floor(Math.random()*bathing_night_else.length)];
+        
+            var temp;
+            if(node_click_text[7] == '시원함') temp = Math.floor(Math.random()*3+25);
+            else if(node_click_text[7] == '미지근함') temp = Math.floor(Math.random()*6+30);
+            else temp = Math.floor(Math.random() * 8+37);
             
+            var time = Math.floor(Math.random()*5+20);
             
             var form = document.createElement('form');
             form.setAttribute('method', 'POST');
-            form.setAttribute('action', '/online_mode' );
+            form.setAttribute('action', '/item_cookie' );
         
-            var avg_start_filed = document.createElement('input')
+            
+            var water_filed = document.createElement('input')
             avg_start_filed.setAttribute('type', 'hidden');
             avg_start_filed.setAttribute('name', 'water');
-            avg_start_filed.setAttribute('value', avg_start);
-            form.appendChild(avg_start_filed);
+            avg_start_filed.setAttribute('value', water);
+            form.appendChild(water_filed);
 
-            var avg_during_filed = document.createElement('input');
+            var bathing_filed = document.createElement('input');
             avg_during_filed.setAttribute('type', 'hidden');
             avg_during_filed.setAttribute('name', 'bathing');
-            avg_during_filed.setAttribute('value', avg_during);
-            form.appendChild(avg_during_filed);
+            avg_during_filed.setAttribute('value', bathing);
+            form.appendChild(bathing_filed);
 
-            var avg_temp_filed = document.createElement('input');
+            var temp_filed = document.createElement('input');
             avg_temp_filed.setAttribute('type', 'hidden');
             avg_temp_filed.setAttribute('name', 'temperature');
-            avg_temp_filed.setAttribute('value', avg_temp);
-            form.appendChild(avg_temp_filed);
+            avg_temp_filed.setAttribute('value', temp);
+            form.appendChild(temp_filed);
 
-            var avg_bath_filed = document.createElement('input');
+            var time_filed = document.createElement('input');
             avg_bath_filed.setAttribute('type', 'hidden');
             avg_bath_filed.setAttribute('name', 'time');
-            avg_bath_filed.setAttribute('value', avg_bath);
-            form.appendChild(avg_bath_filed);
+            avg_bath_filed.setAttribute('value', time);
+            form.appendChild(time_filed);
 
             document.body.appendChild(form);
             form.submit();
-            
         },
         // load new nodes by ajax
         loadNodes: function (rel, url, $edge) {
