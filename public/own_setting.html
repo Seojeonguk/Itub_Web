@@ -33,7 +33,7 @@
             <div class="column-wrap">
                 <div id="timeSection" class="section">
                     <span class="title">타이머<span id="timer_text"></span></span>
-                    <input name="time" id="r0" type="radio" value="설정 안함">
+                    <input name="time" id="r0" type="radio" value="설정 안함" checked="checked">
                     <label for="r0">설 정 안 함</label>
                     <input name="time" id="r1" type="radio" value="10">
                     <label for="r1">10분</label>
@@ -52,9 +52,9 @@
                     <label for="r6">60분</label>
                 </div>
                 <div class="section">
-                    <span class="title">온도<span id="range_text">30</span>&degC</span>
+                    <span class="title">온도<span id="range_text">36</span>&degC</span>
 
-                    0<input name="temperature" id="range_slider" type="range" min="0" max="40" value="30">40
+                    0<input name="temperature" id="range_slider" type="range" min="0" max="40" value="36">40
                     <p>슬라이더를 조절하여 온도를 설정할 수 있습니다.</p>
                 </div>
             </div>
@@ -71,7 +71,6 @@
         //쿠키 설정
         saveBtn = document.querySelector('#save-btn')
         saveBtn.addEventListener('click', function(e) {
-            if(bathing != null && temperature != null && time != null) {
                 var form = document.createElement('form');
                 form.setAttribute('method', 'POST');
                 form.setAttribute('action', '/item_cookie' );
@@ -106,14 +105,12 @@
 
                 sendMessage();
                 form.submit();
-                
-            }
         })
 
         // 입욕제 항목들 생성 부분.
         var parent = document.querySelector(".list");
         for (var i = 0; i < 9; i++) {
-            var bathbomb = new Array('귤', '바닐라', '라벤더', '레몬', '자스민', '로즈제라늄', '로즈마리', '블루마린', '일랑일랑')
+            var bathbomb = new Array('없음','귤', '바닐라', '라벤더', '레몬', '자스민', '로즈제라늄', '로즈마리', '블루마린');
             var div = document.createElement('div');
             div.className = 'bathing_item'
 
@@ -122,6 +119,7 @@
             input.type = 'radio';
             input.name = 'bathing_agent';
             input.value = bathbomb[i];
+            if(i==0) input.checked='checked';
             label.appendChild(input);
 
             var span = document.createElement("span");
