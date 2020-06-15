@@ -33,6 +33,7 @@
                 [],
                 ['5~10도', '10~15도', '15~20도', '20~25도', '25~30도', '30~35도', '35~40도']
             ];
+            var bathbomb = new Array('사용안함', '귤', '바닐라', '라벤더', '레몬', '자스민', '로즈제라늄', '로즈마리', '블루마린', '일랑일랑');
 
             function csvreading(idx) {
                 $.get("survey_data.csv", function(csvString) { // 페이지 로딩 이후 실행됨
@@ -136,6 +137,7 @@
                             if (csvdata[i][7] == "유") text_data[title_idx][3] += 2;
                             else if (csvdata[i][7] == "무") text_data[title_idx][3] += 1;
 
+                            
                         }
                     }
                     // org차트 수정
@@ -192,7 +194,7 @@
                             <td><b>입욕제여부</td>\
                         </tr>\
                         <tr>\
-                            <td class="lb">' + (text_data[real_idx][3] == 0 ? '데이터없음' : ((((text_data[real_idx][3] / text_data[real_idx][4]).toFixed(2)) - 1) * 100).toFixed(0)) + (text_data[real_idx][3] == 0 ? ' ' : '%') + '</td>\
+                            <td class="lb">' + (text_data[real_idx][3] == 0 ? '데이터없음' : ((text_data[real_idx][3] / text_data[real_idx][4])==1 ? bathbomb[0] : bathbomb[Math.floor(Math.random()*10+1)])) + '</td>\
                         </tr>\
                     </table>';
 
