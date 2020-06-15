@@ -71,7 +71,7 @@
         //쿠키 설정
         saveBtn = document.querySelector('#save-btn')
         saveBtn.addEventListener('click', function(e) {
-            if(water != null && bathing != null && temperature != null && time != null) {
+            if(bathing != null && temperature != null && time != null) {
                 var form = document.createElement('form');
                 form.setAttribute('method', 'POST');
                 form.setAttribute('action', '/item_cookie' );
@@ -101,13 +101,18 @@
                 form.appendChild(timeFiled);
 
                 document.body.appendChild(form);
+
+                sendData = decodeURI(getCookie('cookie_name')) + ' / ' + decodeURI(getCookie('cookie_age')) + ' / ' + decodeURI(getCookie('cookie_gender')) + ' / ' + decodeURI(getCookie('cookie_job')) + '/' + water + '/' + bathing + '/' + temperature + '/' + time;
+
+                sendMessage();
                 form.submit();
             }
         })
 
         // 입욕제 항목들 생성 부분.
         var parent = document.querySelector(".list");
-        for (var i = 0; i < 100; i++) {
+        for (var i = 0; i < 9; i++) {
+            var bathbomb = new Array('귤', '바닐라', '라벤더', '레몬', '자스민', '로즈제라늄', '로즈마리', '블루마린', '일랑일랑')
             var div = document.createElement('div');
             div.className = 'bathing_item'
 
@@ -115,12 +120,12 @@
             var input = document.createElement("input");
             input.type = 'radio';
             input.name = 'bathing_agent';
-            input.value = '입욕제' + (i + 1);
+            input.value = bathbomb[i];
             label.appendChild(input);
 
             var span = document.createElement("span");
             span.className = 'bathing_item_text';
-            span.appendChild(document.createTextNode(' 입욕제' + (i + 1)));
+            span.appendChild(document.createTextNode(bathbomb[i]));
 
             label.appendChild(span);
             div.appendChild(label);
@@ -166,8 +171,43 @@
             //
             water = e.target.value
         }, false)
-    </script>
 
+        var getCookie = function(name) {
+            var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return value? value[2] : null;
+        };
+
+        sendData = '';
+        
+        var webSocket = new WebSocket("ws://localhost:9998");
+
+        var messageTextArea = '신호 보낸다.'
+
+        // 소켓 접속이 되면 호출되는 함수
+        webSocket.onopen = function (message) {
+            messageTextArea.value += "Server connect...\n";
+        };
+        // 소켓 접속이 끝나면 호출되는 함수
+        webSocket.onclose = function (message) {
+            messageTextArea.value += "Server Disconnect...\n";
+        };
+        // 소켓 통신 중에 에러가 발생되면 호출되는 함수
+        webSocket.onerror = function (message) {
+            messageTextArea.value += "error...\n";
+        };
+        // 소켓 서버로 부터 메시지가 오면 호출되는 함수.
+        webSocket.onmessage = function (message) {
+            // 출력 area에 메시지를 표시한다.
+            messageTextArea.value += "Recieve From Server => " + message.data + "\n";
+        };
+
+        function sendMessage() {
+            webSocket.send(sendData);
+        }
+        function disconnect() {
+            webSocket.close();
+        }
+    </script>
 </body>
 
 </html>

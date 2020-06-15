@@ -22,6 +22,7 @@ app.use('/user', index);
 app.use('/own', index);
 app.use('/recommand', index);
 app.use('/online', index);
+app.use('/item', index);
 app.use('/register', index);
 app.use('/profile_cookie', index);
 
