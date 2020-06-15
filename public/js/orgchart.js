@@ -828,27 +828,27 @@
         
             
             var water_filed = document.createElement('input')
-            avg_start_filed.setAttribute('type', 'hidden');
-            avg_start_filed.setAttribute('name', 'water');
-            avg_start_filed.setAttribute('value', water);
+            water_filed.setAttribute('type', 'hidden');
+            water_filed.setAttribute('name', 'water');
+            water_filed.setAttribute('value', water);
             form.appendChild(water_filed);
 
             var bathing_filed = document.createElement('input');
-            avg_during_filed.setAttribute('type', 'hidden');
-            avg_during_filed.setAttribute('name', 'bathing');
-            avg_during_filed.setAttribute('value', bathing);
+            bathing_filed.setAttribute('type', 'hidden');
+            bathing_filed.setAttribute('name', 'bathing');
+            bathing_filed.setAttribute('value', bathing);
             form.appendChild(bathing_filed);
 
             var temp_filed = document.createElement('input');
-            avg_temp_filed.setAttribute('type', 'hidden');
-            avg_temp_filed.setAttribute('name', 'temperature');
-            avg_temp_filed.setAttribute('value', temp);
+            temp_filed.setAttribute('type', 'hidden');
+            temp_filed.setAttribute('name', 'temperature');
+            temp_filed.setAttribute('value', temp);
             form.appendChild(temp_filed);
 
             var time_filed = document.createElement('input');
-            avg_bath_filed.setAttribute('type', 'hidden');
-            avg_bath_filed.setAttribute('name', 'time');
-            avg_bath_filed.setAttribute('value', time);
+            time_filed.setAttribute('type', 'hidden');
+            time_filed.setAttribute('name', 'time');
+            time_filed.setAttribute('value', time);
             form.appendChild(time_filed);
 
             document.body.appendChild(form);
