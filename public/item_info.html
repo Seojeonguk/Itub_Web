@@ -81,8 +81,8 @@
             return value? value[2] : null;
         };
 
-        sendData = decodeURI(getCookie('cookie_name')) + ' / ' + decodeURI(getCookie('cookie_age')) + ' / ' + decodeURI(getCookie('cookie_gender')) + ' / ' + decodeURI(getCookie('cookie_job')) + water + bathing + temperature + time;
-
+        sendData = '';
+        
         var webSocket = new WebSocket("ws://localhost:9998");
 
         var messageTextArea = '신호 보낸다.'
@@ -112,6 +112,7 @@
             webSocket.close();
         }
 
+        sendData = decodeURI(getCookie('cookie_name')) + ' / ' + decodeURI(getCookie('cookie_age')) + ' / ' + decodeURI(getCookie('cookie_gender')) + ' / ' + decodeURI(getCookie('cookie_job')) + '/' + water + '/' + bathing + '/' + temperature + '/' + time;
         sendMessage();
     </script>
 </body>
