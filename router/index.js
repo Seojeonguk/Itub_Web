@@ -48,14 +48,6 @@ router.post('/online', function (req, res) {
     res.sendFile(path.join(__dirname+"/../public/online_mode.html"))
 });
 
-router.post('/online_mode', function (req, res) {
-    res.cookie('cookie_avg_start', req.body.avg_start);
-	res.cookie('cookie_avg_during', req.body.avg_during);
-	res.cookie('cookie_avg_temp', req.body.avg_temp);
-	res.cookie('cookie_avg_bath', req.body.avg_bath);
-    res.redirect(307,'/item');
-});
-
 router.post('/recommend', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/recommend_mode.html")) // html 파일을 보내는 것
 });
