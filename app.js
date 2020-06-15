@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({extended:true})) // 인코딩된 url 형태로 �
 
 app.use('/db', db)
 app.use('/', index);
+app.use('/py', index);
 app.use('/profile', index);
 app.use('/user', index);
 app.use('/own', index);
@@ -27,4 +28,3 @@ app.use('/register', index);
 app.use('/profile_cookie', index);
 
 app.set('view engine', 'ejs') // view engine으로 ejs를 사용한다는 의미
-

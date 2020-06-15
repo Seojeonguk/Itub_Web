@@ -20,6 +20,11 @@ router.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
+router.post('/py', function (req, res) {
+	console.log('파이썬에서 잘왔다')
+	return res.json({success:true, msg:"good"});
+});
+
 router.post('/profile', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/profile.html")) // html 파일을 보내는 것
 });
