@@ -52,7 +52,6 @@
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return value? value[2] : null;
         };
-        
         var water = decodeURI(getCookie('cookie_water'));
         var bathing = decodeURI(getCookie('cookie_bathing'));
         var temperature = decodeURI(getCookie('cookie_temperature'));
