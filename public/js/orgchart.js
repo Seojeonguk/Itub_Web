@@ -808,12 +808,7 @@
             if(age<16) water = Math.floor(Math.random()*10+50);
             else water = Math.floor(Math.random()*20+70);
             
-            var bathing_night = ['일랑일랑','라벤더'];
-            var bathing_night_else = ['레몬','오렌지'];
-            var now_time = new Date().getHours();
-            var bathing;
-            if(now_time > 22 || now_time < 5) bathing = bathing_night[Math.floor(Math.random()*bathing_night.length)];
-            else bathing = bathing_night_else[Math.floor(Math.random()*bathing_night_else.length)];
+            var bathing = node_click_text[9];
         
             var temp;
             if(node_click_text[7] == '시원함') temp = Math.floor(Math.random()*3+25);
