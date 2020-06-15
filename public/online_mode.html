@@ -18,6 +18,7 @@
     </ul>
 
     <div id="chart-container"></div>
+    <div id="rfy">hi </div>
 
     <label id="label-test">
     </label>
@@ -42,6 +43,10 @@
                         onParseValue: $.csv.hooks.castToScalar
                     }); // csv 파일을 array로 저장
 
+                    var container = document.getElementById("chart-container");
+                    var rfy = document.getElementById("rfy");
+                    container.style.display="block";
+                    rfy.style.display="none";
 
                     var arraylength = csvdata.length; // 저장된 csv 파일의 데이터 길이
                     for (var i = 1; i < arraylength; i++) {
@@ -296,6 +301,7 @@
             });
 
             $('#btn-chart4').on('click', function(argument) {
+                
                 var data = {
                     'name': 'Weather'
                 };
@@ -308,6 +314,11 @@
                 csvreading(3);
             });
             $('#btn-chart5').on('click', function(argument) {
+                var container = document.getElementById("chart-container");
+                var rfy = document.getElementById("rfy");
+                container.style.display="none";
+                rfy.style.display="block";
+                
             });
         });
     </script>
