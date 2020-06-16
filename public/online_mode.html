@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <ul>
+    <ul id = "menu">
         <li><button style="margin: 10px;" id="btn-chart1">Age</button></li>
         <li><button style="margin: 10px;" id="btn-chart2">Gender</button></li>
         <li><button style="margin: 10px;" id="btn-chart3">Job</button></li>
@@ -39,6 +39,8 @@
 
             function csvreading(idx) {
                 $.get("survey_data.csv", function(csvString) { // 페이지 로딩 이후 실행됨
+                    var menu = document.getElementById("menu");
+                menu.style.display="none";
                     var csvdata = $.csv.toArrays(csvString, {
                         onParseValue: $.csv.hooks.castToScalar
                     }); // csv 파일을 array로 저장
@@ -229,6 +231,7 @@
                             }));
                         }
                     }
+                    menu.style.display="block";
                 })
             };
 
