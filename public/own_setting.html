@@ -180,6 +180,8 @@
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return value? value[2] : null;
         };
+        
+        // 수평 바 움직일경우 수직 바도 같이 움직임
         var h_to_v = function() {
             var h = $('#water-slider-alfl');
             h.on('input',function() {
@@ -188,6 +190,8 @@
                 watervalue.innerHTML=v[0].value;
             })
         }
+        
+        // 수직 바 움직일 경우 수평 바도 같이 움직임
         var v_to_h = function() {
             var v = $('.water-slider');
             v.on('input',function() {
@@ -195,6 +199,8 @@
                 h[0].value = v[0].value;
             })
         }
+        
+        // 밑에 두개가 있어야 드래그 하면서 실시간으로 값이 바뀜
         h_to_v();
         v_to_h();
     </script>
