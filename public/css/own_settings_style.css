@@ -40,6 +40,11 @@
     margin-bottom: 1%;
 }
 
+#timeSection {
+    height: 100%;
+    display: block;
+}
+
 #bathing_section {
     height: 100%;
     width: 100%;
@@ -61,6 +66,7 @@
     height: 40px;
     width: 229px;
     border: 1px solid gray;
+    min-width: 107px;
 }
 
 .bathing_item label {
@@ -71,10 +77,9 @@ button {
     font-size: 1.5rem;
     display: block;
     background-color: lightgray;
-    width: 100%;
     height: 100%;
+    width: 100%;
 }
-
 
 /* water */
 
@@ -132,4 +137,24 @@ input[class="water-slider"]::-webkit-slider-thumb {
 
 input[class="water-slider"]::-webkit-scrollbar .image_icon {
     /* position: absolute; */
+}
+
+@media (max-width: 1700px) {
+    .bathing_item{
+        width: 40%;
+        margin-left: 3%;
+        
+    }
+}
+
+@media(max-width: 810px) {
+    .bathing_item{
+        font-size: 0.8rem;
+    }
+}
+
+@media(max-width: 670px) {
+    .bathing_item {
+        width: 100%;
+    }
 }
