@@ -135,7 +135,7 @@
         var bathingItemList = document.querySelectorAll(".bathing_item label");
         for (var i = 0; i < bathingItemList.length; i++) {
             bathingItemList[i].addEventListener("click", (e) => {
-                document.querySelector("#bathing_text").innerHTML = e.target.value;
+                document.querySelector("#bathing_text").innerHTML = ' ' + e.target.value;
                 bathing = e.target.value;
             })
         }
