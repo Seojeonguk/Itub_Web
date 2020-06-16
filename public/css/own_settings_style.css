@@ -108,11 +108,11 @@ input[class="water-slider"] {
     1           4
         5   8
         */
-    border-top-right-radius: 10px;
-    border-top-left-radius: 75px;
-    border-bottom-left-radius: 75px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     border-left: 10px solid black;
-    border-top: 20px solid black;
+    border-top: 10px solid black;
     border-bottom: 10px solid black;
 }
 
@@ -128,9 +128,10 @@ input[class="water-slider"]::-webkit-slider-runnable-track {
 }
 
 input[class="water-slider"]::-webkit-slider-thumb {
+    overflow-y: hidden;
     -webkit-appearance: none;
     width: 1px;
-    height: 200px;
+    height: 15rem;
     background: #fff;
     box-shadow: -100vw 0 0 100vw dodgerblue;
 }
