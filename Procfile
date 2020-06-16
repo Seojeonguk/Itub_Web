@@ -1,1 +1,1 @@
-web: gunicorn mysite.wsgi --log-file -
+web: node app.js --log-file -
