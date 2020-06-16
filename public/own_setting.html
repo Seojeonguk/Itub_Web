@@ -19,7 +19,9 @@
                     <img src="./images/faucet.png" width='45px' height='45px'>
                 </div>
                 <div class="slider-wrapper">
-                    <input type="range" class="water-slider" min="0" max="100" value="70" step="1">
+                    <input type="range" class="water-slider" min="0" max="100" value="70" step="1"/>
+                    <br>
+                    <input type="range" id="water-slider-alfl" min="0" max="100" value="70" step="1"/>
                 </div>
             </div>
 
@@ -54,7 +56,7 @@
                 <div class="section">
                     <span class="title">온도<span id="range_text">36</span>&degC</span>
 
-                    0<input name="temperature" id="range_slider" type="range" min="0" max="40" value="36">40
+                    <input name="temperature" id="range_slider" type="range" orient="vertical" min="0" max="40" value="36">40
                     <p>슬라이더를 조절하여 온도를 설정할 수 있습니다.</p>
                 </div>
             </div>
@@ -63,6 +65,9 @@
 
     </div>
 
+    <script type="text/javascript" src="./js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="./js/orgchart.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
     <script>
         var water = 70;
         var bathing = '없음';
@@ -174,6 +179,24 @@
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return value? value[2] : null;
         };
+        
+        var h_to_v = function() {
+            var h = $('#water-slider-alfl');
+            h.on('input',function() {
+                var v = $('.water-slider');
+                v[0].value = h[0].value;
+                watervalue.innerHTML=v[0].value;
+            })
+        }
+        var v_to_h = function() {
+            var v = $('.water-slider');
+            v.on('input',function() {
+                var h = $('#water-slider-alfl');
+                h[0].value = v[0].value;
+            })
+        }
+        h_to_v();
+        v_to_h();
     </script>
 </body>
 
