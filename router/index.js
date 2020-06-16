@@ -4,7 +4,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var router = express.Router();
 var db = require('./db/DBfunc');
-var querystring = require('querystring');
+var jschardet = require('jschardet');
+var utf8 = require('utf8');
+let { PythonShell } = require('python-shell');
+
 
 app = express();
 
@@ -20,13 +23,13 @@ router.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
-router.post('/py', function (req, res) {
-	console.log('파이썬에서 잘왔다')
-	return res.json({success:true, msg:"good"});
-});
-
 router.post('/profile', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/profile.html")) // html 파일을 보내는 것
+});
+
+router.post('/py', function (req, res) {
+	var py_data = {success:true, msg:"good", 'cookie_name':res.cookie('cookie_name', req.body.cookie_name), 'cookie_age':res.cookie('cookie_age', req.body.cookie_age), 'cookie_gender':res.cookie('cookie_gender', req.body.cookie_gender), 'cookie_job':res.cookie('cookie_job', req.body.cookie_job)};
+	return res.json(py_data);
 });
 
 router.post('/profile_cookie', function (req, res) {
@@ -37,20 +40,37 @@ router.post('/profile_cookie', function (req, res) {
 	res.redirect(307, '/user');
 });
 
-router.post('/item_cookie', function(req, res) {
-	res.cookie('cookie_water', req.body.water);
-	res.cookie('cookie_bathing', req.body.bathing);
-	res.cookie('cookie_temperature', req.body.temperature);
-	res.cookie('cookie_time', req.body.time);
-	res.redirect(307, '/item');
-})
-
-router.post('/item', function(req, res) {
-	res.sendFile(path.join(__dirname + "/../public/item_info.html")) // html 파일을 보내는 것
-})
-
 router.post('/online', function (req, res) {
-    res.sendFile(path.join(__dirname+"/../public/online_mode.html"))
+	var options = {
+		// pythonPath: "C:\\Python34\\python.exe", //window path
+		pythonPath: '',    //ubuntu path
+		scriptPath: '',    // 실행할 py 파일 path. 현재 nodejs파일과 같은 경로에 있어 생략
+		 //args: []
+	};
+	
+	PythonShell.run("webSocket.py", options, function(err, results){
+		if(err) {
+			console.log('err msg : ', err);
+			res.redirect(307, '/online');
+		}
+
+		var predict_Arr = results.toString().split('/');
+		
+
+		if (predict_Arr[2] == 'cold'){
+			predict_Arr[2] = '시원함';
+		} else if (predict_Arr[2] == 'nomal'){
+			predict_Arr[2] = '미지근함';
+		} else predict_Arr[2] = '따뜻함';
+
+		console.log(predict_Arr[0] + ' / ' + predict_Arr[1] + ' / ' + predict_Arr[2]);
+
+		res.cookie('cookie_predict_start', predict_Arr[0]);
+		res.cookie('cookie_predict_during', predict_Arr[1]);
+		res.cookie('cookie_predict_temp', predict_Arr[2]);
+
+		res.sendFile(path.join(__dirname + "/../public/online_mode.html")) // html 파일을 보내는 것
+	});
 });
 
 router.post('/recommend', function (req, res) {
