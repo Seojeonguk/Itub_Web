@@ -42,7 +42,7 @@ router.post('/item', function (req, res) {
 });
 
 router.post('/py', function (req, res) {
-	var py_data = { 'msg': 1};
+	var py_data = { msg: req.cookies.py_re};
 	return res.json(py_data);
 });
 
