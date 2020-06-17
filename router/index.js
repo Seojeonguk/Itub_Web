@@ -19,6 +19,7 @@ router.use('/db', db);
 // url routing
 router.get('/', function (req, res) {
 	console.log('접속 성공적')
+	res.cookie('py_re', 0);
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
@@ -37,11 +38,12 @@ router.post('/item_cookie', function (req, res) {
 });
 
 router.post('/item', function (req, res) {
+	res.cookie('py_re', 1);
 	res.sendFile(path.join(__dirname + "/../public/item_info.html")) // html 파일을 보내는 것
 });
 
 router.post('/py', function (req, res) {
-	var py_data = { success: true, msg: "good", 'cookie_name': res.cookie('cookie_name', req.body.cookie_name), 'cookie_age': res.cookie('cookie_age', req.body.cookie_age), 'cookie_gender': res.cookie('cookie_gender', req.body.cookie_gender), 'cookie_job': res.cookie('cookie_job', req.body.cookie_job) };
+	var py_data = { success: true, msg: req.cookies.py_re, 'cookie_name': res.cookie('cookie_name', req.body.cookie_name), 'cookie_age': res.cookie('cookie_age', req.body.cookie_age), 'cookie_gender': res.cookie('cookie_gender', req.body.cookie_gender), 'cookie_job': res.cookie('cookie_job', req.body.cookie_job) };
 	return res.json(py_data);
 });
 
