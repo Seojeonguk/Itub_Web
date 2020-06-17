@@ -7,19 +7,19 @@ var db = require('./db/DBfunc');
 var GPIO = require('onoff').Gpio;
 let { PythonShell } = require('python-shell');
 
-
 app = express();
 
-app.use(cookieParser());
 app.use(bodyParser.json()) // json의 형태로 받을때
 app.use(bodyParser.urlencoded({ extended: true })) // 인코딩된 url 형태로 받을때
+app.use(cookieParser());
+
 
 router.use('/db', db);
 
 // url routing
 router.get('/', function (req, res) {
 	console.log('접속 성공적')
-	res.cookie('py_re', 0);
+	res.cookie('py_re', 'aaa', {httpOnly: true, secure: false});
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
@@ -37,13 +37,8 @@ router.post('/item_cookie', function (req, res) {
 });
 
 router.post('/item', function (req, res) {
-	res.cookie('py_re', 1);
+	res.cookie('py_re', 'bbb');
 	res.sendFile(path.join(__dirname + "/../public/item_info.html")) // html 파일을 보내는 것
-});
-
-router.post('/py', function (req, res) {
-	var py_data = { msg: 1};
-	return res.json(py_data);
 });
 
 router.post('/profile_cookie', function (req, res) {
@@ -108,6 +103,16 @@ router.get('/*.html', function (req, res) {
 	console.log('직접 접근하지 마라 ㅡㅡ')
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
+
+router.post('/py', function (req, res) {
+	var py_data = {'msg':1};
+
+	res.status(200).json({
+		reqCookie: req.cookies.py_re,
+	});
+});
+
+app.use(express.static('public'));
 
 module.exports = router;
 
