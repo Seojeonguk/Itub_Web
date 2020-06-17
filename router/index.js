@@ -34,7 +34,6 @@ router.post('/item_cookie', function (req, res) {
 	res.cookie('cookie_time', req.body.time);
 
 	res.redirect(307, '/item');
-
 });
 
 router.post('/item', function (req, res) {
@@ -43,7 +42,7 @@ router.post('/item', function (req, res) {
 });
 
 router.post('/py', function (req, res) {
-	var py_data = { success: true, msg: req.cookies.py_re, 'cookie_name': res.cookie('cookie_name', req.body.cookie_name), 'cookie_age': res.cookie('cookie_age', req.body.cookie_age), 'cookie_gender': res.cookie('cookie_gender', req.body.cookie_gender), 'cookie_job': res.cookie('cookie_job', req.body.cookie_job) };
+	var py_data = { 'msg': req.cookies.py_re, 'cookie_name': res.cookie('cookie_name', req.body.cookie_name), 'cookie_age': res.cookie('cookie_age', req.body.cookie_age), 'cookie_gender': res.cookie('cookie_gender', req.body.cookie_gender), 'cookie_job': res.cookie('cookie_job', req.body.cookie_job) };
 	return res.json(py_data);
 });
 
