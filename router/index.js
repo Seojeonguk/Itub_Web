@@ -32,7 +32,7 @@ router.post('/item_cookie', function (req, res) {
 	res.cookie('cookie_bathing', req.body.bathing);
 	res.cookie('cookie_temperature', req.body.temperature);
 	res.cookie('cookie_time', req.body.time);
-	res.redirect(307, '/item')
+	res.sendFile(path.join(__dirname + "/../public/item_info.html")) // html 파일을 보내는 것
 });
 
 router.post('/py', function (req, res) {
