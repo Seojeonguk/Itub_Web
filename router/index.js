@@ -44,6 +44,10 @@ router.post('/item', function (req, res) {
 		button = new GPIO(17, 'in', 'both');
 
 	function light(err, state) {
+		if (err) {
+			res.redirect('/own')
+		}
+
 		if (state == 1) {
 			led.writeSync(1);
 			console.log('on');
@@ -55,7 +59,7 @@ router.post('/item', function (req, res) {
 		}
 	}
 
-	console.log('start') ;
+	console.log(307, '/start') ;
 	button.watch(light);
 });
 
