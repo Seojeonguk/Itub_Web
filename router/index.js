@@ -38,29 +38,6 @@ router.post('/item_cookie', function (req, res) {
 
 router.post('/item', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/item_info.html")) // html 파일을 보내는 것
-
-	var GPIO = require('onoff').Gpio,
-		led = new GPIO(18, 'out'),
-		button = new GPIO(17, 'in', 'both');
-
-	function light(err, state) {
-		if (err) {
-			res.redirect('/own')
-		}
-
-		if (state == 1) {
-			led.writeSync(1);
-			console.log('on');
-		}
-
-		else {
-			led.writeSync(0);
-			console.log('off');
-		}
-	}
-
-	console.log(307, '/start') ;
-	button.watch(light);
 });
 
 router.post('/py', function (req, res) {
