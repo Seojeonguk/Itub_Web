@@ -16,10 +16,12 @@ app.use(cookieParser());
 
 router.use('/db', db);
 
+global.py_cookie = 0;
+
 // url routing
 router.get('/', function (req, res) {
 	console.log('접속 성공적')
-	res.cookie('py_re', 'aaa', {httpOnly: true, secure: false});
+	py_cookie = 0;
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
@@ -37,7 +39,8 @@ router.post('/item_cookie', function (req, res) {
 });
 
 router.post('/item', function (req, res) {
-	res.cookie('py_re', 'bbb');
+	py_cookie = 1;
+	console.log(py_cookie)
 	res.sendFile(path.join(__dirname + "/../public/item_info.html")) // html 파일을 보내는 것
 });
 
@@ -105,11 +108,9 @@ router.get('/*.html', function (req, res) {
 });
 
 router.post('/py', function (req, res) {
-	var py_data = {'msg':1};
-
-	res.status(200).json({
-		reqCookie: req.cookies.py_re,
-	});
+	console.log(py_cookie)
+	var py_data = {'msg' : py_cookie}
+	res.send(py_data)
 });
 
 app.use(express.static('public'));
