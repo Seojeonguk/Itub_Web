@@ -27,6 +27,14 @@ router.post('/profile', function (req, res) {
 	res.sendFile(path.join(__dirname + "/../public/profile.html")) // html 파일을 보내는 것
 });
 
+router.post('/item_cookie', function (req, res) {
+	res.cookie('cookie_water', req.body.water);
+	res.cookie('cookie_bathing', req.body.bathing);
+	res.cookie('cookie_temperature', req.body.temperature);
+	res.cookie('cookie_time', req.body.time);
+	res.redirect(307, '/item')
+});
+
 router.post('/py', function (req, res) {
 	var py_data = {success:true, msg:"good", 'cookie_name':res.cookie('cookie_name', req.body.cookie_name), 'cookie_age':res.cookie('cookie_age', req.body.cookie_age), 'cookie_gender':res.cookie('cookie_gender', req.body.cookie_gender), 'cookie_job':res.cookie('cookie_job', req.body.cookie_job)};
 	return res.json(py_data);
