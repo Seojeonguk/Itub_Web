@@ -30,6 +30,14 @@ global.py_time = 0;
 router.get('/', function (req, res) {
 	console.log('접속 성공적')
 	py_cookie = 0;
+	py_name = 0;
+	py_age = 0;
+	py_gender = 0;
+	py_job = 0;
+	py_water = 0;
+	py_bathing = 0;
+	py_temperature = 0;
+	py_time = 0;
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
@@ -76,7 +84,7 @@ router.post('/online', function (req, res) {
 		args: [req.cookies.cookie_age, req.cookies.cookie_gender, req.cookies.cookie_job]
 	};
 
-	PythonShell.run("webSocket.py", options, function (err, results) {
+	PythonShell.run("predict.py", options, function (err, results) {
 		if (err) {
 			console.log('err msg : ', err);
 			res.redirect(307, '/online');
