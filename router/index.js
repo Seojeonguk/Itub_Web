@@ -17,6 +17,14 @@ app.use(cookieParser());
 router.use('/db', db);
 
 global.py_cookie = 0;
+global.py_name = 0;
+global.py_age = 0;
+global.py_gender = 0;
+global.py_job = 0;
+global.py_water = 0;
+global.py_bathing = 0;
+global.py_temperature = 0;
+global.py_time = 0;
 
 // url routing
 router.get('/', function (req, res) {
@@ -42,6 +50,13 @@ router.post('/item', function (req, res) {
 	py_cookie = 1;
 	console.log(py_cookie)
 	res.sendFile(path.join(__dirname + "/../public/item_info.html")) // html 파일을 보내는 것
+	py_name = req.cookies.cookie_name;
+	py_age = req.cookies.cookie_age;
+	py_gender = req.cookies.cookie_gender;
+	py_job = req.cookies.cookie_job;
+	py_water = req.cookies.cookie_bathing;
+	py_temperature = req.cookies.cookie_temperature;
+	py_time = req.cookies.cookie_time;
 });
 
 router.post('/profile_cookie', function (req, res) {
@@ -109,7 +124,8 @@ router.get('/*.html', function (req, res) {
 
 router.post('/py', function (req, res) {
 	console.log(py_cookie)
-	var py_data = {'msg' : py_cookie}
+	console.log(req.body.cookie_job)
+	var py_data = {'msg':py_cookie, 'py_name':py_name, 'py_age':py_age, 'py_gender':py_gender, 'py_job':py_job, 'py_water':py_water, 'py_bathing':py_bathing, 'py_temperture':py_temperature, 'py_time':py_time}
 	res.send(py_data)
 });
 
