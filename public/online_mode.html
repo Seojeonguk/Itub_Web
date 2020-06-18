@@ -9,20 +9,67 @@
 </head>
 
 <body>
-    <ul>
-        <li><button style="margin: 10px;" id="btn-chart1">Age</button></li>
-        <li><button style="margin: 10px;" id="btn-chart2">Gender</button></li>
-        <li><button style="margin: 10px;" id="btn-chart3">Job</button></li>
-        <li><button style="margin: 10px;" id="btn-chart4">Weather</button></li>
-        <li><button style="margin: 10px;" id="btn-chart5">recommeded for you</button></li>
+    <ul id="menu">
+        <li class="menu-btn"><button id="btn-chart1">Age</button></li>
+        <li class="menu-btn"><button id="btn-chart2">Gender</button></li>
+        <li class="menu-btn"><button id="btn-chart3">Job</button></li>
+        <li class="menu-btn"><button id="btn-chart4">Weather</button></li>
+        <li class="menu-btn"><button id="btn-chart5">recommeded for you</button></li>
     </ul>
 
     <div id="chart-container"></div>
     <div id="rfy">
-        <label id='hi1'>1</label> 
-        <label id='hi2'>2</label> 
-        <label id='hi3'>3</label> 
-        <label id='hi4'>4</label> 
+        <div id="rfy-wrap">
+            <div class="rfy-div" id='user-info'>
+                <div id="user-info-title-wrap">
+                    <div id="user-info-title">사용자 정보</div>
+                </div>
+                <div id="user-img"></div>
+
+                <ul id="user-content">
+                    <li id="user-name" class="user-content-li">
+                        <div id="name-title" class="content-size user-title">
+                            이름</div>
+                        <div id="name-content" class="content-size user-label">박지수</div>
+                    </li>
+                    <li id="user-age" class="user-content-li">
+                        <div id="age-title" class="content-size user-title">나이</div>
+                        <div id="age-content" class="content-size user-label">25</div>
+                    </li>
+                    <li id="user-gender" class="user-content-li">
+                        <div id="gender-title" class="content-size user-title">성별</div>
+                        <div id="gender-content" class="content-size user-label">남자</div>
+                    </li>
+                    <li id="user-job" class="user-content-li">
+                        <div id="job-title" class="content-size user-title">직업</div>
+                        <div id="job-content" class="content-size user-label">대학생</div>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="rfy-ul">
+                <div class="rfy-ul-wrap">
+                    <div class="wrap">
+                        <div class="title rfy" id="predict-start-title">예측 시작 시간</div>
+                    </div>
+                    <div class="wrap-content">
+                        <div class="content rfy" id="predict-start-content"></div>
+                    </div>
+                    <div class="wrap">
+                        <div class="title rfy" id="predict-during-title">예측 샤워 시간</div>
+                    </div>
+                    <div class="wrap-content">
+                        <div class="content rfy" id="predict-during-content"></div>
+                    </div>
+                    <div class="wrap">
+                        <div class="title rfy" id="predict-temp-title">예측 샤워 온도</div>
+                    </div>
+                    <div class="wrap-content">
+                        <div class="content rfy" id="predict-temp-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <label id="label-test">
@@ -30,22 +77,24 @@
 
     <script type="text/javascript" src="./js/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="./js/orgchart.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
-    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
     <script>
         var getCookie = function(name) {
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-            return value? value[2] : null;
+            return value ? value[2] : null;
         };
-        document.querySelector('#hi4').innerHTML = '사용자 정보 : ' + decodeURI(getCookie('cookie_name')) + ' / ' + decodeURI(getCookie('cookie_age')) + ' / ' + decodeURI(getCookie('cookie_gender')) + ' / ' + decodeURI(getCookie('cookie_job'));
-        document.querySelector('#hi1').innerHTML = '예측 시작 시간 : ' + decodeURI(getCookie('cookie_predict_start'));
-        document.querySelector('#hi2').innerHTML = '예측 샤워 시간 : ' + decodeURI(getCookie('cookie_predict_during'));
-        document.querySelector('#hi3').innerHTML = '예측 샤워 온도 : ' + decodeURI(getCookie('cookie_predict_temp'));
+        document.querySelector('#name-content').innerHTML = decodeURI(getCookie('cookie_name'));
+        document.querySelector('#age-content').innerHTML = decodeURI(getCookie('cookie_age'));
+        document.querySelector('#gender-content').innerHTML = decodeURI(getCookie('cookie_gender'));
+        document.querySelector('#job-content').innerHTML = decodeURI(getCookie('cookie_job'));
+        document.querySelector('#predict-start-content').innerHTML = decodeURI(getCookie('cookie_predict_start'));
+        document.querySelector('#predict-during-content').innerHTML = decodeURI(getCookie('cookie_predict_during'));
+        document.querySelector('#predict-temp-content').innerHTML = decodeURI(getCookie('cookie_predict_temp'));
     </script>
     <script type="text/javascript">
-        $(function () {
-        
+        $(function() {
+
             // 각 타이틀
             var title = [
                 ['청소년', '중장년', '노년'],
@@ -56,7 +105,7 @@
             var bathbomb = new Array('사용안함', '귤', '바닐라', '라벤더', '레몬', '자스민', '로즈제라늄', '로즈마리', '블루마린', '일랑일랑');
 
             function csvreading(idx) {
-                $.get("survey_data.csv", function (csvString) { // 페이지 로딩 이후 실행됨
+                $.get("survey_data.csv", function(csvString) { // 페이지 로딩 이후 실행됨
                     var csvdata = $.csv.toArrays(csvString, {
                         onParseValue: $.csv.hooks.castToScalar
                     }); // csv 파일을 array로 저장
@@ -101,9 +150,9 @@
                             text_data[title_idx][4] += 1;
                             text_data[title_idx][0] += csvdata[i][4];
                             text_data[title_idx][1] += csvdata[i][5];
-                            if (csvdata[i][3] == "시원함") text_data[title_idx][2] += 1;
-                            else if (csvdata[i][3] == "미지근함") text_data[title_idx][2] += 2;
-                            else if (csvdata[i][3] == "따뜻함") text_data[title_idx][2] += 3;
+                            if (csvdata[i][3] == "cold") text_data[title_idx][2] += 1;
+                            else if (csvdata[i][3] == "normal") text_data[title_idx][2] += 2;
+                            else if (csvdata[i][3] == "hot") text_data[title_idx][2] += 3;
 
                             if (csvdata[i][7] == "유") text_data[title_idx][3] += 2;
                             else if (csvdata[i][7] == "무") text_data[title_idx][3] += 1;
@@ -116,9 +165,9 @@
                             text_data[title_idx][4] += 1;
                             text_data[title_idx][0] += csvdata[i][4];
                             text_data[title_idx][1] += csvdata[i][5];
-                            if (csvdata[i][3] == "시원함") text_data[title_idx][2] += 1;
-                            else if (csvdata[i][3] == "미지근함") text_data[title_idx][2] += 2;
-                            else if (csvdata[i][3] == "따뜻함") text_data[title_idx][2] += 3;
+                            if (csvdata[i][3] == "cold") text_data[title_idx][2] += 1;
+                            else if (csvdata[i][3] == "normal") text_data[title_idx][2] += 2;
+                            else if (csvdata[i][3] == "hot") text_data[title_idx][2] += 3;
 
                             if (csvdata[i][7] == "유") text_data[title_idx][3] += 2;
                             else if (csvdata[i][7] == "무") text_data[title_idx][3] += 1;
@@ -133,15 +182,15 @@
                             text_data[title_idx][4] += 1;
                             text_data[title_idx][0] += csvdata[i][4];
                             text_data[title_idx][1] += csvdata[i][5];
-                            if (csvdata[i][3] == "시원함") text_data[title_idx][2] += 1;
-                            else if (csvdata[i][3] == "미지근함") text_data[title_idx][2] += 2;
-                            else if (csvdata[i][3] == "따뜻함") text_data[title_idx][2] += 3;
+                            if (csvdata[i][3] == "cold") text_data[title_idx][2] += 1;
+                            else if (csvdata[i][3] == "normal") text_data[title_idx][2] += 2;
+                            else if (csvdata[i][3] == "hot") text_data[title_idx][2] += 3;
 
                             if (csvdata[i][7] == "유") text_data[title_idx][3] += 2;
                             else if (csvdata[i][7] == "무") text_data[title_idx][3] += 1;
 
                         } else if (idx == 3) {
-                            var weather_data = csvdata[i][9].split(' ')[0];
+                            var weather_data = csvdata[i][9];
 
                             if (weather_data <= 10.00) title_idx = 0;
                             else if (weather_data <= 15.00) title_idx = 1;
@@ -154,9 +203,9 @@
                             text_data[title_idx][4] += 1;
                             text_data[title_idx][0] += csvdata[i][4];
                             text_data[title_idx][1] += csvdata[i][5];
-                            if (csvdata[i][3] == "시원함") text_data[title_idx][2] += 1;
-                            else if (csvdata[i][3] == "미지근함") text_data[title_idx][2] += 2;
-                            else if (csvdata[i][3] == "따뜻함") text_data[title_idx][2] += 3;
+                            if (csvdata[i][3] == "cold") text_data[title_idx][2] += 1;
+                            else if (csvdata[i][3] == "normal") text_data[title_idx][2] += 2;
+                            else if (csvdata[i][3] == "hot") text_data[title_idx][2] += 3;
 
                             if (csvdata[i][7] == "유") text_data[title_idx][3] += 2;
                             else if (csvdata[i][7] == "무") text_data[title_idx][3] += 1;
@@ -167,12 +216,24 @@
                     // org차트 수정
                     var $this = $(".node");
                     $('.node').data('node', $this);
-
                     // 선택된 메뉴의 각 타이틀 만큼 반복
+                    if(str_size > 7) str_size=9;
+                    var size = Math.floor((str_size-1)/7)+1;
                     for (var i = 0; i < str_size; i++) {
+
                         var nodeVals = [];
                         var real_idx = i < 2 ? 1 - i : i;
+                        if (i >= 7) {
+                            $('.node').data('node',$($('.node')[i-6]));
+                        }
+                        else {
+                            $('.node').data('.node',$this);
+                        }
+                        
+                        (Math.floor((i-1)/7)+1)
+
                         nodeVals.push(title[idx][real_idx]);
+                        console.log($('.node'));
 
                         var avg_text = "";
                         if (text_data[real_idx][2] == 0) avg_text = '데이터없음';
@@ -224,11 +285,10 @@
 
                         var $node = $('.node').data('node');
                         var hasChild = $node.parent().attr('colspan') > 0 ? true : false;
-
                         if (!hasChild) {
 
                             var rel = nodeVals.length > 1 ? '110' : '100';
-                            oc.addChildren($node, nodeVals.map(function (item) {
+                            oc.addChildren($node, nodeVals.map(function(item) {
                                 return {
                                     'name': item,
                                     'relationship': '110',
@@ -237,7 +297,7 @@
                                 };
                             }));
                         } else {
-                            oc.addSiblings($node.closest('tr').siblings('.nodes').find('.node:first'), nodeVals.map(function (item) {
+                            oc.addSiblings($node.closest('tr').siblings('.nodes').find('.node:first'), nodeVals.map(function(item) {
                                 return {
                                     'name': item,
                                     'relationship': '110',
@@ -250,7 +310,7 @@
                 })
             };
 
-            var getId = function () { //node ID 구하기
+            var getId = function() { //node ID 구하기
                 return (new Date().getTime()) * 1000 + Math.floor(Math.random() * 1001);
             };
 
@@ -265,10 +325,10 @@
                 'nodeContent': 'title',
                 'chartClass': 'edit-state',
                 'exportFilename': 'SportsChart',
-                'createNode': function ($node, data) {
+                'createNode': function($node, data) {
                     var secondMenuIcon = $('<i>', {
                         'class': 'oci oci-info-circle second-menu-icon',
-                        click: function () {
+                        click: function() {
                             $(this).siblings('.second-menu').toggle();
                         }
                     });
@@ -282,7 +342,7 @@
             var box = document.getElementsByClassName("content");
             box[0].style.height = 0;
 
-            $('#btn-chart1').on('click', function (argument) {
+            $('#btn-chart1').on('click', function(argument) {
                 oc.init({
                     'data': datasource
                 });
@@ -291,7 +351,7 @@
                 csvreading(0);
             });
 
-            $('#btn-chart2').on('click', function (argument) {
+            $('#btn-chart2').on('click', function(argument) {
                 var data = {
                     'name': 'Gender'
                 };
@@ -305,7 +365,7 @@
 
             });
 
-            $('#btn-chart3').on('click', function (argument) {
+            $('#btn-chart3').on('click', function(argument) {
                 var data = {
                     'name': 'Job'
                 };
@@ -318,7 +378,7 @@
                 csvreading(2);
             });
 
-            $('#btn-chart4').on('click', function (argument) {
+            $('#btn-chart4').on('click', function(argument) {
 
                 var data = {
                     'name': 'Weather'
@@ -332,7 +392,7 @@
                 csvreading(3);
             });
 
-            $('#btn-chart5').on('click', function (argument) {
+            $('#btn-chart5').on('click', function(argument) {
                 var container = document.getElementById("chart-container");
                 var rfy = document.getElementById("rfy");
                 container.style.display = "none";
