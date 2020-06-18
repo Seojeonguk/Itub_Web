@@ -84,13 +84,26 @@
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return value ? value[2] : null;
         };
+        var age = decodeURI(getCookie('cookie_age'));
+        var gender = decodeURI(getCookie('cookie_gender'));
         document.querySelector('#name-content').innerHTML = decodeURI(getCookie('cookie_name'));
-        document.querySelector('#age-content').innerHTML = decodeURI(getCookie('cookie_age'));
-        document.querySelector('#gender-content').innerHTML = decodeURI(getCookie('cookie_gender'));
+        document.querySelector('#age-content').innerHTML = age;
+        document.querySelector('#gender-content').innerHTML = gender;
         document.querySelector('#job-content').innerHTML = decodeURI(getCookie('cookie_job'));
         document.querySelector('#predict-start-content').innerHTML = decodeURI(getCookie('cookie_predict_start'));
         document.querySelector('#predict-during-content').innerHTML = decodeURI(getCookie('cookie_predict_during'));
         document.querySelector('#predict-temp-content').innerHTML = decodeURI(getCookie('cookie_predict_temp'));
+        var img = document.querySelector('#user-img');
+        if(gender=='남성') {
+            if(age<19) img.style.backgroundImage=('../images/boy.png');
+            else if(age<65) img.style.backgroundImage=('../images/fa.png');
+            else img.style.backgroundImage=('../images/granfa.png');
+        }
+        else {
+            if(age<19) img.style.backgroundImage=('../images/girl.png');
+            else if(age<65) img.style.backgroundImage=('../images/ma.png');
+            else img.style.backgroundImage=('../images/granma.png');
+        }
     </script>
     <script type="text/javascript">
         $(function() {
