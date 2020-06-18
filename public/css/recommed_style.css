@@ -6,6 +6,7 @@ html,
 body {
     margin: auto;
 }
+
 .wrap {
     margin: auto;
     max-width: 1400px;
@@ -15,6 +16,7 @@ form {
     display: flex;
     justify-content: center;
 }
+
 .list {
     font-size: 18px;
     display: flex;
@@ -23,11 +25,12 @@ form {
 }
 
 button {
+    border: none;
     width: 40%;
     height: 100%;
     font-size: 1.5rem;
     display: block;
-    background-color: white;
     margin: auto;
     margin-top: 4vmin;
+    font-weight: bold;
 }

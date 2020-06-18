@@ -17,16 +17,16 @@
     <script>
         //title이름, 수위, 사용시간, 온도, 입욕제종류
         var select_mode = [
-            ['입욕제 없는 따뜻한 물', [80, 5, 43, '없음']],
-            ['자몽, 오렌지, 레몬의 새콤달콤한 과일 향기', [80, 30, 38, '귤']],
-            ['크리미한 바닐라와 이국적인 꽃향기', [80, 30, 38, '바닐라']],
-            ['신선하고 포근한 라벤더 꽃향기', [80, 20, 38, '라벤더']],
-            ['감정이 파도처럼 밀려오는 날', [80, 20, 38, '레몬']],
-            ['로맨스 영화 속 주인공처럼', [80, 30, 38, '자스민']],
-            ['새벽녘, 그 감성속으로', [80, 30, 38, '로즈제라늄']],
-            ['감성이 필요한 당신을 위한 선물', [80, 30, 30, '로즈마리']],
-            ['꾸리꾸리 비오는 날엔', [80, 25, 38, '블루마린']],
-            ['생각이 많은 요즘', [80, 30, 36, '일랑일랑']]
+            ['입욕제 없는 따뜻한 물', [80, 5, 43, '없음'], './images/hotwater.png'],
+            ['자몽, 오렌지, 레몬의 새콤달콤한 과일 향기', [80, 30, 38, '귤'], './images/orange.png'],
+            ['크리미한 바닐라와 이국적인 꽃향기', [80, 30, 38, '바닐라'], './images/exotic.png'],
+            ['신선하고 포근한 라벤더 꽃향기', [80, 20, 38, '라벤더'], './images/lavender.png'],
+            ['감정이 파도처럼 밀려오는 날', [80, 20, 38, '레몬'], './images/wave.png'],
+            ['로맨스 영화 속 주인공처럼', [80, 30, 38, '자스민'], './images/romance.png'],
+            ['새벽녘, 그 감성속으로', [80, 30, 38, '로즈제라늄'], './images/sunset.png'],
+            ['감성이 필요한 당신을 위한 선물', [80, 30, 30, '로즈마리'], './images/present.png'],
+            ['꾸리꾸리 비오는 날엔', [80, 25, 38, '블루마린'], './images/rainnyday.png'],
+            ['생각이 많은 요즘', [80, 30, 36, '허브'], './images/herb.png']
         ]
 
         var parent = document.querySelector(".list");
@@ -68,9 +68,13 @@
 
             var span = document.createElement('span');
             var p = document.createElement('p');
+
             p.appendChild(document.createTextNode(select_mode[i][0]));
             span.appendChild(p);
             button.appendChild(span);
+            button.style.backgroundRepeat = "no-repeat"
+            button.style.backgroundImage = "url(" + select_mode[i][2] + ")";
+            button.style.backgroundSize = "cover";
             parent.appendChild(button);
         }
     </script>
