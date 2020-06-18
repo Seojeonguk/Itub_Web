@@ -811,8 +811,8 @@
             var bathing = node_click_text[9];
         
             var temp;
-            if(node_click_text[7] == '시원함') temp = Math.floor(Math.random()*3+25);
-            else if(node_click_text[7] == '미지근함') temp = Math.floor(Math.random()*6+30);
+            if(node_click_text[7] == 'cold') temp = Math.floor(Math.random()*3+25);
+            else if(node_click_text[7] == 'normal') temp = Math.floor(Math.random()*6+30);
             else temp = Math.floor(Math.random() * 5+36);
             
             var time = Math.floor(Math.random()*5+20);
