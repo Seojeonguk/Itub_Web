@@ -95,14 +95,14 @@
         document.querySelector('#predict-temp-content').innerHTML = decodeURI(getCookie('cookie_predict_temp'));
         var img = document.querySelector('#user-img');
         if(gender=='남성') {
-            if(age<19) img.style.backgroundImage=('../images/boy.png');
-            else if(age<65) img.style.backgroundImage=('../images/fa.png');
-            else img.style.backgroundImage=('../images/granfa.png');
+            if(age<19) img.style.backgroundImage=url('../images/boy.png');
+            else if(age<65) img.style.backgroundImage=url('../images/fa.png');
+            else img.style.backgroundImage=url('../images/granfa.png');
         }
         else {
-            if(age<19) img.style.backgroundImage=('../images/girl.png');
-            else if(age<65) img.style.backgroundImage=('../images/ma.png');
-            else img.style.backgroundImage=('../images/granma.png');
+            if(age<19) img.style.backgroundImage=url('../images/girl.png');
+            else if(age<65) img.style.backgroundImage=url('../images/ma.png');
+            else img.style.backgroundImage=url('../images/granma.png');
         }
     </script>
     <script type="text/javascript">
