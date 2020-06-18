@@ -14,7 +14,34 @@ from sklearn.model_selection import train_test_split, cross_val_score
 
 import requests, json
 
-def machin(predict_col):
+col_li = ['s_weather','s_age','s_gender','직업_간호사','직업_건설업','직업_공무원','직업_군인','직업_농업','직업_무직','직업_서비스업','직업_연구원','직업_자영업자','직업_주부','직업_학생','직업_한의사','직업_회계사','직업_회사원']
+
+
+args = ['24', '여성', '학생']
+
+def machin(py_age, py_gender, py_job, predict_col):
+    idx = 0
+    new_df = []
+
+    for i in range(0, len(col_li)):
+        if (col_li[i] == ('직업_' + py_job)):
+            idx = i
+
+    for i in range(0, 17):
+        if (i == idx):
+            new_df.append(1)
+        elif (i == 0):
+            new_df.append(20)
+        elif (i == 1):
+            new_df.append(int(py_age))
+        elif (i == 2):
+            if (py_gender == '여성'):
+                new_df.append(1)
+            else:
+                new_df.append(0)
+        else:
+            new_df.append(0)
+
     x = pd.concat([shower_data['s_weather'], shower_data['s_age'], shower_data['s_gender'], pd.get_dummies(shower_data['s_job'], prefix='직업')], axis=1)
     y = shower_data[predict_col]
 
@@ -27,11 +54,17 @@ def machin(predict_col):
     # print("test socre : {}".format(model.score(x_test, y_test)))
     # print("컬럼들의 중요도 : {}".format(model.feature_importances_.sort()))
 
+    tmp = pd.DataFrame(data=new_df).T
+    tmp.columns = col_li
+
+
     # 정밀도, 재현율, f1 스코어, 서포트를 알려준다.
     if (predict_col == 's_temp'):
-        result = str(model.predict(x_test.iloc[39:40,]))[2:-2]
+        result = str(model.predict(tmp))[2:-2]
     else:
-        result = str(model.predict(x_test.iloc[39:40,]))[1:-1]
+        result = str(model.predict(tmp))[1:-1]
+
+    new_df = []
 
     return result
 
@@ -53,32 +86,8 @@ shower_data['s_perfume'] = pd.to_numeric(shower_data['s_perfume'])
 shower_data.drop(['s_end'], axis=1, inplace=True)
 shower_data.head()
 
-start = machin('s_start')
-during = machin('s_during')
-temp = machin('s_temp')
+start = machin(args[0], args[1], args[2], 's_start')
+during = machin(args[0], args[1], args[2], 's_during')
+temp = machin(args[0], args[1], args[2], 's_temp')
 
 print(str(start+'/'+during+'/'+temp))
-
-# data = {}
-# headers = {}
-# url = 'http://i-tub.herokuapp.com/py'
-
-# res = requests.post(url, json=data, headers=headers)
-
-# # HTTP CODE
-# print(res.status_code)
-
-# # HTTP 응답 원문
-# print(res.text)
-
-# # HTTP 요청 값
-# print(res.request, res.request.body, res.content)\
-
-# try:
-#     result = res.json()
-#     print(result)
-#     tmp = machin('s_temp')
-#     print(json.dumps(tmp))
-
-# except Exception as e:
-#     result = { success : false, msg : "no good" }
