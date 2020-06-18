@@ -7,19 +7,29 @@ var db = require('./db/DBfunc');
 var GPIO = require('onoff').Gpio;
 let { PythonShell } = require('python-shell');
 
-
 app = express();
 
-app.use(cookieParser());
 app.use(bodyParser.json()) // json의 형태로 받을때
 app.use(bodyParser.urlencoded({ extended: true })) // 인코딩된 url 형태로 받을때
+app.use(cookieParser());
+
 
 router.use('/db', db);
+
+global.py_cookie = 0;
+global.py_name = 0;
+global.py_age = 0;
+global.py_gender = 0;
+global.py_job = 0;
+global.py_water = 0;
+global.py_bathing = 0;
+global.py_temperature = 0;
+global.py_time = 0;
 
 // url routing
 router.get('/', function (req, res) {
 	console.log('접속 성공적')
-	res.cookie('py_re', 0);
+	py_cookie = 0;
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
@@ -34,17 +44,19 @@ router.post('/item_cookie', function (req, res) {
 	res.cookie('cookie_time', req.body.time);
 
 	res.redirect(307, '/item');
-
 });
 
 router.post('/item', function (req, res) {
-	res.cookie('py_re', 1);
+	py_cookie = 1;
+	console.log(py_cookie)
 	res.sendFile(path.join(__dirname + "/../public/item_info.html")) // html 파일을 보내는 것
-});
-
-router.post('/py', function (req, res) {
-	var py_data = { success: true, msg: req.cookies.py_re, 'cookie_name': res.cookie('cookie_name', req.body.cookie_name), 'cookie_age': res.cookie('cookie_age', req.body.cookie_age), 'cookie_gender': res.cookie('cookie_gender', req.body.cookie_gender), 'cookie_job': res.cookie('cookie_job', req.body.cookie_job) };
-	return res.json(py_data);
+	py_name = req.cookies.cookie_name;
+	py_age = req.cookies.cookie_age;
+	py_gender = req.cookies.cookie_gender;
+	py_job = req.cookies.cookie_job;
+	py_water = req.cookies.cookie_bathing;
+	py_temperature = req.cookies.cookie_temperature;
+	py_time = req.cookies.cookie_time;
 });
 
 router.post('/profile_cookie', function (req, res) {
@@ -109,6 +121,15 @@ router.get('/*.html', function (req, res) {
 	console.log('직접 접근하지 마라 ㅡㅡ')
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
+
+router.post('/py', function (req, res) {
+	console.log(py_cookie)
+	console.log(req.body.cookie_job)
+	var py_data = {'msg':py_cookie, 'py_name':py_name, 'py_age':py_age, 'py_gender':py_gender, 'py_job':py_job, 'py_water':py_water, 'py_bathing':py_bathing, 'py_temperture':py_temperature, 'py_time':py_time}
+	res.send(py_data)
+});
+
+app.use(express.static('public'));
 
 module.exports = router;
 
