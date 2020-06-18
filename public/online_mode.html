@@ -80,6 +80,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
 
     <script>
+        var bathbomb = new Array('사용안함', '귤', '바닐라', '라벤더', '레몬', '자스민', '로즈제라늄', '로즈마리', '블루마린', '일랑일랑');
         var getCookie = function(name) {
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return value ? value[2] : null;
@@ -104,6 +105,46 @@
             else if(age<65) img.style.backgroundImage="url('./images/ma.png')";
             else img.style.backgroundImage="url('./images/granma.png')";
         }
+        
+        img.addEventListener('click',function() {
+            var form = document.createElement('form');
+            form.setAttribute('method', 'POST');
+            form.setAttribute('action', '/item_cookie' );
+        
+            
+            var water;
+            if(age<16) water = Math.floor(Math.random()*10+50);
+            else water = Math.floor(Math.random()*20+70);
+            var water_filed = document.createElement('input')
+            water_filed.setAttribute('type', 'hidden');
+            water_filed.setAttribute('name', 'water');
+            water_filed.setAttribute('value', water);
+            form.appendChild(water_filed);
+
+            var bathing = bathbomb[Math.floor(Math.random(9))];
+            var bathing_filed = document.createElement('input');
+            bathing_filed.setAttribute('type', 'hidden');
+            bathing_filed.setAttribute('name', 'bathing');
+            bathing_filed.setAttribute('value', bathing);
+            form.appendChild(bathing_filed);
+
+            var temp = decodeURI(getCookie('cookie_predict_temp'));
+            var temp_filed = document.createElement('input');
+            temp_filed.setAttribute('type', 'hidden');
+            temp_filed.setAttribute('name', 'temperature');
+            temp_filed.setAttribute('value', temp);
+            form.appendChild(temp_filed);
+
+            var time = decodeURI(getCookie('cookie_predict_start'));
+            var time_filed = document.createElement('input');
+            time_filed.setAttribute('type', 'hidden');
+            time_filed.setAttribute('name', 'time');
+            time_filed.setAttribute('value', time);
+            form.appendChild(time_filed);
+
+            document.body.appendChild(form);
+            form.submit();
+        })
     </script>
     <script type="text/javascript">
         $(function() {
