@@ -14,12 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true })) // 인코딩된 url 형태로
 app.use(cookieParser());
 
 
+
 router.use('/db', db);
 
-global.py_cookie = 0;
-global.py_name = 0;
-global.py_age = 0;
-global.py_gender = 0;
+
 global.py_job = 0;
 global.py_water = 0;
 global.py_bathing = 0;
@@ -29,10 +27,10 @@ global.py_time = 0;
 // url routing
 router.get('/', function (req, res) {
 	console.log('접속 성공적')
-	py_cookie = 0;
-	py_name = 0;
-	py_age = 0;
-	py_gender = 0;
+    res.cookie('py_cookie',py_cookie);
+    res.cookie('py_name',py_name);
+    res.cookie('py_age',py_age);
+    res.cookie('py_gender',py_gender);
 	py_job = 0;
 	py_water = 0;
 	py_bathing = 0;
