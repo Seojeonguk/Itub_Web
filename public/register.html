@@ -23,7 +23,7 @@
             <div class="wrap">
                 <h3 class="title"><label id='nickname'>별명</label></h3>
                 <span class="inputtext">
-                    <input type='text' class="texting" id='input_name' />
+                    <input type='text' class="texting" id='input_name' required/>
                 </span>
             </div>
 
@@ -53,13 +53,21 @@
             <div class="wrap">
                 <h3 class="title"><label>나이</label></h3>
                 <span class="inputtext">
-                    <input type='number' class="texting" id='input_age' />
+                    <input 
+                           required 
+                           type='number' 
+                           class="texting" 
+                           id='input_age' 
+                           pattern="[0-9]{1,3}"  
+                           placeholder="0"
+                           title="test"/>
                 </span>
             </div>
             <div class="wrap">
                 <h3 class="title"><label>직업</label></h3>
                 <span class="inputtext">
-                    <input type='text' class="texting" id='input_job' />
+                    <select name="jobtitle" class="texting" id='combobox'>
+                    </select>
                 </span>
             </div>
 
@@ -74,9 +82,16 @@
                 </div>
             </div>
         </div>
-    </form>
 
     <script>
+        var job = ['무직', '학생', '군인', '회사원', '공무원', '건설업', '연구원', '한의사', '자영업자', '농업', '서비스업', '회계사', '간호사', '주부', '기타'];
+        var combobox = document.getElementById('combobox').options;
+        for (var i = 0; i < job.length; i++) {
+            var option = new Option();
+            option.value = job[i];
+            option.text = job[i];
+            combobox.add(option);
+        }
         //사용자정보 가져온뒤 전달부분
         document.querySelector('.submit').addEventListener('click', function() {
             alert('등록 완료');
@@ -94,11 +109,12 @@
                 'u_name': document.getElementById('input_name').value,
                 'u_gender': getRadio(),
                 'u_age': document.getElementById('input_age').value,
-                'u_job': document.getElementById('input_job').value
+                'u_job': document.getElementsByName('jobtitle')[0].value
             }
+            alert(inputdata.u_name);
 
             console.log(inputdata)
-                // 배열로도 정의 가능, 아래구현된함수로 사용자입력정보전달
+            // 배열로도 정의 가능, 아래구현된함수로 사용자입력정보전달
             sendDB('/db/create', inputdata)
             document.getElementById("profile_submit").click();
         });
