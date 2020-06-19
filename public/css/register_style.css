@@ -89,39 +89,6 @@ body{
     apperance: none;
     -webkit-apperance: none;
 }
-
-.msgtext{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 153px;
-    border: solid 1px #dadada;
-    padding: 10px 14px 10px 14px;
-    background: #fff;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    vertical-align: top;
-}
-
-.msg{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    line-height: 19px;
-    border: none;
-    background: #fff;
-    font-size: 15px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    z-index: 10;
-    *position: absolute;
-    *top: 0;
-    *left: 0;
-    apperance: none;
-    -webkit-apperance: none;
-}
-
 .gender_wrap{
     display: block;
 }
@@ -225,14 +192,6 @@ input {
 .item_on .lab_radio .ico_radio {
     background-position: -60px -30px;
 }
-
-
-
-
-
-
-
-
 
 
 body, th, td, input, select, textarea, button {
