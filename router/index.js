@@ -38,7 +38,7 @@ router.post('/item_cookie', function (req, res) {
 router.post('/item', function (req, res) {
 	py_cookie = 1;
 	console.log(py_cookie)
-    alert(req.cookies);
+    res.cookie('py_name',req.cookies.cookie_name);
     py_name = req.cookies.cookie_name;
 	py_age = req.cookies.cookie_age;
 	py_gender = req.cookies.cookie_gender;
