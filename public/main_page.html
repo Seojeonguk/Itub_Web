@@ -21,9 +21,12 @@
         console.log(date);
         date.setDate(date.getDate()+7);
         console.log(date);
+        var cookie_chk = document.cookie.split(';');
+        console.log(cookie_chk);
         for(var i=0;i<cookie_name.length;i++) {
             var value = cookie_name[i] + "=0;";
             value +="expires=" + date.toUTCString();
+            console.log(value);
             document.cookie=value;
         }
         
