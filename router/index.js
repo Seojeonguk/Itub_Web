@@ -38,11 +38,14 @@ router.post('/item_cookie', function (req, res) {
 router.post('/item', function (req, res) {
 	py_cookie = 1;
 	console.log(py_cookie)
-    var name = ['_name','_age','_gender','_job','_water','_temperature','_time'];
-    for(var i=0; i<name.length; i++) {
-        var second = 'req.cookie.' + 'cookie' + name[i];
-        res.cookie("py"+ name[i],second);
-    }
+    alert(req.cookies);
+    py_name = req.cookies.cookie_name;
+	py_age = req.cookies.cookie_age;
+	py_gender = req.cookies.cookie_gender;
+	py_job = req.cookies.cookie_job;
+	py_water = req.cookies.cookie_bathing;
+	py_temperature = req.cookies.cookie_temperature;
+	py_time = req.cookies.cookie_time;
 	res.sendFile(path.join(__dirname + "/../public/item_info.html")) // html 파일을 보내는 것
 	
 });
