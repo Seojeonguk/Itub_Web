@@ -19,7 +19,7 @@
         var cookie_name = ['py_cookie','py_name','py_age','py_gender','py_job','py_water','py_bathing','py_temperature','py_time'];
         var date = new Date();
         console.log(date);
-        date.setMilliseconds(3000);
+        date.setDate(date.getDate()+7);
         console.log(date);
         for(var i=0;i<cookie_name.length;i++) {
             var value = cookie_name[i] + "=0;";
