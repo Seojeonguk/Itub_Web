@@ -14,5 +14,22 @@
     </form>
 
 </body>
+    
+    <script>
+        var cookie_name = ['py_cookie','py_name','py_age','py_gender','py_job','py_water','py_bathing','py_temperature','py_time'];
+        var date = new Date();
+        console.log(date);
+        date.setMilliseconds(3000);
+        console.log(date);
+        for(var i=0;i<cookie_name.length;i++) {
+            var value = cookie_name[i] + "=0;";
+            value +="expires=" + date.toUTCString();
+            document.cookie=value;
+        }
+        
+        console.log(document.cookie);
+        document.cookie="Name=py_time; expires="+date.toUTCString();
+        
+    </script>
 
 </html>
