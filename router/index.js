@@ -40,7 +40,7 @@ router.post('/item', function (req, res) {
 	console.log(py_cookie)
     var name = ['_name','_age','_gender','_job','_water','_temperature','_time'];
     for(var i=0; i<name.length; i++) {
-        var second = 'req.cookie.' + "cookie" + name[i];
+        var second = 'req.cookie.' + 'cookie' + name[i];
         res.cookie("py"+ name[i],second);
     }
 	res.sendFile(path.join(__dirname + "/../public/item_info.html")) // html 파일을 보내는 것
