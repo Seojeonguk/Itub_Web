@@ -38,9 +38,8 @@ router.post('/item_cookie', function (req, res) {
 router.post('/item', function (req, res) {
 	py_cookie = 1;
 	console.log(py_cookie)
-    alert(req.cookie);
     var name = ['_name','_age','_gender','_job','_water','_temperature','_time'];
-    for(var i : i<name.lengthl; i++) {
+    for(var i=0; i<name.length; i++) {
         var second = 'req.cookie.' + "cookie" + name[i];
         res.cookie("py"+ name[i],second);
     }
