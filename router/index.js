@@ -21,7 +21,7 @@ router.get('/', function (req, res) {
 	console.log('접속 성공적')
     res.cookie('hasVisited','1', {
         maxAge: 60*60*1000,
-        httpOnly:true,
+        httpOnly:true
     });
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
@@ -40,10 +40,14 @@ router.post('/item_cookie', function (req, res) {
 });
 
 router.post('/item', function (req, res) {
+    res.cookie('py_cookie','1',{
+        maxAge:60*60*1000,
+        httpOnly:true
+    })
 	py_cookie = 1;
 	console.log(py_cookie)
     
-    res.cookie('py_name',req.cookies.cookie_name{
+    res.cookie('py_name',req.cookies.cookie_name,{
                maxAge:60*60*1000
     });
     res.cookie('py_bathing',req.cookies.cookie_bathing);
