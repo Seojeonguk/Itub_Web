@@ -110,8 +110,8 @@
                 'u_age': document.getElementById('input_age').value,
                 'u_job': document.getElementsByName('jobtitle')[0].value
             }
-            if(inputdata.u_name=="" || (inputdata.u_gender!=1 && inputdata.u_gender!=2) || inputdata.u_age <0 || inputdata.u_age > 131) 
-                alert('정보를 정상 적으로 입력해주세요!!');
+            if(inputdata.u_name=="" || (inputdata.u_gender!=0 && inputdata.u_gender!=1) || inputdata.u_age <0 || inputdata.u_age > 131) 
+                alert('정보를 정상적으로 입력해주세요!!');
             else {
                 alert('정상적으로 회원가입 되었습니다.');
                 sendDB('/db/create', inputdata)
