@@ -6,7 +6,7 @@ var router = express.Router();
 var db = require('./db/DBfunc');
 let { PythonShell } = require('python-shell');
 
-app = express();
+var app = express();
 
 app.use(bodyParser.json()) // json의 형태로 받을때
 app.use(bodyParser.urlencoded({ extended: true })) // 인코딩된 url 형태로 받을때
