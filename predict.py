@@ -16,9 +16,6 @@ import requests, json
 
 col_li = ['s_weather','s_age','s_gender','직업_간호사','직업_건설업','직업_공무원','직업_군인','직업_농업','직업_무직','직업_서비스업','직업_연구원','직업_자영업자','직업_주부','직업_학생','직업_한의사','직업_회계사','직업_회사원']
 
-
-args = ['24', '여성', '학생']
-
 def machin(py_age, py_gender, py_job, predict_col):
     idx = 0
     new_df = []
@@ -86,8 +83,8 @@ shower_data['s_perfume'] = pd.to_numeric(shower_data['s_perfume'])
 shower_data.drop(['s_end'], axis=1, inplace=True)
 shower_data.head()
 
-start = machin(args[0], args[1], args[2], 's_start')
-during = machin(args[0], args[1], args[2], 's_during')
-temp = machin(args[0], args[1], args[2], 's_temp')
+start = machin(int(sys.args[1]), int(sys.args[2]), sys.args[3], 's_start')
+during = machin(int(sys.args[1]), int(sys.args[2]), sys.args[3], 's_during')
+temp = machin(int(sys.args[1]), int(sys.args[2]), sys.args[3], 's_temp')
 
 print(str(start+'/'+during+'/'+temp))
