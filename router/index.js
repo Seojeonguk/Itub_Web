@@ -44,9 +44,6 @@ router.post('/item', function (req, res) {
         maxAge:60*60*1000,
         httpOnly:true
     })
-	py_cookie = 1;
-	console.log(py_cookie)
-    
     res.cookie('py_name',req.cookies.cookie_name,{
                maxAge:60*60*1000
     });
