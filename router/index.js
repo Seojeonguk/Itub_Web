@@ -43,7 +43,9 @@ router.post('/item', function (req, res) {
 	py_cookie = 1;
 	console.log(py_cookie)
     
-    res.cookie('py_name',req.cookies.cookie_name);
+    res.cookie('py_name',req.cookies.cookie_name{
+               maxAge:60*60*1000
+    });
     res.cookie('py_bathing',req.cookies.cookie_bathing);
     res.cookie('py_age',req.cookies.cookie_age);
     res.cookie('py_gender',req.cookies.cookie_gender);
