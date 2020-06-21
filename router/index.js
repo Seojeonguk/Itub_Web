@@ -22,7 +22,7 @@ router.get('/', function (req, res) {
     res.cookie('hasVisited','1', {
         maxAge: 60*60*1000,
         httpOnly:true,
-    })
+    });
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
