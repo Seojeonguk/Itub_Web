@@ -54,13 +54,8 @@ router.post('/item_cookie', function (req, res) {
 });
 
 router.post('/item', function (req, res) {
-    res.cookie('py_cookie','1',{
-        maxAge:60*60*1000,
-        httpOnly:true
-    })
-    res.cookie('py_name',req.cookies.cookie_name,{
-               maxAge:60*60*1000
-    });
+    res.cookie('py_cookie','1');
+    res.cookie('py_name',req.cookies.cookie_name);
     res.cookie('py_bathing',req.cookies.cookie_bathing);
     res.cookie('py_age',req.cookies.cookie_age);
     res.cookie('py_gender',req.cookies.cookie_gender);
@@ -68,6 +63,14 @@ router.post('/item', function (req, res) {
     res.cookie('py_water',req.cookies.cookie_water);
     res.cookie('py_temperature',req.cookies.cookie_temperature);
     res.cookie('py_time',req.cookies.cookie_time);
+    
+    py_name = req.cookies.cookie_name;
+	py_age = req.cookies.cookie_age;
+	py_gender = req.cookies.cookie_gender;
+	py_job = req.cookies.cookie_job;
+	py_water = req.cookies.cookie_bathing;
+	py_temperature = req.cookies.cookie_temperature;
+	py_time = req.cookies.cookie_time;
 	res.sendFile(path.join(__dirname + "/../public/item_info.html")) // html 파일을 보내는 것
 	
 });
