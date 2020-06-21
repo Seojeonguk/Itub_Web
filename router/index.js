@@ -125,7 +125,7 @@ router.get('/*.html', function (req, res) {
 });
 
 router.post('/py', function (req, res) {
-	var py_data = {'msg':1, 'py_name':req.cookie_name, 'py_age':req.cookie_age, 'py_gender':req.cookie_gender, 'py_job':'직업_' + req.body.cookie_job, 'py_water':req.cookie_water, 'py_bathing':req.cookie_bathing, 'py_temperture':req.cookie_temperature, 'py_time':req.cookie_time}
+	var py_data = {'msg':1, 'py_name':req.cookies.py_name, 'py_age':req.cookies.py_age, 'py_gender':req.cookies.py_gender, 'py_job':'직업_' + req.cookies.py_job, 'py_water':req.cookies.py_water, 'py_bathing':req.cookies.py_bathing, 'py_temperture':req.cookies.py_temperture, 'py_time':req.cookies.py_time}
 	res.send(py_data)
 });
 
