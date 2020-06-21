@@ -15,14 +15,28 @@ app.use(cookieParser());
 
 router.use('/db', db);
 
+global.py_cookie = 0;
+global.py_name = 0;
+global.py_age = 0;
+global.py_gender = 0;
+global.py_job = 0;
+global.py_water = 0;
+global.py_bathing = 0;
+
 
 // url routing
 router.get('/', function (req, res) {
 	console.log('접속 성공적')
-    res.cookie('hasVisited','1', {
-        maxAge: 60*60*1000,
-        httpOnly:true
-    });
+    res.cookie('hasVisited','1');
+    py_cookie = 0;
+	py_name = 0;
+	py_age = 0;
+	py_gender = 0;
+	py_job = 0;
+	py_water = 0;
+	py_bathing = 0;
+	py_temperature = 0;
+	py_time = 0;
 	res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
