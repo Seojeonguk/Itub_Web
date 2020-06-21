@@ -44,13 +44,12 @@ router.post('/item', function (req, res) {
 	console.log(py_cookie)
     
     res.cookie('py_name',req.cookies.cookie_name);
-    py_name = req.cookies.cookie_name;
-	py_age = req.cookies.cookie_age;
-	py_gender = req.cookies.cookie_gender;
-	py_job = req.cookies.cookie_job;
-	py_water = req.cookies.cookie_bathing;
-	py_temperature = req.cookies.cookie_temperature;
-	py_time = req.cookies.cookie_time;
+    res.cookie('py_age',req.cookies.cookie_age);
+    res.cookie('py_gender',req.cookies.cookie_gender);
+    res.cookie('py_job',req.cookies.cookie_job);
+    res.cookie('py_water',req.cookies.cookie_water);
+    res.cookie('py_temperature',req.cookies.cookie_temperature);
+    res.cookie('py_time',req.cookies.cookie_time);
 	res.sendFile(path.join(__dirname + "/../public/item_info.html")) // html 파일을 보내는 것
 	
 });
