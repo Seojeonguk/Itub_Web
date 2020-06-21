@@ -127,7 +127,7 @@ router.get('/*.html', function (req, res) {
 router.post('/py', function (req, res) {
 	console.log(py_cookie)
 	console.log(req.body.cookie_job)
-	var py_data = {'msg':py_cookie, 'py_name':req.body.cookie_name, 'py_age':req.body.cookie_age, 'py_gender':req.body.cookie_gender, 'py_job':'직업_' + req.body.cookie_job, 'py_water':req.body.cookie_water, 'py_bathing':req.body.cookie_bathing, 'py_temperture':req.body.cookie_temperature, 'py_time':req.body.cookie_time}
+	var py_data = {'msg':1, 'py_name':req.body.cookie_name, 'py_age':req.body.cookie_age, 'py_gender':req.body.cookie_gender, 'py_job':'직업_' + req.body.cookie_job, 'py_water':req.body.cookie_water, 'py_bathing':req.body.cookie_bathing, 'py_temperture':req.body.cookie_temperature, 'py_time':req.body.cookie_time}
 	res.send(py_data)
 });
 
