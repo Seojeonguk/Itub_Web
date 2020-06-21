@@ -83,8 +83,8 @@ shower_data['s_perfume'] = pd.to_numeric(shower_data['s_perfume'])
 shower_data.drop(['s_end'], axis=1, inplace=True)
 shower_data.head()
 
-start = machin(int(sys.args[0]), int(sys.args[1]), sys.args[2], 's_start')
-during = machin(int(sys.args[0]), int(sys.args[1]), sys.args[2], 's_during')
-temp = machin(int(sys.args[0]), int(sys.args[1]), sys.args[2], 's_temp')
+start = machin(int(sys.args[1]), int(sys.args[2]), sys.args[3], 's_start')
+during = machin(int(sys.args[1]), int(sys.args[2]), sys.args[3], 's_during')
+temp = machin(int(sys.args[1]), int(sys.args[2]), sys.args[3], 's_temp')
 
 print(str(start+'/'+during+'/'+temp))
