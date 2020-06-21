@@ -54,7 +54,7 @@ router.post('/item_cookie', function (req, res) {
 });
 
 router.post('/item', function (req, res) {
-    res.cookie('py_cookie','1');
+    /*res.cookie('py_cookie','1');
     res.cookie('py_name',req.cookies.cookie_name);
     res.cookie('py_bathing',req.cookies.cookie_bathing);
     res.cookie('py_age',req.cookies.cookie_age);
@@ -62,7 +62,7 @@ router.post('/item', function (req, res) {
     res.cookie('py_job',req.cookies.cookie_job);
     res.cookie('py_water',req.cookies.cookie_water);
     res.cookie('py_temperature',req.cookies.cookie_temperature);
-    res.cookie('py_time',req.cookies.cookie_time);
+    res.cookie('py_time',req.cookies.cookie_time);*/
     
     py_name = req.cookies.cookie_name;
 	py_age = req.cookies.cookie_age;
