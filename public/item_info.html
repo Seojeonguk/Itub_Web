@@ -15,14 +15,14 @@
                 <div class="water-title">
                     <span class="title">수위 <span id="water-value">70</span></span>
                 </div>
-                    <div>
-                        <div class="image_icon">
-                            <img src="./images/faucet.png" width='45px' height='45px'>
-                        </div>
-                        <div class="slider-wrapper">
-                            <input type="range" class="water-slider" min="0" max="100" value="70" step="1">
-                        </div>
+                <div>
+                    <div class="image_icon">
+                        <img src="./images/faucet.png" width='45px' height='45px'>
                     </div>
+                    <div class="slider-wrapper">
+                        <input type="range" class="water-slider" min="0" max="100" value="70" step="1">
+                    </div>
+                </div>
             </div>
             <div id="bathing_section" class="section">
                 <span class="title">입욕제</span>
@@ -30,7 +30,8 @@
             </div>
             <div class="section">
                 <span class="title">온도</span>
-                <p id="temperature-value">30<span>&degC</span><p>
+                <p id="temperature-value">30<span>&degC</span>
+                    <p>
             </div>
             <div id="timeSection" class="section">
                 <span class="title">타이머<span id="time_value"></span></span>
@@ -44,8 +45,8 @@
         <div id="right-column-wrap">
             <iframe id="youtube-player" src="https://www.youtube.com/embed/ptB-lZKZuAs?autoplay=1&loop=1"></iframe>
         </div>
-        
-            
+
+
     </div>
     <script>
         var slider = document.querySelector('.water-slider');
@@ -53,7 +54,7 @@
 
         var getCookie = function(name) {
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-            return value? value[2] : null;
+            return value ? value[2] : null;
         };
         var water = decodeURI(getCookie('cookie_water'));
         var bathing = decodeURI(getCookie('cookie_bathing'));
@@ -73,14 +74,45 @@
         temperatureFiled.innerHTML = temperature + '<span>&degC</span>';
 
         var timeFiled = document.querySelector('#time-value');
-        if(time != '설정 안함') {
+        if (time != '설정 안함') {
             time += '분'
         }
-        timeFiled.innerHTML = time ;
+        timeFiled.innerHTML = time;
     </script>
-    
+
     <script>
-        console.log(document.cookie);
+        function sendDB(url, data) {
+            var name = decodeURI(getCookie('cookie_name'));
+            console.log(name);
+            var data = {
+                'data': name
+            };
+            console.log(data + '데이터형 변경 전');
+            data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
+            console.log(data + '데이터형 변경 후');
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            // 서버로 보낼때 json 형태의 데이터를 보내기위해 지정
+            xhr.send(data); // 문자열 형태로 넣어줘야함
+            console.log(data + 'xhr send')
+
+            xhr.addEventListener('load', function() {
+                var result = JSON.parse(xhr.responseText);
+                var resultDiv;
+                console.log('데이터 넘겨받음' + result.result)
+                if(result.result=='ok' && result.type=='update') {
+                    console.log('잘되었습니다');
+                }
+                else {
+                    console.log('에러발생!');
+                }
+            });
+        }
+        
+        window.onload = function () {
+            sendDB('/db/update', 'ok');
+        };
     </script>
 </body>
 
