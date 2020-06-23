@@ -112,15 +112,20 @@ router.post('/delete', function (req, res) {
 
 
 router.post('/update', function (req, res) {
-    var connection = mysql.createConnection(dbconfig);
-
     console.log('update db 접속시도');
-    var data = req.cookies.u_num;
+    
+    var connection = mysql.createConnection(dbconfig);
+    var data = req.body;
     var responseData = {};
-    console.log(data)
+    console.log(data);
+    var bathbomb = new Array('없음','귤', '바닐라', '라벤더', '레몬', '자스민', '로즈제라늄', '로즈마리', '블루마린');
+    for(var i=0;i<bathbomb.length;i++)
+        if(bathbomb[i] == data.bathing)
+            data.bathing=i;
 
-    var sql = 'SELECT * FROM u_db WHERE u_num=?';
-    var query = connection.query(sql, [data], function (err, rows) {
+    console.log(data);
+    var sql = 'SELECT * FROM u_db WHERE u_name=?';
+    var query = connection.query(sql, [data.name], function (err, rows) {
         if (rows[0]) {
             responseData.result = 'ok';
             responseData.type = 'delete'
@@ -133,8 +138,9 @@ router.post('/update', function (req, res) {
         }
     });
 
-    sql = 'UPDATE u_db set u_last = 2 where u_num=?';
-    var query = connection.query(sql, [data], function (err, rows) {
+    sql = 'UPDATE u_db set u_bathing=?, u_water=?, u_time=?,u_temperature=?,u_last = 1 where u_name=?';
+    
+    var query = connection.query(sql, [data.bathing,data.water,data.time,data.temperature,data.name], function (err, rows) {
 
         if (err) {
             responseData.result = 'none';
@@ -149,45 +155,6 @@ router.post('/update', function (req, res) {
         res.json(responseData); // 비동기이기 때문에 괄호안에 적어야함
         connection.end();
     })
-});
-
-router.post('/user_start', function (req, res) {
-
-    console.log('user_start db 접속시도');
-    var connection = mysql.createConnection(dbconfig);
-    var data = req.body;
-    var responseData = {};
-
-    var sql = 'SELECT * FROM u_db WHERE u_name=? AND u_age=? AND u_gender=? AND u_job=?';
-    console.log(data);
-    var query = connection.query(sql, [data.name, data.age, (data.gender == '남성' ? 0 : 1), data.job], function (err, rows) {
-        res.cookie('u_num', rows[0].u_num);
-        console.log(rows[0].u_num);
-        if (err) {
-            responseData.result = 'none';
-            responseData.type = 'user_start';
-            console.log("user_start error ", err);
-            connection.end();
-        }
-        var update = 'UPDATE u_db set u_last =1 where u_num=?'
-        var update_query = connection.query(update, [rows[0].u_num], function (err, rows) {
-            if (err) {
-                responseData.result = 'none';
-                responseData.type = 'user_start';
-                console.log("user_start error ", err);
-                connection.end();
-            }
-            responseData.result = 'ok';
-            responseData.type = 'user_start';
-            res.json(responseData);
-            connection.end();
-        })
-        responseData.result = 'ok';
-        responseData.type = 'user_start';
-        res.json(responseData);
-        connection.end();
-    })
-
 });
 
 
