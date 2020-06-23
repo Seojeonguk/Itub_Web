@@ -16,7 +16,7 @@
         </form>
 
         <form action='/register' method='POST'>
-            <input type='submit' id='register_submit'> 
+            <input type='submit' id='register_submit'>
         </form>
 
         <form action="/profile_cookie" method="POST">
@@ -125,9 +125,9 @@
             },
 
             on: {
-                tap: function () {
+                tap: function() {
                     if (tmp.length != 0 && swiper.activeIndex !== tmp.length) {
-                        $(function () {
+                        $(function() {
                             $('#dialog_text').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자로 시작하시겠어요?');
                             $("#dialog").dialog({
                                 //제목 설정
@@ -138,17 +138,17 @@
                                 //뒷배경을 disable 시키고싶다면 true 
                                 modal: true,
                                 //버튼종류
-                                buttons: [
-                                    {
+                                buttons: [{
                                         //버튼텍스트
                                         text: "확인",
                                         //클릭이벤트발생시 동작
-                                        click: function () {
+                                        click: function() {
                                             document.getElementById('cookie_name').value = document.getElementById('label_name').innerText;
                                             document.getElementById('cookie_age').value = document.getElementById('label_age').innerText;
                                             document.getElementById('cookie_gender').value = document.getElementById('label_gender').innerText;
                                             document.getElementById('cookie_job').value = document.getElementById('label_job').innerText;
                                             document.getElementById('cookie_submit').click();
+
                                         }
                                     },
 
@@ -156,19 +156,17 @@
                                         //버튼텍스트
                                         text: "취소",
                                         //클릭이벤트발생시 동작
-                                        click: function () {
+                                        click: function() {
                                             $(this).dialog("close");
                                         }
                                     }
                                 ]
                             });
                         });
-                    }
-
-                    else document.getElementById('register_submit').click();
+                    } else document.getElementById('register_submit').click();
                 },
 
-                slideChangeTransitionStart: function () {
+                slideChangeTransitionStart: function() {
                     if (tmp.length != 0 && swiper.activeIndex !== tmp.length) {
                         document.getElementById('label_name').innerHTML = tmp[swiper.activeIndex].u_name;
                         if (!tmp[swiper.activeIndex].u_gender) document.getElementById('label_gender').innerHTML = '남성';
@@ -176,9 +174,7 @@
                         document.getElementById('label_age').innerHTML = tmp[swiper.activeIndex].u_age;
                         document.getElementById('label_job').innerHTML = tmp[swiper.activeIndex].u_job;
                         $('.btn').show();
-                    }
-
-                    else {
+                    } else {
                         document.getElementById('label_name').innerHTML = '사용자를 추가시켜 주세요';
                         document.getElementById('label_gender').innerHTML = '사용자를 추가시켜 주세요';
                         document.getElementById('label_age').innerHTML = '사용자를 추가시켜 주세요';
@@ -190,9 +186,10 @@
         });
 
         function del_div() {
-            if (tmp.length < 1 || swiper.activeIndex == tmp.length) { alert('지울 사용자가 없습니다.'); }
-            else {
-                $(function () {
+            if (tmp.length < 1 || swiper.activeIndex == tmp.length) {
+                alert('지울 사용자가 없습니다.');
+            } else {
+                $(function() {
                     $('#dialog_text').text('[' + tmp[swiper.activeIndex].u_name + '] 사용자를 삭제하시겠습니까?');
                     $("#dialog").dialog({
                         //제목 설정
@@ -203,12 +200,11 @@
                         //뒷배경을 disable 시키고싶다면 true 
                         modal: true,
                         //버튼종류
-                        buttons: [
-                            {
+                        buttons: [{
                                 //버튼텍스트
                                 text: "확인",
                                 //클릭이벤트발생시 동작
-                                click: function () {
+                                click: function() {
                                     sendDB('/db/delete', tmp[swiper.activeIndex].u_num);
                                     alert(tmp[swiper.activeIndex].u_name + ' 사용자가 삭제되었습니다.');
                                     window.location.reload(true);
@@ -218,7 +214,7 @@
                                 //버튼텍스트
                                 text: "취소",
                                 //클릭이벤트발생시 동작
-                                click: function () {
+                                click: function() {
                                     $(this).dialog("close");
                                 }
                             }
@@ -234,9 +230,7 @@
                 swiper.appendSlide('<div class="swiper-slide"><div class="vertical"><img src="./images/plusBtn.png" class="imgtag"></div></div>');
                 swiper.update();
                 $('.btn').hide();
-            }
-
-            else {
+            } else {
                 for (var i = 0; i < tmp.length; i++) {
                     if (tmp[i].u_age < 15) {
                         if (tmp[i].u_gender == 0) path = './images/boy.png'
@@ -263,8 +257,10 @@
             }
         }
 
-        function sendAjax(url, data){
-            var inputdata = {'temp':'0'};
+        function sendAjax(url, data) {
+            var inputdata = {
+                'temp': '0'
+            };
             data = JSON.stringify(inputdata);
 
             var xhr = new XMLHttpRequest();
@@ -272,7 +268,7 @@
             xhr.setRequestHeader('content-type', 'application/json');
             xhr.send(data);
 
-            xhr.addEventListener('load', function () {
+            xhr.addEventListener('load', function() {
                 console.log(xhr.responseText);
             });
         };
@@ -291,7 +287,7 @@
             xhr.send(data); // 문자열 형태로 넣어줘야함
             console.log(data + 'xhr send')
 
-            xhr.addEventListener('load', function () {
+            xhr.addEventListener('load', function() {
                 var result = JSON.parse(xhr.responseText);
                 var resultDiv;
                 console.log('데이터 넘겨받음' + result.result)
@@ -310,10 +306,9 @@
             });
         }
 
-        window.onload = function () {
+        window.onload = function() {
             sendDB('/db/reference', 'ok');
         };
-
     </script>
 
 </body>
