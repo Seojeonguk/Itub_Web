@@ -84,7 +84,11 @@
         function sendDB(url, data) {
             var name = decodeURI(getCookie('cookie_name'));
             var data = {
-                'data': name
+                'name':name,
+                'water' : decodeURI(getCookie('cookie_water')),
+                'bathing' : decodeURI(getCookie('cookie_bathing')),
+                'temperature' : decodeURI(getCookie('cookie_temperature')),
+                'time' : decodeURI(getCookie('cookie_time')),
             };
             console.log(data + '데이터형 변경 전');
             data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
@@ -100,16 +104,15 @@
                 var result = JSON.parse(xhr.responseText);
                 var resultDiv;
                 console.log('데이터 넘겨받음' + result.result)
-                if(result.result=='ok' && result.type=='update') {
+                if (result.result == 'ok' && result.type == 'update') {
                     console.log('잘되었습니다');
-                }
-                else {
+                } else {
                     console.log('에러발생!');
                 }
             });
         }
-        
-        window.onload = function () {
+
+        window.onload = function() {
             sendDB('/db/update', 'ok');
         };
     </script>
