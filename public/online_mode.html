@@ -95,26 +95,25 @@
         document.querySelector('#predict-during-content').innerHTML = decodeURI(getCookie('cookie_predict_during'));
         document.querySelector('#predict-temp-content').innerHTML = decodeURI(getCookie('cookie_predict_temp'));
         var img = document.querySelector('#user-img');
-        if(gender=='남성') {
-            if(age<19) img.style.backgroundImage="url('./images/boy.png')";
-            else if(age<65) img.style.backgroundImage="url('./images/fa.png')";
-            else img.style.backgroundImage="url('./images/granfa.png')";
+        if (gender == '남성') {
+            if (age < 19) img.style.backgroundImage = "url('./images/boy.png')";
+            else if (age < 65) img.style.backgroundImage = "url('./images/fa.png')";
+            else img.style.backgroundImage = "url('./images/granfa.png')";
+        } else {
+            if (age < 19) img.style.backgroundImage = "url('./images/girl.png')";
+            else if (age < 65) img.style.backgroundImage = "url('./images/ma.png')";
+            else img.style.backgroundImage = "url('./images/granma.png')";
         }
-        else {
-            if(age<19) img.style.backgroundImage="url('./images/girl.png')";
-            else if(age<65) img.style.backgroundImage="url('./images/ma.png')";
-            else img.style.backgroundImage="url('./images/granma.png')";
-        }
-        
-        img.addEventListener('click',function() {
+
+        img.addEventListener('click', function() {
             var form = document.createElement('form');
             form.setAttribute('method', 'POST');
-            form.setAttribute('action', '/item_cookie' );
-        
-            
+            form.setAttribute('action', '/item_cookie');
+
+
             var water;
-            if(age<16) water = Math.floor(Math.random()*10+50);
-            else water = Math.floor(Math.random()*20+70);
+            if (age < 16) water = Math.floor(Math.random() * 10 + 50);
+            else water = Math.floor(Math.random() * 20 + 70);
             var water_filed = document.createElement('input')
             water_filed.setAttribute('type', 'hidden');
             water_filed.setAttribute('name', 'water');
@@ -273,12 +272,12 @@
                     // 선택된 메뉴의 각 타이틀 만큼 반복
                     var test;
                     for (var i = 0; i < str_size; i++) {
-                        if(Math.floor(i/7)==(i/7)) test = (i/7);
-                        else test += (1+Math.floor(i/7));
+                        if (Math.floor(i / 7) == (i / 7)) test = (i / 7);
+                        else test += (1 + Math.floor(i / 7));
                         var nodeVals = [];
                         var real_idx = i < 2 ? 1 - i : i;
-                        if (i >= 7) $('.node').data('node',$($('.node')[test]));
-                        else $('.node').data('.node',$this);
+                        if (i >= 7) $('.node').data('node', $($('.node')[test]));
+                        else $('.node').data('.node', $this);
 
                         nodeVals.push(title[idx][real_idx]);
 
