@@ -117,22 +117,20 @@ router.post('/update', function (req, res) {
     var connection = mysql.createConnection(dbconfig);
     var data = req.body;
     var responseData = {};
-    console.log(data);
     var bathbomb = new Array('없음','귤', '바닐라', '라벤더', '레몬', '자스민', '로즈제라늄', '로즈마리', '블루마린');
     for(var i=0;i<bathbomb.length;i++)
         if(bathbomb[i] == data.bathing)
             data.bathing=i;
-
-    console.log(data);
+    
     var sql = 'SELECT * FROM u_db WHERE u_name=?';
     var query = connection.query(sql, [data.name], function (err, rows) {
         if (rows[0]) {
             responseData.result = 'ok';
-            responseData.type = 'delete'
+            responseData.type = 'update'
 
         } else {
             responseData.result = 'none';
-            responseData.type = 'delete'
+            responseData.type = 'update'
             console.log('none : ' + data);
             return;
         }
