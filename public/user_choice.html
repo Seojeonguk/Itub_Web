@@ -21,8 +21,8 @@
         <button type='submit' id='online_submit'></button>
     </form>
 
-    
-    
+
+
     <table>
         <td>
             <a onclick='document.getElementById("own_submit").click()'> <img src="./images/own_setting_image.jpg" class=""></a>
@@ -36,9 +36,48 @@
     </table>
     <label id='test_label'></label>
 </body>
-    
-    <script>
-        console.log(document.cookie);
-    </script>
+
+<script>
+    function sendDB(url, data) {
+        var getCookie = function(name) {
+            var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return value ? value[2] : null;
+        };
+        var name = decodeURI(getCookie('cookie_name'));
+        var age = decodeURI(getCookie('cookie_age'));
+        var gender = decodeURI(getCookie('cookie_gender'));
+        var job = decodeURI(getCookie('cookie_job'));
+        var data = {
+            'name': name,
+            'age': age,
+            'gender': gender,
+            'job': job
+        };
+        console.log(data + '데이터형 변경 전');
+        data = JSON.stringify(data); // json을 문자열 형태로 만들어줌
+        console.log(data + '데이터형 변경 후');
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        // 서버로 보낼때 json 형태의 데이터를 보내기위해 지정
+        xhr.send(data); // 문자열 형태로 넣어줘야함
+        console.log(data + 'xhr send')
+
+        xhr.addEventListener('load', function() {
+            var result = JSON.parse(xhr.responseText);
+            var resultDiv;
+            console.log('데이터 넘겨받음' + result.result)
+            if (result.result == 'ok' && result.type == 'update') {
+                console.log('잘되었습니다');
+            } else {
+                console.log('에러발생!');
+            }
+        });
+    }
+
+    window.onload = function() {
+        sendDB('/db/user_start', 'ok');
+    };
+</script>
 
 </html>
