@@ -149,7 +149,6 @@ router.post('/recommend', function (req, res) {
 });
 
 router.post('/user', function (req, res) {
-    console.log(res.cookie);
 	res.sendFile(path.join(__dirname + "/../public/user_choice.html")) // html 파일을 보내는 것
 });
 
