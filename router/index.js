@@ -104,13 +104,15 @@ router.post('/item', function (req, res) {
     date = year + "-" + month + "-" + day;
     var gender = (req.cookies.cookie_gender == '남성' ? '남' : '여');
     var age = req.cookies.cookie_age;
-    var temp = req.cookies.cookie_temp;
+    var temp = req.cookies.cookie_temperature;
     var start = 11;
     var during = req.cookies.cookie_time;
     var end = 12;
     var perfume = (req.cookies.cookie_bathing == '없음' ? '무' : '유');
     var job = req.cookies.cookie_job;
     var weather = 20;
+    var text = date + "," + gender + "," + age + "," + temp + "," + start + "," + during + "," + end + "," + perfume + "," + job+"," + weather;
+    console.log(text)
     var options = {
         // pythonPath: "C:\\Python34\\python.exe", //window path
         pythonPath: '', //ubuntu path
