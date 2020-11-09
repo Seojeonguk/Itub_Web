@@ -3,8 +3,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var router = express.Router();
-//const session = require('express-session');
-//const FileStore = require('session-file-store')(session);
 var db = require('./db/DBfunc');
 let {
     PythonShell
