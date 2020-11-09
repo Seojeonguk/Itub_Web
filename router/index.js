@@ -17,66 +17,12 @@ app.use(bodyParser.urlencoded({
     extended: true
 })) // 인코딩된 url 형태로 받을때
 app.use(cookieParser());
-/*app.use(session({
-    secret:'keyboard cat',
-    resave:false,
-    saveUninitialized:true,
-    store:new FilesStore()
-}));*/
 
 router.use('/db', db);
-
-/*let user = {
-    py_cookie:"0",
-    py_name:"0",
-    py_gender="0",
-    py_job="0",
-    py_water="0",
-    py_bathing="0",
-    py_temperature='0',
-    py_time='0'
-};*/
-/*global.py_cookie = 0;
-global.py_name = 0;
-global.py_age = 0;
-global.py_gender = 0;
-global.py_job = 0;
-global.py_water = 0;
-global.py_bathing = 0;
-global.py_temperature = 0;
-global.py_time = 0;*/
 
 // url routing
 router.get('/', function (req, res) {
     console.log('get');
-
-    /*res.cookie('py_cookie','1', {
-        maxAge:60*60*1000*1000,
-    });
-    
-    
-    res.cookie('cookie_gender','1');
-    res.cookie('py_name',req.cookies.py_name, {
-        maxAge:60*60*1000*1000
-    });
-    console.log("req.cookies");
-    console.log(req.cookies);
-    res.cookie('py_bathing',req.cookies.cookie_bathing);
-    res.cookie('py_age',req.cookies.cookie_age);
-    res.cookie('py_gender',req.cookies.cookie_gender);
-    res.cookie('py_job',req.cookies.cookie_job);
-    res.cookie('py_water',req.cookies.cookie_water);
-    res.cookie('py_temperature',req.cookies.cookie_temperature);
-    res.cookie('py_time','1');*/
-    /*py_cookie = 0;
-	py_name = 0;
-	py_age = 0;
-	py_gender = 0;
-	py_job = 0;
-	py_water = 0;
-	py_bathing = 0;
-	py_temperature = 0;
-	py_time = 0;*/
     res.sendFile(path.join(__dirname + "/../public/main_page.html")) // html 파일을 보내는 것
 });
 
